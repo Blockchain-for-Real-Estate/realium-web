@@ -52,16 +52,9 @@ export default function Home() {
         </div>
       </div>
 
-      {/* {props.searchable && (
-              <SearchForm
-                resultsSetter={setListings}
-                setNotify={props.setNotify}
-                searchService={"propertyService"}
-                reset={setReload}
-                reloadAll={reloadAll}
-              />
-            )} */}
-      <ListingArchive />
+      <div className="max-w-7xl mx-auto my-10">
+        <ListingArchive />
+      </div>
 
       <div className="py-16 bg-gray-50 overflow-hidden lg:py-24">
         <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
