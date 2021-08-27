@@ -13,6 +13,7 @@ import ListingArchive from "components/marketplace/ListingArchive";
 import Info from "components/marketing/Info";
 import MailList from "components/marketing/MailList";
 import Faq from "components/marketing/Faq";
+import Heading1 from "components/marketing/Heading1";
 
 export default function Home() {
   return (
@@ -38,19 +39,10 @@ export default function Home() {
         ]}
       />
 
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-12 sm:pb-8 sm:py-24">
-          <div className="text-center">
-            <p className="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl">
-              Explore the marketplace
-            </p>
-            <p className="max-w-xl mt-5 mx-auto text-xl text-gray-500">
-              View the properties that are currently available on the Realium
-              marketplace and choose the best investment for you.
-            </p>
-          </div>
-        </div>
-      </div>
+      <Heading1
+        title="Explore the marketplace"
+        description="View the properties that are currently available on the Realium marketplace and choose the best investment for you."
+      />
 
       <div className="max-w-7xl mx-auto my-10">
         <ListingArchive />
