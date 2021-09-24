@@ -1,13 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
-];
-
 export default function Hero({ title, description, imgSrc, btnText, btnHref }) {
   return (
     <div className="relative bg-white overflow-hidden">

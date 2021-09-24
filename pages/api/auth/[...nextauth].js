@@ -2,20 +2,12 @@ import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 
 export default NextAuth({
-  secret: process.env.NEXT_AUTH_SECRET,
+  secret: process.env.NEXT_AUTH_ENCRYTION_KEY,
   providers: [
-    Providers.Credentials({
-      name: "Email",
-      credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials, req) {
-        return {
-          id: "1",
-          name: "rob",
-        };
-      },
+    Providers.Cognito({
+      clientId: process.env.COGNITO_CLIENT_ID,
+      clientSecret: process.env.COGNITO_CLIENT_SECRET,
+      domain: process.env.COGNITO_DOMAIN,
     }),
   ],
 });

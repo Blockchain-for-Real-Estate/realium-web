@@ -1,4 +1,3 @@
-import { data } from "autoprefixer";
 import { useQuery } from "react-query";
 import ApiPropertyService from "../services/property.service.ts";
 

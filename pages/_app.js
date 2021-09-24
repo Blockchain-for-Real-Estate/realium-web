@@ -1,3 +1,5 @@
+import Head from "next/head";
+
 import "tailwindcss/tailwind.css";
 import "index.css";
 
@@ -19,12 +21,26 @@ function Realium({ Component, pageProps }) {
   });
 
   return (
-    <AuthProvider>
+    <>
+      <Head>
+        <title>
+          {Component.title || "Backed by Real Estate, Powered by Blockchain"}
+        </title>
+        <meta
+          name="description"
+          content={
+            Component.description ||
+            "Realium is a merketplace for buying, selling, and listing tokenized real estate"
+          }
+        />
+      </Head>
       <QueryClientProvider client={queryClient}>
-        <AppProvider>{getLayout(Component, pageProps)}</AppProvider>
+        <AuthProvider>
+          <AppProvider>{getLayout(Component, pageProps)}</AppProvider>
+        </AuthProvider>
         <ReactQueryDevtools />
       </QueryClientProvider>
-    </AuthProvider>
+    </>
   );
 }
 
@@ -33,7 +49,7 @@ const getLayout = (Component, pageProps) => {
     default:
       return (
         <DefaultLayout>
-          <Component />
+          <Component {...pageProps} />
         </DefaultLayout>
       );
   }
