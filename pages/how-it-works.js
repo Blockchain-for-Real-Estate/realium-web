@@ -4,6 +4,6 @@ const Page = () => <HowItWorksPage />;
 
 Page.title = null;
 Page.description = null;
-Page.authentication = false;
+Page.restricted = false;
 Page.layout = "default";
 export default Page;

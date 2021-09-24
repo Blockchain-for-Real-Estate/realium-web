@@ -4,6 +4,6 @@ const Page = () => <HomePage />;
 
 Page.title = null;
 Page.description = null;
-Page.authentication = false;
-Page.layout = null;
+Page.restricted = false;
+Page.layout = "default";
 export default Page;

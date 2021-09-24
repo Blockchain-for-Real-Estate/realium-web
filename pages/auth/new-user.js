@@ -1,6 +1,4 @@
-import MarketplacePage from "components/pages/MarketplacePage";
-
-const Page = () => <MarketplacePage />;
+const Page = () => <div>Welcome</div>;
 
 Page.title = null;
 Page.description = null;

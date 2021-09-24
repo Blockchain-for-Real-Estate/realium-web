@@ -2,7 +2,7 @@ import NavLink from "components/base/NavLink";
 import Link from "next/link";
 import header from "data/static/headerLinks";
 import { MenuIcon } from "@heroicons/react/outline";
-import { signIn } from "next-auth/client";
+import { signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 
 export default function HeaderDefault() {
@@ -40,9 +40,11 @@ export default function HeaderDefault() {
             <button onClick={signIn} className="btn-secondary  px-3 py-2">
               Sign in
             </button>
-            <Link href="/signup">
-              <button className="btn-primary px-3 py-2">Sign up</button>
-            </Link>
+            {/* <Link href="/signup"> */}
+            <button className="btn-primary px-3 py-2" onClick={signOut}>
+              Sign Out
+            </button>
+            {/* </Link> */}
           </div>
         </div>
       </nav>

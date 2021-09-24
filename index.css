@@ -1,83 +1,61 @@
-html,
-body,
-#__next {
-  height: 100%;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* BUILDING BLOCKS */
-.section {
-  @apply px-4 sm:px-8 max-w-7xl mx-auto py-10 md:py-16;
-}
+@layer base {
+  html {
+    @apply h-full;
+  }
+  body {
+    @apply text-base font-inter text-gray-700 h-full;
+  }
+  #__next {
+    @apply h-full;
+  }
 
-/* Typography
-h1 {
-  @apply text-4xl md:text-5xl lg:text-6xl font-semibold py-4;
-}
-h2 {
-  @apply text-3xl md:text-4xl lg:text-5xl font-normal py-4;
-}
-h3 {
-  @apply text-2xl md:text-3xl lg:text-4xl font-normal py-2;
-}
-h4 {
-  @apply text-2xl md:text-3xl lg:text-4xl font-bold py-2;
-}
-h5 {
-  @apply text-xl md:text-2xl lg:text-3xl font-semibold uppercase py-2;
-}
-h6 {
-  @apply text-lg md:text-xl font-semibold uppercase py-2;
-}
-body {
-  @apply text-base md:text-lg text-gray-500;
-}
-.accent {
-  @apply text-sm md:text-base uppercase font-semibold;
-}
-a {
-  @apply text-indigo-600 hover:text-indigo-500;
-}
-strong {
-  @apply font-semibold;
-} */
+  /* BUILDING BLOCKS */
+  .section {
+    @apply px-4 sm:px-8 max-w-7xl mx-auto py-10 md:py-16;
+  }
 
-/* BUTTON DEFAULTS */
-.btn-disabled {
-  @apply disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500;
-}
+  /* BUTTON DEFAULTS */
+  .btn-disabled {
+    @apply disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500;
+  }
 
-.btn {
-  @apply btn-disabled rounded-md tracking-widest text-base font-medium;
-}
+  .btn {
+    @apply btn-disabled rounded-md tracking-widest text-base font-medium;
+  }
 
-/* BUTTONS */
-.btn-primary {
-  @apply btn bg-indigo-600 hover:bg-indigo-800 text-white;
-}
-.btn-secondary {
-  @apply btn bg-white hover:bg-gray-200 text-indigo-600;
-}
-.btn-accent {
-  @apply btn bg-indigo-500 hover:bg-indigo-600 text-white hover:text-white;
-}
-.btn-positive {
-  @apply btn bg-green-100 hover:bg-green-200 text-green-700;
-}
-.btn-danger {
-  @apply btn bg-red-100 hover:bg-red-200 text-red-700;
-}
-.btn-white {
-  @apply btn bg-white hover:bg-gray-100 text-black  border border-gray-300;
-}
-.btn-icon {
-  @apply rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
-}
+  /* BUTTONS */
+  .btn-primary {
+    @apply btn bg-indigo-600 hover:bg-indigo-800 text-white;
+  }
+  .btn-secondary {
+    @apply btn bg-white hover:bg-gray-200 text-indigo-600;
+  }
+  .btn-accent {
+    @apply btn bg-indigo-500 hover:bg-indigo-600 text-white hover:text-white;
+  }
+  .btn-positive {
+    @apply btn bg-green-100 hover:bg-green-200 text-green-700;
+  }
+  .btn-danger {
+    @apply btn bg-red-100 hover:bg-red-200 text-red-700;
+  }
+  .btn-white {
+    @apply btn bg-white hover:bg-gray-100 text-black  border border-gray-300;
+  }
+  .btn-icon {
+    @apply rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
+  }
 
-/* FORMS */
-.input-primary {
-  @apply shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md p-2 border border-gray-300 text-gray-900;
-}
+  /* FORMS */
+  .input-primary {
+    @apply shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md p-2 border border-gray-300 text-gray-900;
+  }
 
-.input-label {
-  @apply text-sm text-gray-700;
+  .input-label {
+    @apply text-sm text-gray-700;
+  }
 }
