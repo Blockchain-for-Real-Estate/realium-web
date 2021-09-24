@@ -1,6 +1,16 @@
 import HomePage from "components/pages/HomePage";
+import { dehydrate, QueryClient } from "react-query";
 
 const Page = () => <HomePage />;
+
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
 
 Page.title = null;
 Page.description = null;

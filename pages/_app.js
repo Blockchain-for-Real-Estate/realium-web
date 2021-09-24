@@ -1,6 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
-import "index.css";
+import "../index.css";
 
 // CONTEXT
 import { AppProvider } from "context/AppContext";
@@ -9,19 +9,22 @@ import {
   useSession,
   signIn,
 } from "next-auth/react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import DefaultLayout from "layout/DefaultLayout";
 
-function Realium({ Component, pageProps: { session, ...pageProps } }) {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: Infinity,
-      },
-    },
-  });
+function Realium({ Component, pageProps }) {
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: Infinity,
+          },
+        },
+      })
+  );
 
   return (
     <>
@@ -38,15 +41,17 @@ function Realium({ Component, pageProps: { session, ...pageProps } }) {
         />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <AuthProvider session={session}>
-          <AppProvider>
-            {Component.restricted ? (
-              <Auth>{getLayout(Component, pageProps)}</Auth>
-            ) : (
-              <>{getLayout(Component, pageProps)}</>
-            )}
-          </AppProvider>
-        </AuthProvider>
+        <Hydrate state={pageProps.dehydratedState}>
+          <AuthProvider session={pageProps.session}>
+            <AppProvider>
+              {Component.restricted ? (
+                <Auth>{getLayout(Component, pageProps)}</Auth>
+              ) : (
+                <>{getLayout(Component, pageProps)}</>
+              )}
+            </AppProvider>
+          </AuthProvider>
+        </Hydrate>
         <ReactQueryDevtools />
       </QueryClientProvider>
     </>
