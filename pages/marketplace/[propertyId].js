@@ -1,4 +1,4 @@
-import PropertySingle from "components/pages/PropertySingle";
+import PropertySingle from "pages/PropertySingle";
 import { dehydrate, QueryClient } from "react-query";
 
 export async function getStaticProps() {

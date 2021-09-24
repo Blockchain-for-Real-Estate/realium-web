@@ -1,4 +1,4 @@
-import MarketplacePage from "components/pages/MarketplacePage";
+import MarketplacePage from "pages/MarketplacePage";
 import { dehydrate, QueryClient } from "react-query";
 
 export async function getStaticProps() {

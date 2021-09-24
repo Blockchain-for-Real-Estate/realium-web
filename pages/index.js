@@ -1,4 +1,4 @@
-import HomePage from "components/pages/HomePage";
+import HomePage from "pages/HomePage";
 import { dehydrate, QueryClient } from "react-query";
 
 const Page = () => <HomePage />;

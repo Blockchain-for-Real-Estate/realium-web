@@ -1,4 +1,4 @@
-import HowItWorksPage from "components/pages/HowItWorksPage";
+import HowItWorksPage from "pages/HowItWorksPage";
 import { dehydrate, QueryClient } from "react-query";
 
 export async function getStaticProps() {
