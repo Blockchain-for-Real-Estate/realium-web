@@ -4,11 +4,7 @@ import "../index.css";
 
 // CONTEXT
 import { AppProvider } from "context/AppContext";
-import {
-  SessionProvider as AuthProvider,
-  useSession,
-  signIn,
-} from "next-auth/react";
+import { Provider as AuthProvider, useSession, signIn } from "next-auth/client";
 import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 

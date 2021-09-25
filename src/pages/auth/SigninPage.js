@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { signIn } from "next-auth/react";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 
 export default function SigninPage() {

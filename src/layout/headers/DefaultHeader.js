@@ -2,7 +2,7 @@ import NavLink from "components/base/NavLink";
 import Link from "next/link";
 import header from "data/static/headerLinks";
 import { MenuIcon } from "@heroicons/react/outline";
-import { signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "next-auth/client";
 import Image from "next/image";
 
 export default function HeaderDefault() {

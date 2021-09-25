@@ -1,6 +1,6 @@
 import AWS from "aws-sdk";
 import NextAuth from "next-auth";
-import CognitoProvider from "next-auth/providers/cognito";
+import Providers from "next-auth/providers";
 import { DynamoDBAdapter } from "@next-auth/dynamodb-adapter";
 
 AWS.config.update({
@@ -16,9 +16,10 @@ export default NextAuth({
     newUser: "/auth/new-user",
   },
   providers: [
-    CognitoProvider({
+    Providers.Cognito({
       clientId: process.env.COGNITO_CLIENT_ID,
-      issuer: process.env.COGNITO_ISSUER,
+      clientSecret: process.env.COGNITO_CLIENT_SECRET,
+      domain: process.env.COGNITO_ISSUER,
     }),
   ],
   adapter: DynamoDBAdapter(new AWS.DynamoDB.DocumentClient(), {
