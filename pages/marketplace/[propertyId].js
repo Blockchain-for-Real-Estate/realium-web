@@ -10,6 +10,17 @@ export async function getStaticProps() {
   };
 }
 
+export async function getStaticPaths(propertyId) {
+  return {
+    paths: [
+      `/marketplace/${propertyId}`,
+      // Object variant:
+      { params: { propertyId: propertyId.toString() } },
+    ],
+    fallback: true,
+  }
+}
+
 const Page = () => <PropertySingle />;
 
 Page.title = null;

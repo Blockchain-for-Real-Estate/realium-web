@@ -1,4 +1,6 @@
-const Page = () => <div>Welcome</div>;
+import { Dashboard } from "pages/Dashboard";
+
+const Page = () => <Dashboard id={1}/>;
 
 Page.title = null;
 Page.description = null;

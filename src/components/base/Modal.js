@@ -2,7 +2,7 @@ import React from "react";
 import { Transition } from "@headlessui/react";
 import { useAppContext } from "context/AppContext";
 
-const Modal = () => {
+export function Modal() {
   const { state, dispatch } = useAppContext();
   const { title, content, onConfirm, confirmBtn, onCancel, cancelBtn } =
     state.modal;

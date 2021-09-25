@@ -4,7 +4,7 @@ import { ChevronRightIcon, HomeIcon } from "@heroicons/react/solid";
 
 export function Breadcrumbs({ propertyName }) {
   return (
-    <nav className="flex pt-8 ml-4 sm:pt-0" aria-label="Breadcrumb">
+    <nav className="flex mt-8 sm:pt-0" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-4">
         <li>
           <div>

@@ -1,38 +1,36 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { Modal } from "../modals/modal";
-import { Link } from "react-router-dom";
-import { ListForm } from "./list-form";
-import { ApiBalanceService } from "../api/services/balance.service";
+import React from 'react'
+import { Modal } from "components/base/Modal";
+import { Tab } from "@headlessui/react";
+import SigninPage from 'pages/auth/SigninPage';
+// import { ListForm } from "./list-form";
+// import { ApiBalanceService } from "../api/services/balance.service";
 
-export function BuyListOffer(props) {
-  let history = useHistory();
-  let { propertyId } = useParams();
+export function BuyListOffer() {
+  const [showModal, setShowModal] = React.useState(false);
   let [currentTab, setCurrentTab] = React.useState(0);
-  let [balance, setBalance] = React.useState();
-  const setNotify = props.setNotify;
+  // let [balance, setBalance] = React.useState();
+  const setNotify = true;
 
-  React.useEffect(() => {
-    let wallet = sessionStorage.getItem("avax");
-    const fetchBalance = async () => {
-      try {
-        let balanceService = new ApiBalanceService();
-        await balanceService.getBalance(wallet).then((res) => {
-          setBalance(Number(res.data.result.balance) / 1000000000); //AVAX uses a demonination of 9
-        });
-      } catch {
-        setBalance(null);
-      }
-    };
+  // React.useEffect(() => {
+  //   let wallet = sessionStorage.getItem("avax");
+  //   const fetchBalance = async () => {
+  //     try {
+  //       let balanceService = new ApiBalanceService();
+  //       await balanceService.getBalance(wallet).then((res) => {
+  //         setBalance(Number(res.data.result.balance) / 1000000000); //AVAX uses a demonination of 9
+  //       });
+  //     } catch {
+  //       setBalance(null);
+  //     }
+  //   };
 
-    fetchBalance();
-  }, []);
+  //   fetchBalance();
+  // }, []);
 
-  const [values, setValues] = React.useState({
-    shares: "",
-    price: "",
-  });
+  // const [values, setValues] = React.useState({
+  //   shares: "",
+  //   price: "",
+  // });
 
   const values_handler = (e) => {
     let name = e.target.name;
@@ -45,7 +43,7 @@ export function BuyListOffer(props) {
     calc_total(newValues);
   };
 
-  const [total, setTotal] = React.useState(0);
+  // const [total, setTotal] = React.useState(0);
 
   const calc_total = (newValues) => {
     const { shares, price } = newValues;
@@ -148,13 +146,21 @@ export function BuyListOffer(props) {
                     /share
                   </div>
                 </div>
-                <div className="mt-4 mb-16 mx-4 flex">
+                <div className="my-4 mx-4 flex">
                   <div className="flex-1 text-left">Average Hold</div>
                   <div className="flex-1 text-right text-indigo-500">
                     12 days
                   </div>
                 </div>
-                <Modal buttonText="Select and Buy" setNotify={setNotify} />
+                <div className="my-12">
+                <button
+                  className="test bg-indigo-600 text-white active:bg-indigo-500 font-bold uppercase text-lg w-full py-4 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => setShowModal(true)}
+                >
+                  Select and Buy
+                </button>
+                </div>
                 <div className="flex">
                   <p className="flex-1 text-left text-gray-400 text-xs">
                     Realium balance
@@ -164,12 +170,11 @@ export function BuyListOffer(props) {
                       {balance || 0} AVAX
                     </p>
                   ) : (
-                    <Link
-                      to="/login"
+                    <div
                       className="flex-1 text-right text-indigo-500 text-xs"
                     >
                       Sign in to view balance
-                    </Link>
+                    </div>
                   )}
                 </div>
               </div>
@@ -189,15 +194,17 @@ export function BuyListOffer(props) {
                   </p>
                 </div>
                 {/* List form  */}
-                {!sessionStorage.getItem("id") ||
-                !sessionStorage.getItem("token") ? (
-                  <button
-                    className="mt-16 bg-indigo-600 text-white active:bg-indigo-500 font-bold uppercase text-sm w-full py-3 mb-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => history.push("/login")}
-                  >
-                    Sign In To Access
-                  </button>
+                {sessionStorage.getItem("id") ||
+                sessionStorage.getItem("token") ? (
+                  <div className="my-12">
+                <button
+                  className="test bg-indigo-600 text-white active:bg-indigo-500 font-bold uppercase text-lg w-full py-4 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                  type="button"
+                  onClick={() => <SigninPage/>}
+                >
+                  Sign In to Access
+                </button>
+                </div>
                 ) : (
                   <ListForm
                     setNotify={props.setNotify}
@@ -216,12 +223,11 @@ export function BuyListOffer(props) {
                       {balance || 0} AVAX
                     </p>
                   ) : (
-                    <Link
-                      to="/login"
+                    <div
                       className="flex-1 text-right text-indigo-500 text-xs"
                     >
                       Sign in to view balance
-                    </Link>
+                    </div>
                   )}
                 </div>
               </div>
@@ -291,7 +297,7 @@ export function BuyListOffer(props) {
                     </fieldset>
                   </div>
                   <div className="mb-8 mx-2 text-right text-xs text-gray-300">
-                    Total: {total.toFixed(2)} AVAX
+                    {/* Total: {total.toFixed(2)} AVAX */} Total: 4 AVAX
                   </div>
                   <div className="my-4 space-y-3 text-center sm:m-1 sm:items-center">
                     <button
@@ -318,12 +324,11 @@ export function BuyListOffer(props) {
                         {balance || 0} AVAX
                       </p>
                     ) : (
-                      <Link
-                        to="/login"
-                        className="flex-1 text-right text-indigo-500 text-xs"
-                      >
-                        Sign in to view balance
-                      </Link>
+                      <div
+                      className="flex-1 text-right text-indigo-500 text-xs"
+                    >
+                      Sign in to view balance
+                    </div>
                     )}
                   </div>
                 </div>

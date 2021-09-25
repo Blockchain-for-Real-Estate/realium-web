@@ -1,4 +1,3 @@
-import { django_environment as environment} from "../../environment"
 import axios from 'axios'
 import { Event } from "../interfaces/event.interface";
 
@@ -6,25 +5,25 @@ export class ApiEventService {
 
     public getTransactions() {
       return axios.get<Event>(
-        `${environment.api}/api/events/`
+        `${process.env.NEXT_PUBLIC_DJANGO_URL}/api/events/`
       );
     }
 
     public getFilteredTransactions(id: String) {
         return axios.get<Event>(
-          `${environment.api}/api/events?property=${id}`
+          `${process.env.NEXT_PUBLIC_DJANGO_URL}/api/events?property=${id}`
         );
     }
 
     public getEventsByUserId(id: String) {
       return axios.get<Event>(
-        `${environment.api}/api/events?eventCreator=${id}`
+        `${process.env.NEXT_PUBLIC_DJANGO_URL}/api/events?eventCreator=${id}`
       )
     }
 
     public getEventsForTokenId(id: string) {
       return axios.get<Event>(
-        `${environment.api}/api/events?eventType=LIST&token=${id}`
+        `${process.env.NEXT_PUBLIC_DJANGO_URL}/api/events?eventType=LIST&token=${id}`
       )
     }
 
@@ -33,7 +32,7 @@ export class ApiEventService {
         "Authorization": "Token " + token,
       }
       return axios.post<Event>(
-        `${environment.api}/api/events/`,
+        `${process.env.NEXT_PUBLIC_DJANGO_URL}/api/events/`,
         data,
         {headers}
       );
@@ -42,7 +41,7 @@ export class ApiEventService {
     //may not be necessary
     public patchTransaction(data: Partial<Event>) {
       return axios.patch<Event>(
-        `${environment.api}/api/events/`,
+        `${process.env.NEXT_PUBLIC_DJANGO_URL}/api/events/`,
         data
       );
     }

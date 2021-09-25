@@ -2,7 +2,7 @@ import React from "react";
 import { titleCase } from "title-case";
 import NumberFormat from "react-number-format";
 import TimeAgo from "react-timeago";
-import { ApiEventService } from "../api/services/event.service";
+import { ApiEventService } from "data/services/event.service.ts";
 
 export function Transactions(props) {
   let [transactions, setTransactions] = React.useState([]);
@@ -24,12 +24,6 @@ export function Transactions(props) {
         });
     } catch {
       setTransactions(null);
-      setNotify &&
-        setNotify({
-          msg: `There was an error property data.`,
-          color: "red",
-          show: true,
-        });
     }
   }, [listing, setNotify]);
 
@@ -177,14 +171,14 @@ function TransactionRow(props) {
   return (
     <tr className="mb-10">
       <td
-        className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
+        className="px-6 py-6 whitespace-nowrap text-xs text-gray-500"
         data-label="Event"
       >
         {/* TODO: add icons here */}
         {titleCase(props.transaction.eventType.toLowerCase())}
       </td>
       <td
-        className="px-6 py-4 whitespace-nowrap sm:flex items-center text-xs text-gray-500"
+        className="px-6 py-6 whitespace-nowrap sm:flex items-center text-xs text-gray-500"
         data-label="Quantity Listed"
       >
         <NumberFormat
@@ -217,23 +211,23 @@ function TransactionRow(props) {
           </svg>
         </div>
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500">
+      <td className="px-6 py-6 whitespace-nowrap text-xs text-gray-500">
         {/* add username? */}
         {props.transaction.eventCreator.walletAddress}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap text-xs text-gray-500">
+      <td className="px-6 py-6 whitespace-nowrap text-xs text-gray-500">
         {/* add username? */}
         {props.transaction.eventType !== "LIST" &&
           props.transaction.tokenOwner.walletAddress}
       </td>
       <td
-        className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
+        className="px-6 py-6 whitespace-nowrap text-xs text-gray-500"
         data-label="Time"
       >
         <TimeAgo date={props.transaction.eventDateTime} />
       </td>
       <td
-        className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+        className="px-6 py-6 whitespace-nowrap text-sm text-gray-500"
         data-label="TX"
       >
         {props.transaction.eventType === "SALE" && (
