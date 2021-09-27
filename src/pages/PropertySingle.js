@@ -82,7 +82,7 @@ export default function PropertySingle() {
               for a steal at{" "}
               {
                 <NumberFormat
-                  value={token.purchasedPrice}
+                  value={token.listedPrice}
                   displayType={"text"}
                   thousandSeparator={true}
                 />

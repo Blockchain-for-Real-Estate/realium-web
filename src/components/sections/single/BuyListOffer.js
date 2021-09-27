@@ -206,13 +206,14 @@ export function BuyListOffer() {
                 </button>
                 </div>
                 ) : (
-                  <ListForm
-                    setNotify={props.setNotify}
-                    valueHandler={values_handler}
-                    total={total}
-                    events={props.events}
-                    propertyId={propertyId}
-                  />
+                  // <ListForm
+                  //   setNotify={props.setNotify}
+                  //   valueHandler={values_handler}
+                  //   total={total}
+                  //   events={props.events}
+                  //   propertyId={propertyId}
+                  // />
+                  <div></div>
                 )}
                 <div className="flex">
                   <p className="flex-1 text-left text-gray-400 text-xs">
