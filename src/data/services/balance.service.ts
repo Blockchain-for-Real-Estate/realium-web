@@ -1,11 +1,10 @@
-import { avax_environment as environment} from "../../environment"
 import axios from 'axios'
 
 export class ApiBalanceService {
     
     public getBalance(wallet: string, id: string) {
       return axios.post(
-        `${environment.api}`,
+        `${process.env.NEXT_PUBLIC_AVAX_URL}`,
         {
             "jsonrpc":"2.0",
             "id"     : 1,

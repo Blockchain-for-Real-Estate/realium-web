@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from "components/base/Modal";
+import { Modal } from "./Modal";
 import { Tab } from "@headlessui/react";
 import SigninPage from 'pages/auth/SigninPage';
 import { ListForm } from "./ListForm";
@@ -152,15 +152,7 @@ export function BuyListOffer() {
                     12 days
                   </div>
                 </div>
-                <div className="my-12">
-                <button
-                  className="test bg-indigo-600 text-white active:bg-indigo-500 font-bold uppercase text-lg w-full py-4 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                  onClick={() => setShowModal(true)}
-                >
-                  Select and Buy
-                </button>
-                </div>
+                <Modal buttonText="Select and Buy" setNotify={setNotify} page={"create"}/>
                 <div className="flex">
                   <p className="flex-1 text-left text-gray-400 text-xs">
                     Realium balance
