@@ -1,6 +1,6 @@
-import { Dashboard } from "pages/Dashboard";
+import { DashboardPage } from "pages/DashboardPage";
 
-const Page = () => <Dashboard id={1}/>;
+const Page = () => <DashboardPage id={1}/>;
 
 Page.title = null;
 Page.description = null;

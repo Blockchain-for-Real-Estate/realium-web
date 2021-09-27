@@ -62,7 +62,7 @@ export default function PropertySingle() {
           </div>
 
           <div>
-              <Breadcrumbs listing={listing} />
+              <Breadcrumbs listing={listing.propertyName} />
             </div>
         </div>
 
@@ -93,7 +93,7 @@ export default function PropertySingle() {
               . {listing.details.description}
             </div>
           </div>
-          <div className="w-1/4"></div>
+          <div className="w-1/6"></div>
           <div className="w-1/2"><BuyListOffer /></div>
         </div>
       </div>

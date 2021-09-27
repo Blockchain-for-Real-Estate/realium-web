@@ -2,7 +2,7 @@ import React from 'react'
 import { Modal } from "components/base/Modal";
 import { Tab } from "@headlessui/react";
 import SigninPage from 'pages/auth/SigninPage';
-// import { ListForm } from "./list-form";
+import { ListForm } from "./ListForm";
 // import { ApiBalanceService } from "../api/services/balance.service";
 
 export function BuyListOffer() {
@@ -206,16 +206,13 @@ export function BuyListOffer() {
                 </button>
                 </div>
                 ) : (
-                  // <ListForm
-                  //   setNotify={props.setNotify}
-                  //   valueHandler={values_handler}
-                  //   total={total}
-                  //   events={props.events}
-                  //   propertyId={propertyId}
-                  // />
-                  <div></div>
+                  <ListForm
+                    valueHandler={values_handler}
+                    total={100}
+                    propertyId={1}
+                  />
                 )}
-                <div className="flex">
+                <div className="flex mt-4">
                   <p className="flex-1 text-left text-gray-400 text-xs">
                     Realium balance
                   </p>
