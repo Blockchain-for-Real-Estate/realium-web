@@ -1,20 +1,23 @@
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/client";
+import { signIn } from "next-auth/client";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-export default function SigninPage() {
+export default function SigninPage({ session }) {
   const router = useRouter();
-  const { data: session, status } = useSession();
   const callback = router?.query?.callbackUrl;
 
   const GoBack = () => {
     router.replace(callback || "/");
   };
 
-  if (status === "authenticated" && callback) {
-    GoBack();
-  }
+  useEffect(() => {
+    if (session && callback) {
+      GoBack();
+    }
+  }, []);
 
+  if (session) return null;
   return (
     <div className="min-h-screen bg-white flex">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
