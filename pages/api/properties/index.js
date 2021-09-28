@@ -1,11 +1,15 @@
-const GetProperties = (req, res) => {
-  res.status(200).send("Hello World");
+import PropertyModel from "api/models/Property";
+
+const GetProperties = async (req, res) => {
+  const { limit } = req.query;
+  const response = await PropertyModel.scan().limit(limit).exec();
+  res.status(200).send(response);
 };
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
   switch (req.method) {
     case "GET":
-      GetProperties(req, res);
+      await GetProperties(req, res);
     default:
       res.status(400).send();
   }
