@@ -8,36 +8,77 @@ const PropertySchema = new dynamoose.Schema(
       hashKey: true,
       default: () => uuid(),
     },
-    propertyName: String,
-    propertyTypeId: Number,
-    listingType: String,
-    propertyType: String,
-    legalTypeId: Number,
-    avalancheAssetId: String,
-    parcelId: String,
-    streetAddress: String,
-    city: String,
-    state: String,
-    zipCode: String,
-    funded: Number,
-    forcastedIncome: String,
-    minInvestment: Number,
-    maxInvestment: Number,
-    yearBuilt: Number,
-    country: String,
-    acerage: Number,
-    llc: String,
-    seriesCount: Number,
-    bedrooms: Number,
-    bathrooms: Number,
-    area: Number,
-    lot: Number,
-    parking: Number,
-    investment: String,
-    totalCapitalization: Number,
-    netOperatingIncome: Number,
-    estimatedAppreciation: Number,
-    managementTeam: String,
+    propertyName: {
+      type: String,
+      required: true,
+    },
+    propertyType: {
+      type: String,
+      default: () => "Residential",
+    },
+    smartContractAddress: {
+      type: String,
+      required: true,
+    },
+    llcName: {
+      type: String,
+    },
+    address: {
+      type: Set,
+      required: true,
+      schema: {
+        streetAddress: {
+          type: String,
+          required: true,
+        },
+        city: {
+          type: String,
+          required: true,
+        },
+        state: {
+          type: String,
+          required: true,
+        },
+        zipCode: {
+          type: String,
+          required: true,
+        },
+        country: {
+          type: String,
+          default: () => "USA",
+        },
+      },
+    },
+    details: {
+      type: Set,
+      required: true,
+      schema: {
+        yearBuilt: {
+          type: Number,
+          required: true,
+        },
+        bedrooms: {
+          type: Number,
+          required: true,
+        },
+        bathrooms: {
+          type: Number,
+          required: true,
+        },
+        sqft: {
+          type: Number,
+          required: true,
+        },
+        acerage: {
+          type: Number,
+          required: true,
+        },
+        parkingSpaces: {
+          type: Number,
+          required: true,
+        },
+      },
+    },
     images: {
       type: Set,
       schema: [String],
