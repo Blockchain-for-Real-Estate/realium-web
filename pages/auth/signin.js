@@ -12,4 +12,4 @@ Page.title = null;
 Page.description = null;
 Page.restricted = false;
 Page.layout = "";
-export default SigninPage;
+export default Page;
