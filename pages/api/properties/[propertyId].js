@@ -1,7 +1,6 @@
 import PropertyModel from "api/models/Property";
 
 const GetProperty = async (req, res) => {
-  debugger;
   const { propertyId } = req.query;
   const property = await PropertyModel.get(propertyId);
   res.status(200).send(property);
