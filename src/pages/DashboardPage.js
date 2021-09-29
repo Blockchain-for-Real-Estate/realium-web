@@ -14,14 +14,14 @@ import { ApiEventService } from "data/services/event.service.ts"
 // import res4 from "../resources/images/residential/residential-4.jpg"
 // import res5 from "../resources/images/residential/residential-5.jpg"
 // import res6 from "../resources/images/residential/residential-6.jpg"
-// import { FaucetPopOut } from "../utilities/faucet-pop-out"
+import { Faucet } from "utilities/web/Faucet"
 import Faq from "components/sections/general/Faq";
 import { ACCOUNT_FAQS } from "data/static/faqs.js"
 // import { SellModal } from "../modals/sell"
 
-export function Dashboard(props) {
+export function DashboardPage(props) {
     let id = props.id
-    // let walletAdress = sessionStorage.getItem('avax')
+    let walletAdress = sessionStorage.getItem('avax')
     const [tokens, setTokens] = React.useState([])
     const [events, setEvents] = React.useState()
     const [reloadAll, setReload] = React.useState(0)
@@ -76,7 +76,6 @@ export function Dashboard(props) {
             pages.push(temparray)
         }
     }
-    console.log(tokens, events, pages)
 
     return (
         <>{tokens && events && pages ?
@@ -94,9 +93,9 @@ export function Dashboard(props) {
                         <h4 className="inline-block mb-0 align-baseline text-lg font-extrabold text-indigo-700 tracking-tight sm:text-xl">
                         While Realium is in beta, access the Avalanche test faucet for funds.
                         </h4>
-                        {/* <div className="text-left">
-                            <FaucetPopOut wallet={walletAdress}/>
-                        </div> */}
+                        <div className="text-left">
+                            <Faucet wallet={walletAdress}/>
+                        </div>
                     </div>
                     <div className="relative mt-2 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-16 lg:items-top">
                     <div className="relative">

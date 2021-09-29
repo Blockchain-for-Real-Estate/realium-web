@@ -1,5 +1,5 @@
 import React from "react"
-// import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 // import * as bs from "react-bootstrap"
 import NumberFormat from "react-number-format"
 // import LoadingWave from "@bit/ngoue.playground.loading-wave"
@@ -14,7 +14,7 @@ import { DetailsTable } from "components/sections/single/DetailsTable"
 
 export default function PropertySingle() {
 
-    const { propertyId } = 1
+    const propertyId = "49301989-e323-438b-87c9-14a8232f0571"
     const [listing, setListing] = React.useState()
     const [token, setToken] = React.useState()
     const [transactions, setTransactions] = React.useState()
@@ -75,10 +75,10 @@ export default function PropertySingle() {
             setTransactions(null)
         }
     }, [propertyId])
-
+console.log(listing, token, transactions)
     return (
         <>
-        {listing && token && transactions && carousel ?
+        {listing && token && transactions ?
         <>
                 <>
                     <div className="mt-12 mb-12">
