@@ -92,7 +92,7 @@ export default function ListingCard({ listing }) {
             <div className="relative">
               <img
                 className="opacity-40 h-48 w-full object-cover"
-                src={commercialImages[index] || comingSoon}
+                src="/images/coming-soon.jpg"
                 alt={listing.streetAddress}
               />
               <span className="absolute right-1 top-3 px-2 py-1 mr-2 h-7">
@@ -131,7 +131,7 @@ export default function ListingCard({ listing }) {
               {listing.propertyName}
             </p>
             <p className="mt-3 text-base text-gray-500">
-              {`This property is a ${listing.propertyType.toLowerCase()} located in ${
+              {`This property is a ${listing.propertyType} located in ${
                 listing.city
               }, ${listing.state}.`}
             </p>
