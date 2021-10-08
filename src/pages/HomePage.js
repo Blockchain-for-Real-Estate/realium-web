@@ -14,6 +14,7 @@ import Info from "components/sections/general/Info";
 import MailList from "components/sections/general/MailList";
 import Faq from "components/sections/general/Faq";
 import Heading1 from "components/sections/headings/Heading1";
+import { MarketplacePage } from "./MarketplacePage";
 
 const HomePage = () => {
   return (
@@ -39,13 +40,13 @@ const HomePage = () => {
         ]}
       />
 
-      <Heading1
+      {/* <Heading1
         title="Explore the marketplace"
         description="View the properties that are currently available on the Realium marketplace and choose the best investment for you."
-      />
+      /> */}
 
       <div className="max-w-7xl mx-auto my-10">
-        <ListingArchive />
+        <MarketplacePage />
       </div>
 
       <div className="py-16 bg-gray-50 overflow-hidden lg:py-24">

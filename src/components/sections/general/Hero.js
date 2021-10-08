@@ -26,12 +26,12 @@ export default function Hero({ title, description, imgSrc, btnText, btnHref }) {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start space-x-4">
                 <Link href="/signin">
-                  <button className="btn-primary px-8 py-3 md:py-4 md:text-lg md:px-10 shadow-lg">
+                  <button className="rounded font-bold bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 md:py-4 md:text-lg md:px-10 shadow-md">
                     Get started
                   </button>
                 </Link>
                 <Link href={btnHref || ""}>
-                  <button className="btn-secondary px-8 py-3 md:py-4 md:text-lg md:px-10 shadow-lg">
+                  <button className="rounded font-bold bg-gray hover:bg-gray-100 text-black px-8 py-3 md:py-4 md:text-lg md:px-10 shadow-md">
                     {btnText || "testing"}
                   </button>
                 </Link>

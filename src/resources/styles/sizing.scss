@@ -1,0 +1,88 @@
+
+$size-half: 0.5rem;
+$size-tq: 0.75rem;
+$size-one: 1rem;
+$size-one-half: 1.5rem;
+$size-double: 2rem;
+$size-quad: 4rem;
+
+$break-xxs: 350px;
+$break-xs: 500px;
+$break-sm: 768px;
+$break-sm2: 812px;
+$break-md: 1024px;
+$break-lg: 1366px;
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  margin-bottom: $size-half;
+  font-weight: 400;
+  line-height: 1.4em;
+  white-space: pre-line;
+}
+
+h1 {
+  font-size: 3.8rem;
+  font-weight: 700;
+
+  @media screen and (max-width: $break-md) {
+    font-size: 2.5rem;
+  }
+}
+
+h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+
+  @media screen and (max-width: $break-md) {
+    font-size: 2rem;
+  }
+}
+
+h3 {
+  margin-bottom: $size-one;
+  font-size: 2rem;
+  font-weight: 700;
+
+  @media screen and (max-width: $break-md) {
+    margin-bottom: $size-half;
+    font-size: 1.6rem;
+  }
+}
+
+h4 {
+  font-size: 1.6rem;
+  font-weight: 600;
+
+  @media screen and (max-width: $break-md) {
+    font-size: 1.4rem;
+  }
+}
+
+h5 {
+  font-size: 1.4rem;
+  font-weight: 600;
+
+  @media screen and (max-width: $break-md) {
+    font-size: 1.2rem;
+  }
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: $size-one;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7em;
+}

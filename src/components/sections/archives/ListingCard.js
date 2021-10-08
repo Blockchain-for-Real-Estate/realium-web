@@ -1,62 +1,49 @@
 import Link from "next/link";
 import React from "react";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import NumberFormat from "react-number-format";
-// import { ApiTokenService } from "../api/services/token.service";
+import { ApiTokenService } from "data/services/token.service.ts";
 
-// import comingSoon from "../resources/images/coming-soon.jpg";
-// import res1 from "../resources/images/residential/residential-1.jpg";
-// import res2 from "../resources/images/residential/residential-2.jpg";
-// import res3 from "../resources/images/residential/residential-3.jpg";
-// import res4 from "../resources/images/residential/residential-4.jpg";
-// import res5 from "../resources/images/residential/residential-5.jpg";
-// import res6 from "../resources/images/residential/residential-6.jpg";
-// import com1 from "../resources/images/commercial-1.jpg";
-// import com2 from "../resources/images/commercial-2.jpg";
-// import com3 from "../resources/images/commercial-3.jpg";
-// import com4 from "../resources/images/commercial-4.jpg";
-// import com5 from "../resources/images/commercial-5.jpg";
-// import com6 from "../resources/images/commercial-6.jpg";
+import comingSoon from "resources/images/coming-soon.jpg";
+import res1 from "resources/images/residential/residential-1.jpg";
+import res2 from "resources/images/residential/residential-2.jpg";
+import res3 from "resources/images/residential/residential-3.jpg";
+import res4 from "resources/images/residential/residential-4.jpg";
+import res5 from "resources/images/residential/residential-5.jpg";
+import res6 from "resources/images/residential/residential-6.jpg";
 
 export default function ListingCard({ listing }) {
-  // let history = useHistory();
+  let history = useHistory();
   let [minPrice, setMinPrice] = React.useState(0);
   const propertyId = listing.propertyId;
 
-  // const residentialImages = [res1, res2, res3, res4, res5, res6];
-  // const commercialImages = [com1, com2, com3, com4, com5, com6];
+  const residentialImages = [res1, res2, res3, res4, res5, res6];
 
-  // React.useEffect(() => {
-  //   const fetchTokens = async () => {
-  //     if (listing.listingType === "Residential") {
-  //       try {
-  //         let tokenService = new ApiTokenService();
-  //         await tokenService
-  //           .getListedTokensForPropertyId(propertyId)
-  //           .then((res) => {
-  //             let tokens = Object.values(res.data).sort(function (a, b) {
-  //               return a.listedPrice - b.listedPrice;
-  //             });
-  //             try {
-  //               setMinPrice(tokens[0].listedPrice);
-  //             } catch {
-  //               setMinPrice(0.0);
-  //             }
-  //           });
-  //       } catch (error) {
-  //         setNotify &&
-  //           setNotify({
-  //             msg: `There was an error getting tokens for this property.`,
-  //             color: "red",
-  //             show: true,
-  //           });
-  //         console.error(error);
-  //       }
-  //     }
-  //   };
+  React.useEffect(() => {
+    const fetchTokens = async () => {
+      if (listing.listingType === "Residential") {
+        try {
+          let tokenService = new ApiTokenService();
+          await tokenService
+            .getListedTokensForPropertyId(propertyId)
+            .then((res) => {
+              let tokens = Object.values(res.data).sort(function (a, b) {
+                return a.listedPrice - b.listedPrice;
+              });
+              try {
+                setMinPrice(tokens[0].listedPrice);
+              } catch {
+                setMinPrice(0.0);
+              }
+            });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    };
 
-  //   fetchTokens();
-  // }, [propertyId, setNotify, listing.listingType]);
+    fetchTokens();
+  }, [propertyId, listing.listingType]);
 
   return (
     <Link href={`/marketplace/${listing.propertyId}`}>
@@ -66,7 +53,7 @@ export default function ListingCard({ listing }) {
             <div className="relative">
               <img
                 className="h-48 w-full object-cover"
-                src="/images/coming-soon.jpg"
+                src={residentialImages[propertyId-1]}
                 alt={listing.streetAddress}
               />
               <span className="absolute right-1 top-3 px-2 py-1 mr-2 h-7">
@@ -92,7 +79,7 @@ export default function ListingCard({ listing }) {
             <div className="relative">
               <img
                 className="opacity-40 h-48 w-full object-cover"
-                src={commercialImages[index] || comingSoon}
+                src={comingSoon}
                 alt={listing.streetAddress}
               />
               <span className="absolute right-1 top-3 px-2 py-1 mr-2 h-7">
@@ -131,7 +118,7 @@ export default function ListingCard({ listing }) {
               {listing.propertyName}
             </p>
             <p className="mt-3 text-base text-gray-500">
-              {`This property is a ${listing.propertyType.toLowerCase()} located in ${
+              {`This property is a ${listing.propertyType} located in ${
                 listing.city
               }, ${listing.state}.`}
             </p>

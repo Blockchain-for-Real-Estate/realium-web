@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import "../index.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // CONTEXT
 import { AppProvider } from "context/AppContext";

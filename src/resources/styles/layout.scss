@@ -1,0 +1,81 @@
+@import "../styles/sizing.scss";
+
+.l-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  max-width: 1120px;
+  padding: 0 $size-double;
+  margin: 0 auto;
+
+  @media screen and (max-width: $break-xxs) {
+    padding: 0 $size-one;
+  }
+}
+
+.l-grid {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% + 2rem);
+  margin: 0 -1rem;
+
+  &--c2 {
+    >.l-grid__item {
+      width: 50%;
+
+      @media screen and (max-width: $break-xs) {
+        width: 100% !important;
+      }
+    }
+
+    &.l-grid--fb {
+      >.l-grid__item {
+        @media screen and (max-width: $break-sm2) {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+
+  &--c3 {
+    >.l-grid__item {
+      width: 33.3%;
+
+      @media screen and (max-width: $break-sm) {
+        width: 100% !important;
+      }
+    }
+  }
+
+  &--c4 {
+    >.l-grid__item {
+      width: 25%;
+
+      @media screen and (max-width: $break-md) {
+        width: 50% !important;
+      }
+
+      @media screen and (max-width: $break-xs) {
+        width: 100% !important;
+      }
+    }
+  }
+
+  &--c5 {
+    >.l-grid__item {
+      width: 20%;
+
+      @media screen and (max-width: $break-sm) {
+        width: 50% !important;
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: $size-one;
+    flex: 1 0 auto;
+  }
+}

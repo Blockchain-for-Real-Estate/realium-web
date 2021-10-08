@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { Modal } from "../modals/modal";
 import { Link } from "react-router-dom";
 import { ListForm } from "./list-form";
@@ -8,7 +7,7 @@ import { ApiBalanceService } from "../api/services/balance.service";
 
 export function BuyListOffer(props) {
   let history = useHistory();
-  let { propertyId } = useParams();
+  let { propertyId } = 1
   let [currentTab, setCurrentTab] = React.useState(0);
   let [balance, setBalance] = React.useState();
   const setNotify = props.setNotify;

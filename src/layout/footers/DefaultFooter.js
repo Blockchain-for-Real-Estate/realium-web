@@ -31,7 +31,7 @@ export default function DefaultFooter() {
         </div>
         <div className="mt-12 border-t border-gray-200 pt-8">
           <p className="text-base text-gray-400 xl:text-center">
-            &copy; 2020 Realium, Inc. All rights reserved.
+            &copy; {new Date().getFullYear} Realium, Inc. All rights reserved.
           </p>
         </div>
       </div>
@@ -45,7 +45,7 @@ export const FooterSection = ({ section }) => {
       <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">
         {section.header}
       </h3>
-      <ul role="list" className="mt-4 space-y-4">
+      <ul role="list" className="pl-0 mt-4 space-y-4">
         {section.links.map((link) => (
           <FooterLink key={link.href} link={link} />
         ))}

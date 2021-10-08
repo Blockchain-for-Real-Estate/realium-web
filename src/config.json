@@ -1,0 +1,7 @@
+{
+	"fujinetwork": {
+		"url": "http://144.126.214.126:9650/ext/bc/C/rpc",
+		"dataAddress": "0xa0ccaf4edf25d0b0b4056c3d129ee5695058b435",
+        "appAddress": "0x708a639776a327B74E182Be357aA2728BC4DD9c5"
+	}
+}

@@ -1,0 +1,44 @@
+{
+    "HOME_HERO": {
+        "id": "1",
+        "title": "A Modern Real Estate Solution",
+        "bullet_one": "Worldwide Liquidity | Tap into a global customer base",
+        "bullet_two": "Fractional Tokenization | Sell a small piece of your equity",
+        "bullet_three": "Create Liquidity | Sell your assets on your schedule",
+        "bullet_four": "Fully Transparent | View comprehensive ownership history",
+        "button_text": "Explore Marketplace",
+        "feature_image": "green-hero"
+    },
+    "TOKENIZATION_HERO": {
+        "id": "2",
+        "title": "Tokenize Your Real Estate",
+        "bullet_one": "Swap Your Assets | Exchange your tokens on global exchanges",
+        "bullet_two": "Fractional Tokenization | Sell a small piece of your equity",
+        "bullet_three": "Create Liquidity | Sell your assets on your schedule",
+        "bullet_four": "Fully Transparent | View comprehensive ownership history",
+        "button_text": "Explore Tokenization",
+        "feature_image": "orange-hero"
+    },
+    "INVEST_HERO": {
+        "id": "3",
+        "title": "Invest in Tokenized Real Estate",
+        "bullet_one": "Fund New Developments | Invest in New Developments",
+        "bullet_two": "9% Average Return | Receive dividends based on ownership",
+        "bullet_three": "Low Minimum Ticket | Opportunities starting at $10",
+        "bullet_four": "Professionally Managed | Realium manages all properties",
+        "button_text": "Explore Investing",
+        "feature_image": "yellow-hero"
+    },
+    "HOME_HOW_IT_WORKS": {
+        "id": "4",
+        "title": "How It Works"
+    },
+    "TOKENIZATION_HOW_IT_WORKS": {
+        "id": "5",
+        "title": "How does Tokenization Work?"
+    },
+    "INVEST_HOW_IT_WORKS": {
+        "id": "6",
+        "title": "How Does the Investment Process Work?"
+    }
+}

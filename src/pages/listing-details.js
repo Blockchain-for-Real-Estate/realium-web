@@ -1,0 +1,215 @@
+import React from "react"
+import NumberFormat from "react-number-format"
+import { useRouter } from 'next/router'
+import { Row, Col } from 'react-bootstrap';
+// import LoadingWave from "@bit/ngoue.playground.loading-wave"
+import { Breadcrumbs } from "utilities/breadcrumbs"
+import { AppContainer } from "utilities/app-container"
+import { ApiPropertyService } from 'data/services/property.service.ts'
+import { ApiTokenService } from 'data/services/token.service.ts'
+import { ApiEventService } from "data/services/event.service.ts"
+import { Transactions } from "./transactions"
+import { BuyListOffer } from "./buy-list-offer"
+import { DetailsTable } from "./details-table"
+
+export default function ListingDetails(props) {
+    const router = useRouter()
+    const { propertyId } = router.query
+    let imgPackages = {
+        1: {
+            img1: "/images/residential/residential-1a.jpg",
+            img2: "/images/residential/residential-1b.jpg",
+            img3: "/images/residential/residential-1c.jpg",
+            img4: "/images/residential/residential-1d.jpg",
+            main: "/images/residential/residential-1.jpg"
+        },
+        2: {
+            img1: "/images/residential/residential-2a.jpg",
+            img2: "/images/residential/residential-2b.jpg",
+            img3: "/images/residential/residential-2c.jpg",
+            img4: "/images/residential/residential-2d.jpg",
+            main: "/images/residential/residential-2.jpg"
+        },
+        3: {
+            img1: "/images/residential/residential-3a.jpg",
+            img2: "/images/residential/residential-3b.jpg",
+            img3: "/images/residential/residential-3c.jpg",
+            img4: "/images/residential/residential-3d.jpg",
+            main: "/images/residential/residential-3.jpg"
+        },
+        4: {
+            img1: "/images/residential/residential-4a.jpg",
+            img2: "/images/residential/residential-4b.jpg",
+            img3: "/images/residential/residential-4c.jpg",
+            img4: "/images/residential/residential-4d.jpg",
+            main: "/images/residential/residential-4.jpg"
+        },
+        5: {
+            img1: "/images/residential/residential-5a.jpg",
+            img2: "/images/residential/residential-5b.jpg",
+            img3: "/images/residential/residential-5c.jpg",
+            img4: "/images/residential/residential-5d.jpg",
+            main: "/images/residential/residential-5.jpg"
+        },
+        6: {
+            img1: "/images/residential/residential-6a.jpg",
+            img2: "/images/residential/residential-6b.jpg",
+            img3: "/images/residential/residential-6c.jpg",
+            img4: "/images/residential/residential-6d.jpg",
+            main: "/images/residential/residential-6.jpg"
+        },
+        undefined: {
+            img1: "/images/residential/residential-6a.jpg",
+            img2: "/images/residential/residential-6b.jpg",
+            img3: "/images/residential/residential-6c.jpg",
+            img4: "/images/residential/residential-6d.jpg",
+            main: "/images/residential/residential-6.jpg"
+        }
+    }
+
+    const [listing, setListing] = React.useState()
+    const [token, setToken] = React.useState()
+    const [transactions, setTransactions] = React.useState()
+    const [carousel, setCarousel] = React.useState(imgPackages[propertyId])
+    const setNotify = props.setNotify
+
+    function changeImage(id) {
+        let imgHolder = {...carousel}
+        let idHolder = imgHolder[id]
+        imgHolder[id] = carousel.main
+        imgHolder.main = idHolder
+        setCarousel(imgHolder)
+    }
+
+    React.useEffect(() => {
+        const fetchData = async () => {  
+            if (router.isReady) {
+                try {
+                    let assetViaApi = new ApiPropertyService()
+                    await assetViaApi.getAssetById(propertyId).then(
+                        res => {
+                            setListing(res.data[0])
+                        }
+                    )
+                } catch {
+                    setNotify && setNotify({ msg: `There was an error loading data for this property.`,
+                                            color: 'red',
+                                            show: true })
+                }
+            }
+        };
+
+        fetchData()
+    }, [propertyId, setNotify])
+
+    React.useEffect(() => {
+        const fetchToken = async () => {
+            if (router.isReady) {
+                try {
+                    let tokenViaApi = new ApiTokenService()
+                        await tokenViaApi.getPropertyTokens(propertyId).then(
+                            res => {
+                                setToken(res.data[0])
+                            }
+                        )
+                } catch (err) {
+                    console.log(err)
+                    setNotify && setNotify({ msg: `There was an error loading token data for this property.`,
+                                            color: 'red',
+                                            show: true })
+                }
+            }
+        };
+
+        fetchToken()
+    }, [propertyId, listing, setNotify])
+
+    React.useEffect(() => {
+        if (router.isReady) {
+            try {
+                let transactionViaApi = new ApiEventService()
+                transactionViaApi.getFilteredTransactions(propertyId).then(
+                    res => {
+                        const txs = res.data
+                        setTransactions(txs)
+                    }
+                )
+            } catch {
+                setTransactions(null)
+                setNotify && setNotify({ msg: `There was an error loading transaction data for this property.`,
+                                        color: 'red',
+                                        show: true })
+            }
+        }
+    }, [propertyId, setNotify])
+
+    return (
+        <>
+        {listing && token && transactions ?
+        <>
+            <AppContainer>
+                <>
+                    <div className="mt-12 mb-12">
+                        <div className="border-bottom mb-4 m-4">
+                            <Row className="mb-2">
+                                <h1 className="text-4xl font-extrabold text-gray-900">{listing.propertyName || "Valley Ridge"}</h1>
+                            </Row>
+                            <Row className="mb-2 text-base sm:text-xl">
+                                <div className="font-weight-bold">{listing.propertyType} in {listing.city}, {listing.state}</div >
+                            </Row>
+                            <Row className="justify-content-between mb-4 space-y-8">
+                                <div className="text-xs sm:text-base">
+                                    {listing.streetAddress} | {listing.city}, {listing.state} | {listing.zipCode}
+                                </div>
+                                <Breadcrumbs listing={listing} />
+                            </Row>
+                        </div>
+                        <Row>
+                            <Col md={7}>
+                                <div className="text-center mb-4">
+                                    <img src={carousel.main} alt={listing.propertyType} className="object-fill h-90 w-full"/>
+                                </div>
+                                <Row className="text-center mb-5">
+                                    {Object.keys(carousel).map(key =>
+                                        key !== 'main' &&  <Col key={key}>
+                                                                <img src={carousel[key]} alt={listing.propertyType} className="object-fill h-30 w-full" onClick={() => changeImage(key)} style={{ cursor: "pointer"}}/>
+                                                            </Col>
+                                    )}
+                                </Row>
+                                <div className="font-weight-bold" style={{"fontSize": "1.1rem"}}>Description</div>
+                                <div className="mb-8">
+                                    {listing.propertyName} is located in {listing.city}, {listing.state} for a steal at {<NumberFormat value={token.purchasedPrice} displayType={'text'} thousandSeparator={true} />}
+                                    <div className="h-4 inline-flex px-1">
+                                    <svg width="15" height="15" viewBox="0 0 153 153" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fillRule="evenodd" clipRule="evenodd" d="M153 76.5C153 118.75 118.75 153 76.5 153C34.2502 153 0 118.75 0 76.5C0 34.2502 34.2502 0 76.5 0C118.75 0 153 34.2502 153 76.5ZM72.2494 21.5512L22.6284 108.776C20.8649 111.876 23.1037 115.725 26.6701 115.725H57.7531C59.4209 115.725 60.961 114.832 61.7892 113.384L96.0274 53.5368C96.8467 52.1048 96.8458 50.3458 96.025 48.9145L80.325 21.5372C78.5347 18.4154 74.0289 18.4231 72.2494 21.5512ZM90.0853 115.95H126.325C130.017 115.95 132.327 111.956 130.486 108.756L112.443 77.3996C110.601 74.1984 105.985 74.1898 104.131 77.3843L85.9337 108.741C84.0767 111.941 86.3855 115.95 90.0853 115.95Z" fill="#374151"/>
+                                    </svg>
+                                    </div>. {listing.details.description}
+                                    </div>
+                            </Col>
+                            <Col md={1} />
+                            <Col md={4}>
+                                <BuyListOffer setNotify={props.setNotify} events={transactions} propertyId={listing.propertyId} />
+                                <div style={{"fontSize": "0.9rem"}} className="text-muted m-2 pt-8">
+                                    *By purchasing shares of this asset,
+                                    you become a part owner of this property
+                                    and agree to Realium’s Terms of Use.
+                                </div>
+                            </Col>
+                        </Row>
+                    </div>
+                </>
+        </AppContainer>
+        <DetailsTable listing={listing} token={token} event={transactions}/>
+        <Transactions listing={listing} setNotify={props.setNotify}/>
+    </>
+    :
+        <div className="content-center flex flex-wrap justify-center py-72">
+            {/* <LoadingWave primaryColor="#5C6BF6" secondaryColor="#ABABAB"/> */}
+            Loading...
+        </div>
+    }
+    </>
+    )
+}
+
+

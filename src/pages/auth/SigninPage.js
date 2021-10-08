@@ -118,7 +118,7 @@ export default function SigninPage({ session }) {
 
             <div className="mt-6">
               <button
-                className="btn-primary w-full py-2"
+                className="rounded font-bold bg-indigo-600 hover:bg-indigo-700 text-white w-full py-2"
                 onClick={() => signIn("cognito")}
               >
                 Sign in with Email

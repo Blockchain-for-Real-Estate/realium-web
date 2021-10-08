@@ -37,11 +37,11 @@ export default function HeaderDefault() {
 
           {/* DESKTOP */}
           <div className="hidden lg:block ml-10 space-x-4">
-            <button onClick={signIn} className="btn-secondary  px-3 py-2">
+            <button onClick={signIn} className="rounded font-bold bg-white hover:bg-gray-200 text-indigo-600 px-3 py-2">
               Sign in
             </button>
             {/* <Link href="/signup"> */}
-            <button className="btn-primary px-3 py-2" onClick={signOut}>
+            <button className="rounded font-bold bg-indigo-600 hover:bg-indigo-800 text-white px-3 py-2" onClick={signOut}>
               Sign Out
             </button>
             {/* </Link> */}

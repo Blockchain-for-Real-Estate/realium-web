@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Token } from "../interfaces/token.interface";
 
-export default class ApiTokenService {
+export class ApiTokenService {
   public getTokens() {
     return axios.get<Token>(
       `${process.env.NEXT_PUBLIC_DJANGO_URL}/api/tokens/`

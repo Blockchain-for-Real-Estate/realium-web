@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Property } from "../interfaces/property.interface";
 
-export default class ApiPropertyService {
+export class ApiPropertyService {
   public getAssets() {
     return axios.get<Property>(
       `${process.env.NEXT_PUBLIC_DJANGO_URL}/api/properties/`
