@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from "react-router-dom"
 import { Modal } from "../modals/modal"
 import { ListForm } from "./list-form"
+import { signIn } from "next-auth/client";
 import { ApiBalanceService } from "data/services/balance.service.ts"
 
 export function BuyListOffer(props) {
@@ -119,9 +120,9 @@ export function BuyListOffer(props) {
                                 {balance || 0} AVAX
                             </p>
                             :
-                            <a className="flex-1 text-right text-indigo-500 text-xs">
+                            <button onClick={signIn} className="flex-1 text-right text-indigo-500 text-xs">
                                 Sign in to view balance
-                            </a>
+                            </button>
                             }
                         </div>
                     </div>
@@ -139,8 +140,7 @@ export function BuyListOffer(props) {
                         {!sessionStorage.getItem("id") || !sessionStorage.getItem("token") ?
                             <button
                                 className="mt-16 bg-indigo-600 text-white active:bg-indigo-500 font-bold uppercase text-sm w-full py-3 mb-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={() => history.push("/login")}
+                                onClick={signIn}
                             >
                                 Sign In To Access
                             </button>
@@ -156,9 +156,9 @@ export function BuyListOffer(props) {
                                 {balance || 0} AVAX
                             </p>
                             :
-                            <a className="flex-1 text-right text-indigo-500 text-xs">
+                            <button onClick={signIn} className="flex-1 text-right text-indigo-500 text-xs">
                                 Sign in to view balance
-                            </a>
+                            </button>
                             }
                         </div>
                     </div>

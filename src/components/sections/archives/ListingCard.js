@@ -4,13 +4,13 @@ import { useHistory } from "react-router-dom";
 import NumberFormat from "react-number-format";
 import { ApiTokenService } from "data/services/token.service.ts";
 
-import comingSoon from "resources/images/coming-soon.jpg";
-import res1 from "resources/images/residential/residential-1.jpg";
-import res2 from "resources/images/residential/residential-2.jpg";
-import res3 from "resources/images/residential/residential-3.jpg";
-import res4 from "resources/images/residential/residential-4.jpg";
-import res5 from "resources/images/residential/residential-5.jpg";
-import res6 from "resources/images/residential/residential-6.jpg";
+// import comingSoon from "resources/images/coming-soon.jpg";
+// import res1 from "resources/images/residential/residential-1.jpg";
+// import res2 from "resources/images/residential/residential-2.jpg";
+// import res3 from "resources/images/residential/residential-3.jpg";
+// import res4 from "resources/images/residential/residential-4.jpg";
+// import res5 from "resources/images/residential/residential-5.jpg";
+// import res6 from "resources/images/residential/residential-6.jpg";
 
 export default function ListingCard({ listing }) {
   let history = useHistory();
