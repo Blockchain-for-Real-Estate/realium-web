@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import DefaultLayout from "layout/DefaultLayout";
+import AccountLayout from "layout/AccountLayout";
 
 function Realium({ Component, pageProps }) {
   const [queryClient] = useState(
@@ -25,14 +26,12 @@ function Realium({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>
-          {Component.title || "Backed by Real Estate, Powered by Blockchain"}
-        </title>
+        <title>{Component.title || "Realium"}</title>
         <meta
           name="description"
           content={
             Component.description ||
-            "Realium is a merketplace for buying, selling, and listing tokenized real estate"
+            "Backed by Real Estate, Powered by Blockchain"
           }
         />
       </Head>
@@ -56,6 +55,12 @@ function Realium({ Component, pageProps }) {
 
 const getLayout = (Component, pageProps) => {
   switch (Component.layout) {
+    case "account":
+      return (
+        <AccountLayout>
+          <Component {...pageProps} />
+        </AccountLayout>
+      );
     case "default":
       return (
         <DefaultLayout>

@@ -6,9 +6,9 @@ import {
 } from "@heroicons/react/outline";
 import Image from "next/image";
 
-import Hero from "components/sections/general/Hero";
-import Faq from "components/sections/general/Faq";
-import Info from "components/sections/general/Info";
+import Hero from "components/general/Hero";
+import Faq from "components/general/Faq";
+import Info from "components/general/Info";
 
 export default function HowItWorksPage() {
   return (

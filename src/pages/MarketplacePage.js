@@ -1,8 +1,8 @@
 import React from "react";
 import ListingArchive from "components/sections/archives/ListingArchive";
 import { MARKETPLACE_FAQS } from "data/static/faqs";
-import Faq from "components/sections/general/Faq";
-import Heading1 from "components/sections/headings/Heading1";
+import Faq from "components/general/Faq";
+import Heading1 from "components/general/Heading1";
 
 export default function MarketplacePage(props) {
   return (

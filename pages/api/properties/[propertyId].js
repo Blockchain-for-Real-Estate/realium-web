@@ -13,12 +13,18 @@ const UpdateProperty = async (req, res) => {
 };
 
 export default async function handler(req, res) {
-  switch (req.method) {
-    case "GET":
-      await GetProperty(req, res);
-    case "UPDATE":
-      await UpdateProperty(req, res);
-    default:
-      res.status(400).send();
+  try {
+    switch (req.method) {
+      case "GET":
+        await GetProperty(req, res);
+        break;
+      case "UPDATE":
+        await UpdateProperty(req, res);
+        break;
+      default:
+        res.status(400).send();
+    }
+  } catch (error) {
+    res.status(500).send();
   }
 }
