@@ -6,9 +6,9 @@ export const GetProperties = async () => {
   return listings;
 };
 
-export const QUERY_KEY = "LISTINGS";
+export const QUERY_KEY = "PROPERTIES";
 
-export default function useListingsQuery() {
+export default function useProperties() {
   return useQuery(QUERY_KEY, GetProperties, {
     staleTime: 1 * 60 * 1000, // 1 MINUTE
   });

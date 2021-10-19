@@ -2,10 +2,13 @@ import NavLink from "components/base/NavLink";
 import Link from "next/link";
 import header from "data/static/headerLinks";
 import { MenuIcon } from "@heroicons/react/outline";
-import { signIn, signOut } from "next-auth/client";
+import { signIn } from "next-auth/client";
+import { useSession } from "next-auth/client";
 import Image from "next/image";
 
 export default function HeaderDefault() {
+  const [session] = useSession();
+
   return (
     <header className="bg-white z-30 shadow">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
@@ -37,14 +40,20 @@ export default function HeaderDefault() {
 
           {/* DESKTOP */}
           <div className="hidden lg:block ml-10 space-x-4">
-            <button onClick={signIn} className="btn-secondary  px-3 py-2">
-              Sign in
-            </button>
-            {/* <Link href="/signup"> */}
-            <button className="btn-primary px-3 py-2" onClick={signOut}>
-              Sign Out
-            </button>
-            {/* </Link> */}
+            {session ? (
+              <Link href="/account">
+                <button className="btn-primary px-3 py-2">My Account</button>
+              </Link>
+            ) : (
+              <>
+                <button onClick={signIn} className="btn-secondary  px-3 py-2">
+                  Sign Up
+                </button>
+                <button onClick={signIn} className="btn-primary  px-3 py-2">
+                  Sign in
+                </button>
+              </>
+            )}
           </div>
         </div>
       </nav>

@@ -16,6 +16,10 @@ const PropertySchema = new dynamoose.Schema(
       type: String,
       default: () => "Residential",
     },
+    propertyExcerpt: {
+      type: String,
+      default: () => "Residential",
+    },
     smartContractAddress: {
       type: String,
       required: true,
@@ -79,6 +83,10 @@ const PropertySchema = new dynamoose.Schema(
         },
       },
     },
+    featuredImage: {
+      type: String,
+      required: true,
+    },
     images: {
       type: Set,
       schema: [String],
@@ -91,7 +99,7 @@ const PropertySchema = new dynamoose.Schema(
 );
 
 const PropertyModel = dynamoose.model("realium-properties", PropertySchema, {
-  create: false,
+  create: true,
 });
 
 export default PropertyModel;
