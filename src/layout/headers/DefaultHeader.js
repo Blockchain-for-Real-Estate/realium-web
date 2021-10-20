@@ -41,7 +41,7 @@ export default function HeaderDefault() {
           {/* DESKTOP */}
           <div className="hidden lg:block ml-10 space-x-4">
             {session ? (
-              <Link href="/account">
+              <Link href="/account/dashboard">
                 <button className="btn-primary px-3 py-2">My Account</button>
               </Link>
             ) : (

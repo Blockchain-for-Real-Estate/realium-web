@@ -38,13 +38,7 @@ function Realium({ Component, pageProps }) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <AuthProvider session={pageProps.session}>
-            <AppProvider>
-              {Component.restricted ? (
-                <Auth>{getLayout(Component, pageProps)}</Auth>
-              ) : (
-                <>{getLayout(Component, pageProps)}</>
-              )}
-            </AppProvider>
+            <AppProvider>{getLayout(Component, pageProps)}</AppProvider>
           </AuthProvider>
         </Hydrate>
         <ReactQueryDevtools />
@@ -71,23 +65,5 @@ const getLayout = (Component, pageProps) => {
       return <Component {...pageProps} />;
   }
 };
-
-function Auth({ children }) {
-  const { data: session, loading } = useSession();
-  const isUser = !!session?.user;
-
-  useEffect(() => {
-    if (loading) return; // Do nothing while loading
-    if (!isUser) signIn(); // If not authenticated, force log in
-  }, [isUser, loading]);
-
-  if (isUser) {
-    return children;
-  }
-
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
-  return <div>Loading...</div>;
-}
 
 export default Realium;

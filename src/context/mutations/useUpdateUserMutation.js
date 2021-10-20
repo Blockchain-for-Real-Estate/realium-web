@@ -1,7 +1,19 @@
+import axios from "axios";
 import { useMutation } from "react-query";
 
-const UpdateUser = ({}) => {};
+const UpdateUser = async (user) => {
+  await axios.put("/api/user", user);
+};
 
 const useUpdateUserMutation = () => {
-  return useMutation();
+  return useMutation(UpdateUser, {
+    onSuccess: () => {
+      alert("Account Updated");
+    },
+    onError: (error) => {
+      alert(error);
+    },
+  });
 };
+
+export default useUpdateUserMutation;

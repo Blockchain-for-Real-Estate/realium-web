@@ -7,21 +7,20 @@ export default function SigninPage({ session }) {
   const router = useRouter();
   const callback = router?.query?.callbackUrl;
 
-  const GoBack = () => {
-    router.replace(callback || "/");
-  };
-
   useEffect(() => {
     if (session && callback) {
-      GoBack();
+      router.replace(callback || "/");
     }
-  }, []);
+  }, [router, session, callback]);
 
   if (session) return null;
   return (
     <div className="min-h-screen bg-white flex">
       <div className="flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-        <div className="cursor-pointer hover:text-gray-400" onClick={GoBack}>
+        <div
+          className="cursor-pointer hover:text-gray-400"
+          onClick={() => router.replace(callback || "/")}
+        >
           &larr; Go Back
         </div>
         <div className="mx-auto w-full max-w-sm lg:w-96">

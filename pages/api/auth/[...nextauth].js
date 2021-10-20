@@ -25,4 +25,10 @@ export default NextAuth({
   adapter: DynamoDBAdapter(new AWS.DynamoDB.DocumentClient(), {
     tableName: "realium-users",
   }),
+  callbacks: {
+    session: async (session, user) => {
+      session.userId = user.id;
+      return Promise.resolve(session);
+    },
+  },
 });

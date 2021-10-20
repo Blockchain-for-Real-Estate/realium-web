@@ -4,17 +4,21 @@ import UserModel from "api/models/User";
 const GET_user = async (req, res) => {
   const session = await GetAuthenticatedAccount(req, res);
 
-  const user = await UserModel.query("GSI1PK")
-    .eq(`USER#${session.user.email}`)
-    .using("GSI1")
-    .exec();
+  let pk = `USER#${session.userId}`;
+  const user = await UserModel.get({ pk, sk: pk });
 
-  return res.status(200).send(user[0]);
+  return res.status(200).send(user);
 };
 
 const UPDATE_user = async (req, res) => {
   const session = await GetAuthenticatedAccount(req, res);
-  return res.status(200).send(session);
+  const user = req.body;
+
+  if (user.id !== session.userId)
+    throw Error("Not authorized to update this profile");
+
+  const response = await UserModel.update(user);
+  return res.status(200).send(response);
 };
 
 export default async function handler(req, res) {
@@ -22,7 +26,6 @@ export default async function handler(req, res) {
     switch (req.method) {
       case "GET":
         await GET_user(req, res);
-        // await CREATE_user(req, res);
         break;
       case "PUT":
         await UPDATE_user(req, res);
