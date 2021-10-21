@@ -1,10 +1,11 @@
 import NavLink from "components/base/NavLink";
 import Link from "next/link";
 import header from "data/static/headerLinks";
-import { MenuIcon } from "@heroicons/react/outline";
+import { MenuIcon, UserCircleIcon } from "@heroicons/react/outline";
 import { signIn } from "next-auth/client";
 import { useSession } from "next-auth/client";
 import Image from "next/image";
+import AccountBalance from "components/avax/AccountBalance";
 
 export default function HeaderDefault() {
   const [session] = useSession();
@@ -22,6 +23,7 @@ export default function HeaderDefault() {
                     src={"/images/realium.svg"}
                     layout="fill"
                     objectFit="contain"
+                    alt="realium"
                   />
                 </div>
               </a>
@@ -41,9 +43,14 @@ export default function HeaderDefault() {
           {/* DESKTOP */}
           <div className="hidden lg:block ml-10 space-x-4">
             {session ? (
-              <Link href="/account/dashboard">
-                <button className="btn-primary px-3 py-2">My Account</button>
-              </Link>
+              <div className="flex items-center">
+                <Link href="/account/dashboard" passHref>
+                  <button>
+                    <UserCircleIcon className="h-10 w-10" />
+                  </button>
+                </Link>
+                <AccountBalance />
+              </div>
             ) : (
               <>
                 <button onClick={signIn} className="btn-secondary  px-3 py-2">

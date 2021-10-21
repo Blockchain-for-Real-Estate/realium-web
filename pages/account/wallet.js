@@ -1,4 +1,4 @@
-import AccountWalletPage from "pages/account/AccountWalletPage";
+import AccountWalletPage from "pages/account/wallet/AccountWalletPage";
 import { getSession } from "next-auth/client";
 
 export async function getServerSideProps(ctx) {

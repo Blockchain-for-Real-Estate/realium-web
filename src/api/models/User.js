@@ -48,6 +48,14 @@ const UserSchema = new dynamoose.Schema(
     postal_code: {
       type: String,
     },
+    notification_email: {
+      type: Boolean,
+      default: true,
+    },
+    walletAddress: {
+      type: String,
+      required: true,
+    },
   },
   {
     saveUnknown: true,

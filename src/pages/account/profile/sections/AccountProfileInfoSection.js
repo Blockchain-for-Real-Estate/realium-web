@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Heading2 from "components/general/Heading2";
-import useUser from "context/queries/useUser";
 import useUpdateUserMutation from "context/mutations/useUpdateUserMutation";
+import { useSession } from "next-auth/client";
 
 const FIELDS = [
   {
@@ -88,7 +88,8 @@ const FIELDS = [
 ];
 
 const AccountProfileInfoSection = () => {
-  const { data: user } = useUser();
+  const [session] = useSession();
+  const { user } = session;
   const { mutate: UpdateUser } = useUpdateUserMutation();
 
   const [state, setState] = useState(

@@ -1,4 +1,4 @@
-import AccountDashboardPage from "pages/account/AccountDashboardPage";
+import AccountDashboardPage from "pages/account/dashboard/AccountDashboardPage";
 import { getSession } from "next-auth/client";
 
 export async function getServerSideProps(ctx) {

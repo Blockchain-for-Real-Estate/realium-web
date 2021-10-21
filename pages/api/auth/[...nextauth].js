@@ -2,6 +2,7 @@ import AWS from "aws-sdk";
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import { DynamoDBAdapter } from "@next-auth/dynamodb-adapter";
+import CreateWallet from "api/actions/CreateWallet";
 
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY,
@@ -13,7 +14,7 @@ export default NextAuth({
   secret: process.env.NEXT_AUTH_ENCRYTION_KEY,
   pages: {
     signIn: "/auth/signin",
-    newUser: "/auth/new-user",
+    newUser: "/account/dashboard",
   },
   providers: [
     Providers.Cognito({
@@ -26,8 +27,14 @@ export default NextAuth({
     tableName: "realium-users",
   }),
   callbacks: {
+    signIn: async (user) => {
+      if (!user.walletAddress) {
+        user.walletAddress = await CreateWallet(user);
+      }
+    },
     session: async (session, user) => {
       session.userId = user.id;
+      session.user = { ...session.user, ...user };
       return Promise.resolve(session);
     },
   },
