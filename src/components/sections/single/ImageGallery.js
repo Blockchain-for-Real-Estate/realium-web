@@ -1,5 +1,5 @@
 import { Tab } from "@headlessui/react";
-import classNames from "src/utilities/web/ClassNames";
+import classNames from "utilities/web/ClassNames";
 import Image from "next/image";
 
 export default function ImageGallery({ images }) {

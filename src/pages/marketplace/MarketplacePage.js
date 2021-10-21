@@ -1,5 +1,5 @@
 import React from "react";
-import ListingArchive from "components/sections/archives/ListingArchive";
+import PropertyArchive from "pages/marketplace/sections/PropertyArchive";
 import { MARKETPLACE_FAQS } from "data/static/faqs";
 import Faq from "components/general/Faq";
 import Heading1 from "components/general/Heading1";
@@ -7,13 +7,8 @@ import Heading1 from "components/general/Heading1";
 export default function MarketplacePage(props) {
   return (
     <>
-      <Heading1
-        title="Explore the marketplace"
-        description="View the properties that are currently available on the Realium marketplace and choose the best investment for you."
-      />
-
       <div className="max-w-7xl mx-auto py-10">
-        <ListingArchive />
+        <PropertyArchive />
       </div>
 
       <div className="bg-gray-50">

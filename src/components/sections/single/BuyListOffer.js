@@ -1,57 +1,7 @@
-import React from "react";
-import { useHistory } from "react-router-dom";
-import { useParams } from "react-router-dom";
-import { Modal } from "../modals/modal";
-import { Link } from "react-router-dom";
-import { ListForm } from "./list-form";
-import { ApiBalanceService } from "../api/services/balance.service";
+import React from 'react'
 
 export function BuyListOffer(props) {
-  let history = useHistory();
-  let { propertyId } = useParams();
   let [currentTab, setCurrentTab] = React.useState(0);
-  let [balance, setBalance] = React.useState();
-  const setNotify = props.setNotify;
-
-  React.useEffect(() => {
-    let wallet = sessionStorage.getItem("avax");
-    const fetchBalance = async () => {
-      try {
-        let balanceService = new ApiBalanceService();
-        await balanceService.getBalance(wallet).then((res) => {
-          setBalance(Number(res.data.result.balance) / 1000000000); //AVAX uses a demonination of 9
-        });
-      } catch {
-        setBalance(null);
-      }
-    };
-
-    fetchBalance();
-  }, []);
-
-  const [values, setValues] = React.useState({
-    shares: "",
-    price: "",
-  });
-
-  const values_handler = (e) => {
-    let name = e.target.name;
-    let value = e.target.value;
-    const newValues = {
-      ...values,
-      [name]: value,
-    };
-    setValues(newValues);
-    calc_total(newValues);
-  };
-
-  const [total, setTotal] = React.useState(0);
-
-  const calc_total = (newValues) => {
-    const { shares, price } = newValues;
-    const newTotal = Number(shares) * Number(price);
-    setTotal(newTotal);
-  };
 
   return (
     <div className="bg-white">
@@ -154,23 +104,14 @@ export function BuyListOffer(props) {
                     12 days
                   </div>
                 </div>
-                <Modal buttonText="Select and Buy" setNotify={setNotify} />
+                <button value="Select and Buy"/>
                 <div className="flex">
                   <p className="flex-1 text-left text-gray-400 text-xs">
                     Realium balance
                   </p>
-                  {sessionStorage.getItem("token") !== null ? (
                     <p className="flex-1 text-right text-indigo-500 text-xs">
-                      {balance || 0} AVAX
+                      0 AVAX
                     </p>
-                  ) : (
-                    <Link
-                      to="/login"
-                      className="flex-1 text-right text-indigo-500 text-xs"
-                    >
-                      Sign in to view balance
-                    </Link>
-                  )}
                 </div>
               </div>
             )}
@@ -189,40 +130,20 @@ export function BuyListOffer(props) {
                   </p>
                 </div>
                 {/* List form  */}
-                {!sessionStorage.getItem("id") ||
-                !sessionStorage.getItem("token") ? (
-                  <button
-                    className="mt-16 bg-indigo-600 text-white active:bg-indigo-500 font-bold uppercase text-sm w-full py-3 mb-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button"
-                    onClick={() => history.push("/login")}
-                  >
-                    Sign In To Access
-                  </button>
-                ) : (
-                  <ListForm
+                  {/* <ListForm
                     setNotify={props.setNotify}
                     valueHandler={values_handler}
                     total={total}
                     events={props.events}
                     propertyId={propertyId}
-                  />
-                )}
+                  /> */}
                 <div className="flex">
                   <p className="flex-1 text-left text-gray-400 text-xs">
                     Realium balance
                   </p>
-                  {sessionStorage.getItem("token") !== null ? (
                     <p className="flex-1 text-right text-indigo-500 text-xs">
-                      {balance || 0} AVAX
+                      0 AVAX
                     </p>
-                  ) : (
-                    <Link
-                      to="/login"
-                      className="flex-1 text-right text-indigo-500 text-xs"
-                    >
-                      Sign in to view balance
-                    </Link>
-                  )}
                 </div>
               </div>
             )}
@@ -264,7 +185,6 @@ export function BuyListOffer(props) {
                               type="text"
                               className="rounded-tr focus:ring-white-500 focus:border-white-500 text-right relative block w-full rounded-none bg-transparent focus:z-10 sm:text-sm border-l-white border-white"
                               placeholder="100"
-                              onChange={values_handler}
                             />
                           </div>
                         </div>
@@ -283,7 +203,6 @@ export function BuyListOffer(props) {
                               type="text"
                               className="rounded-br focus:ring-white-500 focus:border-white-500 text-right relative block w-full rounded-none bg-transparent focus:z-10 sm:text-sm border-l-white border-white"
                               placeholder="0.38"
-                              onChange={values_handler}
                             />
                           </div>
                         </div>
@@ -291,7 +210,7 @@ export function BuyListOffer(props) {
                     </fieldset>
                   </div>
                   <div className="mb-8 mx-2 text-right text-xs text-gray-300">
-                    Total: {total.toFixed(2)} AVAX
+                    Total: 0 AVAX
                   </div>
                   <div className="my-4 space-y-3 text-center sm:m-1 sm:items-center">
                     <button
@@ -313,18 +232,9 @@ export function BuyListOffer(props) {
                     <p className="flex-1 text-left text-gray-400 text-xs">
                       Realium balance
                     </p>
-                    {sessionStorage.getItem("token") !== null ? (
                       <p className="flex-1 text-right text-indigo-500 text-xs">
-                        {balance || 0} AVAX
+                        0 AVAX
                       </p>
-                    ) : (
-                      <Link
-                        to="/login"
-                        className="flex-1 text-right text-indigo-500 text-xs"
-                      >
-                        Sign in to view balance
-                      </Link>
-                    )}
                   </div>
                 </div>
               </div>

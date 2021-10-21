@@ -18,9 +18,10 @@ export function Breadcrumbs({ propertyName }) {
             <ChevronRightIcon className="h-5 w-5" />
             <Link
               href="/marketplace"
-              className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700 text-decoration-none"
             >
+              <a className="ml-4 text-sm font-medium text-gray-600 hover:text-gray-800 text-decoration-none">
               Marketplace
+              </a>
             </Link>
           </div>
         </li>
@@ -28,8 +29,7 @@ export function Breadcrumbs({ propertyName }) {
           <div className="flex items-center">
             <ChevronRightIcon className="h-5 w-5" />
             <div
-              className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700"
-              aria-current="page"
+              className="ml-4 text-sm font-medium text-gray-600 hover:text-gray-800"
             >
               {propertyName}
             </div>

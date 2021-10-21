@@ -3,23 +3,23 @@ import NumberFormat from "react-number-format"
 
 export function DetailsTable(props) {
 
-    var sales = []
-    props.event.forEach(event => {
-        if (event.eventType === "SALE") {
-            sales.push(event)
-        }
-    })
+    // var sales = []
+    // props.event.forEach(event => {
+    //     if (event.eventType === "SALE") {
+    //         sales.push(event)
+    //     }
+    // })
 
-    sales.sort(function(a, b) {
-        return a.listedPrice - b.listedPrice;
-    });
+    // sales.sort(function(a, b) {
+    //     return a.listedPrice - b.listedPrice;
+    // });
 
     return (
         <div className="bg-gray-50">
         <div className="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:flex-col sm:align-center">
             <h1 className="mt-4 text-4xl font-extrabold text-gray-900 text-center">Property Statistics</h1>
-            <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">Break down {props.listing.propertyName} even further for your investment decisions. All details are updated live as listings are posted and transactions occur on the blockchain.</p>
+            <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">Break down {props.Property.propertyName} even further for your investment decisions. All details are updated live as listings are posted and transactions occur on the blockchain.</p>
 
             </div>
             <div className="mt-4 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-1 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-3">
@@ -39,28 +39,28 @@ export function DetailsTable(props) {
                             <path fillRule="evenodd" clipRule="evenodd" d="M17.817 2.11282C17.8743 2.15976 17.9204 2.21882 17.952 2.28575C17.9837 2.35267 18 2.42579 18 2.49982V16.4998C17.9999 16.6154 17.9598 16.7273 17.8866 16.8167C17.8133 16.906 17.7113 16.9672 17.598 16.9898L12.598 17.9898C12.5333 18.0027 12.4667 18.0027 12.402 17.9898L7.5 17.0098L2.598 17.9898C2.52549 18.0043 2.45067 18.0025 2.37892 17.9846C2.30718 17.9667 2.2403 17.9331 2.1831 17.8863C2.1259 17.8394 2.07981 17.7804 2.04815 17.7136C2.01649 17.6468 2.00004 17.5738 2 17.4998V3.49982C2.00007 3.38428 2.04016 3.27232 2.11344 3.18299C2.18673 3.09366 2.28869 3.03247 2.402 3.00982L7.402 2.00982C7.46669 1.99689 7.53331 1.99689 7.598 2.00982L12.5 2.98982L17.402 2.00982C17.4745 1.99524 17.5493 1.99691 17.6211 2.01472C17.6928 2.03253 17.7597 2.06604 17.817 2.11282ZM12 3.90982L8 3.10982V16.0898L12 16.8898V3.90982ZM13 16.8898L17 16.0898V3.10982L13 3.90982V16.8898ZM7 16.0898V3.10982L3 3.90982V16.8898L7 16.0898Z" fill="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Location</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.listing.city || "Provo"}, {props.listing.state || "UT"}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.city || "Provo"}, {props.Property.state || "UT"}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.5 17.5H8V14.5H6.5V17.5H4V2L10.5 6V8.5M10.5 17.5V8.5M10.5 17.5H16.5V8.5H10.5M12.5 10.5V13.5H14.5V10.5H12.5Z" stroke="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Type</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.listing.listingType || "Residential"}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.propertyType || "Residential"}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 13.25V9.125H6M4 13.25V16M4 13.25H16M16 16V13.25M16 13.25V9.125H14M6 9.125V5H14V9.125M6 9.125H14" stroke="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Bedrooms</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.listing.details.bedrooms || 3}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || 3}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5.48197 10.7778V12.2593L6.50228 14.8519H7.5226M5.48197 10.7778H4M5.48197 10.7778V4.48148L6.84239 3L7.8627 3.37037M5.48197 10.7778H15.6851M15.6851 10.7778V12.2593L14.6648 14.8519H13.6445M15.6851 10.7778H17M7.8627 3.37037V4.85185L8.54291 5.96296L8.20281 6.7037L8.88302 7.44444L11.6039 4.48148L10.9236 3.74074L10.2434 4.11111L9.22312 3.37037H7.8627ZM7.5226 14.8519L6.91041 17M7.5226 14.8519H13.6445M13.6445 14.8519L14.2567 17" stroke="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Bathrooms</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.listing.details.bathrooms || 3}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || 3}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +69,7 @@ export function DetailsTable(props) {
                         <span className="flex-1 text-sm text-gray-500">Area</span>
                         <span className="flex-1 text-sm text-gray-500">
                         <NumberFormat
-                            value={props.listing.details.area || 3295}
+                            value={props.Property.details || 3295}
                             displayType={'text'}
                             thousandSeparator={true}
                             suffix={' sqft'}
@@ -82,7 +82,7 @@ export function DetailsTable(props) {
                         <span className="flex-1 text-sm text-gray-500">Lot</span>
                         <span className="flex-1 text-sm text-gray-500">
                         <NumberFormat
-                            value={props.listing.details.lot || 9800}
+                            value={props.Property.details || 9800}
                             displayType={'text'}
                             thousandSeparator={true}
                             suffix={' sqft'}
@@ -97,7 +97,7 @@ export function DetailsTable(props) {
                             <path d="M5.04763 12.2381C5.04763 11.1861 5.90042 10.3334 6.9524 10.3334C8.00437 10.3334 8.85717 11.1861 8.85717 12.2381M5.04763 12.2381C5.04763 13.2901 5.90042 14.1429 6.9524 14.1429C8.00437 14.1429 8.85717 13.2901 8.85717 12.2381M5.04763 12.2381C5.04763 12.1066 5.05439 11.9789 5.08573 11.8572H4.64101L2.76191 11.2404V8.54797H8.22007L14.106 8.64814L17.2381 9.63065V11.8572H15.6762C15.7076 11.9789 15.7143 12.1066 15.7143 12.2381M5.04763 12.2381C5.04763 12.3697 5.05439 12.4973 5.08573 12.6191L4.51917 12.6191L2 11.7922V8.01761L4.79727 5H11.649L14.3778 7.93489L18 9.07114V12.6191H15.6762C15.7076 12.4973 15.7143 12.3697 15.7143 12.2381M8.85717 12.2381C8.85717 12.1066 8.8504 11.9789 8.81906 11.8572H11.9429C11.9116 11.9789 11.9048 12.1066 11.9048 12.2381M8.85717 12.2381C8.85717 12.3697 8.8504 12.4973 8.81906 12.6191H11.9429C11.9116 12.4973 11.9048 12.3697 11.9048 12.2381M15.7143 12.2381C15.7143 11.1861 14.8615 10.3334 13.8096 10.3334C12.7576 10.3334 11.9048 11.1861 11.9048 12.2381M15.7143 12.2381C15.7143 13.2901 14.8615 14.1429 13.8096 14.1429C12.7576 14.1429 11.9048 13.2901 11.9048 12.2381M5.80954 12.2381C5.80954 11.6069 6.32121 11.0953 6.9524 11.0953C7.58358 11.0953 8.09526 11.6069 8.09526 12.2381C8.09526 12.8693 7.58358 13.381 6.9524 13.381C6.32121 13.381 5.80954 12.8693 5.80954 12.2381ZM11.3171 5.76191L13.2791 7.87205L8.60428 7.79249V5.76191H11.3171ZM7.84237 5.76191V7.78607H3.25354L5.1299 5.76191H7.84237ZM12.6667 12.2381C12.6667 11.6069 13.1784 11.0953 13.8096 11.0953C14.4407 11.0953 14.9524 11.6069 14.9524 12.2381C14.9524 12.8693 14.4407 13.381 13.8096 13.381C13.1784 13.381 12.6667 12.8693 12.6667 12.2381Z" stroke="#4F46E5" strokeWidth="0.2"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Parking</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.listing.details.parking || 2} spaces</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || 2} spaces</span>
                         </li>
                     </ul>
                 </div>
@@ -118,7 +118,7 @@ export function DetailsTable(props) {
                             <path d="M16.5 4H3.5C3.22344 4 3 4.22344 3 4.5V14.5C3 14.7766 3.22344 15 3.5 15H16.5C16.7766 15 17 14.7766 17 14.5V4.5C17 4.22344 16.7766 4 16.5 4ZM4 5H16V7H4V5ZM16 14H4V8.375H16V14ZM12.1719 12.875H14.75C14.8188 12.875 14.875 12.8188 14.875 12.75V12C14.875 11.9313 14.8188 11.875 14.75 11.875H12.1719C12.1031 11.875 12.0469 11.9313 12.0469 12V12.75C12.0469 12.8188 12.1031 12.875 12.1719 12.875Z" fill="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Investment</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.listing.details.investment || "Equity"}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || "Equity"}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -128,7 +128,7 @@ export function DetailsTable(props) {
                         <span className="flex-1 text-sm text-gray-500">
 
                         <NumberFormat
-                            value={props.listing.details.totalCapitalization || 75500}
+                            value={props.Property.details || 75500}
                             displayType={'text'}
                             thousandSeparator={true}
                         />
@@ -146,7 +146,7 @@ export function DetailsTable(props) {
                         <span className="flex-1 text-sm text-gray-500">Net Operating Income</span>
                         <span className="flex-1 text-sm text-gray-500">
                         <NumberFormat
-                            value={props.listing.details.netOperatingIncome || 14500}
+                            value={props.Property.details || 14500}
                             displayType={'text'}
                             thousandSeparator={true}
                         />
@@ -161,14 +161,14 @@ export function DetailsTable(props) {
                             <path d="M4.66667 4.6665V4.1665H4.16667V4.6665H4.66667ZM15.3333 4.6665H15.8333V4.1665H15.3333V4.6665ZM6.31311 9.64628C6.11785 9.84155 6.11785 10.1581 6.31311 10.3534C6.50838 10.5487 6.82496 10.5487 7.02022 10.3534L6.31311 9.64628ZM8.66667 7.99984L9.02022 7.64628C8.82496 7.45102 8.50838 7.45102 8.31311 7.64628L8.66667 7.99984ZM10.6667 9.99984L10.3131 10.3534C10.5084 10.5487 10.825 10.5487 11.0202 10.3534L10.6667 9.99984ZM13.6869 7.68672C13.8821 7.49146 13.8821 7.17488 13.6869 6.97962C13.4916 6.78435 13.175 6.78435 12.9798 6.97962L13.6869 7.68672ZM6.97978 15.6463C6.78452 15.8415 6.78452 16.1581 6.97978 16.3534C7.17504 16.5487 7.49162 16.5487 7.68689 16.3534L6.97978 15.6463ZM10 13.3332L10.3536 12.9796C10.1583 12.7844 9.84171 12.7844 9.64645 12.9796L10 13.3332ZM12.3131 16.3534C12.5084 16.5487 12.825 16.5487 13.0202 16.3534C13.2155 16.1581 13.2155 15.8415 13.0202 15.6463L12.3131 16.3534ZM4 4.1665C3.72386 4.1665 3.5 4.39036 3.5 4.6665C3.5 4.94265 3.72386 5.1665 4 5.1665V4.1665ZM16 5.1665C16.2761 5.1665 16.5 4.94265 16.5 4.6665C16.5 4.39036 16.2761 4.1665 16 4.1665V5.1665ZM4.66667 5.1665H15.3333V4.1665H4.66667V5.1665ZM14.8333 4.6665V12.6665H15.8333V4.6665H14.8333ZM14.6667 12.8332H5.33333V13.8332H14.6667V12.8332ZM5.16667 12.6665V4.6665H4.16667V12.6665H5.16667ZM5.33333 12.8332C5.24129 12.8332 5.16667 12.7586 5.16667 12.6665H4.16667C4.16667 13.3108 4.689 13.8332 5.33333 13.8332V12.8332ZM14.8333 12.6665C14.8333 12.7586 14.7587 12.8332 14.6667 12.8332V13.8332C15.311 13.8332 15.8333 13.3108 15.8333 12.6665H14.8333ZM7.02022 10.3534L9.02022 8.35339L8.31311 7.64628L6.31311 9.64628L7.02022 10.3534ZM8.31311 8.35339L10.3131 10.3534L11.0202 9.64628L9.02022 7.64628L8.31311 8.35339ZM11.0202 10.3534L13.6869 7.68672L12.9798 6.97962L10.3131 9.64628L11.0202 10.3534ZM7.68689 16.3534L10.3536 13.6867L9.64645 12.9796L6.97978 15.6463L7.68689 16.3534ZM9.64645 13.6867L12.3131 16.3534L13.0202 15.6463L10.3536 12.9796L9.64645 13.6867ZM4 5.1665H16V4.1665H4V5.1665Z" fill="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Estimated Appreciation</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.listing.details.estimatedAppreciation*100 || 6}%</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || 6}%</span>
                         </li>
                         <li className="flex space-x-3 pt-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13.3333 15.3332H16.6666V13.9998C16.6666 12.8953 15.7712 11.9998 14.6666 11.9998C14.0295 11.9998 13.462 12.2977 13.0958 12.7618M13.3333 15.3332H6.66659M13.3333 15.3332V13.9998C13.3333 13.5623 13.249 13.1445 13.0958 12.7618M6.66659 15.3332H3.33325V13.9998C3.33325 12.8953 4.22868 11.9998 5.33325 11.9998C5.97032 11.9998 6.53782 12.2977 6.90408 12.7618M6.66659 15.3332V13.9998C6.66659 13.5623 6.75087 13.1445 6.90408 12.7618M6.90408 12.7618C7.39559 11.5339 8.59646 10.6665 9.99992 10.6665C11.4034 10.6665 12.6043 11.5339 13.0958 12.7618M11.9999 6.6665C11.9999 7.77107 11.1045 8.6665 9.99992 8.6665C8.89535 8.6665 7.99992 7.77107 7.99992 6.6665C7.99992 5.56193 8.89535 4.6665 9.99992 4.6665C11.1045 4.6665 11.9999 5.56193 11.9999 6.6665ZM15.9999 8.6665C15.9999 9.40288 15.403 9.99984 14.6666 9.99984C13.9302 9.99984 13.3333 9.40288 13.3333 8.6665C13.3333 7.93012 13.9302 7.33317 14.6666 7.33317C15.403 7.33317 15.9999 7.93012 15.9999 8.6665ZM6.66659 8.6665C6.66659 9.40288 6.06963 9.99984 5.33325 9.99984C4.59687 9.99984 3.99992 9.40288 3.99992 8.6665C3.99992 7.93012 4.59687 7.33317 5.33325 7.33317C6.06963 7.33317 6.66659 7.93012 6.66659 8.6665Z" stroke="#4F46E5" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Management Team</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.listing.details.managementTeam || "Ricky Brothers"}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || "Ricky Brothers"}</span>
                         </li>
 
                     </ul>
@@ -183,7 +183,6 @@ export function DetailsTable(props) {
                 </p>
                 </div>
                 </div>
-                {sales[0]!==undefined ?
                     <div className="px-6">
                         <ul className="mt-2 mb-10 divide-y">
                             <li className="flex space-x-3 pb-3">
@@ -193,7 +192,7 @@ export function DetailsTable(props) {
                             <span className="flex-1 text-sm text-gray-500">Total Shares</span>
                             <span className="flex-1 text-sm text-gray-500">
                             <NumberFormat
-                                value={props.listing.seriesCount || 980}
+                                value={props.Property.details || 980}
                                 displayType={'text'}
                                 thousandSeparator={true}
                                 suffix={' shares'}
@@ -214,13 +213,13 @@ export function DetailsTable(props) {
                             <span className="flex-1 text-sm text-gray-500">Lowest Ask</span>
                             <span className="flex-1 text-sm text-gray-500">
                             <NumberFormat className="inline-flex"
-                                value={sales[0].quantity}
+                                value={4}
                                 displayType={'text'}
                                 thousandSeparator={true}
                             />
                                 <div className="px-1 inline-flex">@</div>
                             <NumberFormat className="inline-flex"
-                                value={sales[0].listedPrice}
+                                value={4}
                                 displayType={'text'}
                                 thousandSeparator={true}
                             />
@@ -238,13 +237,13 @@ export function DetailsTable(props) {
                             <span className="flex-1 text-sm text-gray-500">Last Sale</span>
                             <span className="flex-1 text-sm text-gray-500">
                             <NumberFormat className="inline-flex"
-                                value={props.event[0].quantity}
+                                value={4}
                                 displayType={'text'}
                                 thousandSeparator={true}
                             />
                                 <div className="px-1 inline-flex">@</div>
                             <NumberFormat className="inline-flex"
-                                value={props.event[0].listedPrice}
+                                value={4}
                                 displayType={'text'}
                                 thousandSeparator={true}
                             />
@@ -262,7 +261,7 @@ export function DetailsTable(props) {
                             <span className="flex-1 text-sm text-gray-500">Week High</span>
                             <span className="flex-1 text-sm text-gray-500">
                             <NumberFormat className="inline-flex"
-                            value={sales[sales.length-1].listedPrice}
+                            value={4}
                             displayType={'text'}
                             thousandSeparator={true}
                             />
@@ -280,7 +279,7 @@ export function DetailsTable(props) {
                             <span className="flex-1 text-sm text-gray-500">Trading Range</span>
                             <span className="flex-1 text-sm text-gray-500">
                             <NumberFormat className="inline-flex"
-                                value={sales[0].listedPrice}
+                                value={4}
                                 displayType={'text'}
                                 thousandSeparator={true}
                             />
@@ -291,7 +290,7 @@ export function DetailsTable(props) {
 
                             </div>
                             <NumberFormat className="inline-flex"
-                                value={sales[sales.length-1].listedPrice}
+                                value={4}
                                 displayType={'text'}
                                 thousandSeparator={true}
                                 prefix={"- "}
@@ -312,19 +311,7 @@ export function DetailsTable(props) {
                             </li>
                         </ul>
                     </div>
-                    :
-                    <div>
-                        <div className="pt-4 pl-4 pr-4 pb-4">
-                        <h2 className="text-lg leading-6 font-medium text-gray-900">Activity Details</h2>
-                        <div className="mt-2 border-t-4 border-indigo-600 pt-4">
-                        <p className="text-sm text-gray-600">
-                            There is currently no trade activity for this asset.
-                        </p>
-                        </div>
-                        </div>
-                    </div>
-                    }
-            </div>
+                </div>
             </div>
         </div>
     </div>
