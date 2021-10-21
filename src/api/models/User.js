@@ -21,6 +21,33 @@ const UserSchema = new dynamoose.Schema(
     GSI1SK: {
       type: String,
     },
+    fName: {
+      type: String,
+    },
+    lName: {
+      type: String,
+    },
+    email: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    state: {
+      type: String,
+    },
+    postal_code: {
+      type: String,
+    },
   },
   {
     saveUnknown: true,
