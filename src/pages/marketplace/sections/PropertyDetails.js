@@ -64,11 +64,11 @@ export default function PropertyDetails() {
         </div>
 
         {/* MAIN SECTION */}
-        <div className="sm:flex my-10">
+        <div className="sm:flex my-10 sm:space-x-32">
           {/* IMAGE AND DESCRIPTION */}
           <div className="mx-0 sm:mx-4 max-w-2xl">
             <ImageGallery
-              images={["/images/hero-blue.jpg", "/images/hero-green.jpg"]}
+              images={["/images/hero-blue.jpg", "/images/hero-green.jpg", "/images/hero-red.jpg", "/images/hero-orange.jpg"]}
             />
             <div className="mx-6 sm:mx-0">
               <div className="font-bold pt-8" style={{ fontSize: "1.1rem" }}>
@@ -92,9 +92,8 @@ export default function PropertyDetails() {
               </div>
             </div>
           </div>
-          <div className="mx-0 sm:w-1/6"/>
           {/* BUY LIST OFFER*/}
-          <div className="mx-4 sm:mx-0 sm:max-w-lg">
+          <div className="mx-4 sm:mx-0 sm:max-w-sm">
             <BuyListOffer />
           </div>
         </div>

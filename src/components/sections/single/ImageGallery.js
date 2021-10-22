@@ -39,12 +39,12 @@ export default function ImageGallery({ images }) {
       </div>
 
       {/* MAIN IMAGE */}
-      <Tab.Panels className="w-full aspect-w-1 aspect-h-1">
+      <Tab.Panels className="w-full aspect-w-7 aspect-h-6 sm:aspect-w-5 sm:aspect-h-4">
         {images.map((image, key) => (
           <Tab.Panel key={key}>
             <Image
               src={image}
-              className="w-full h-full object-center object-cover sm:rounded-lg"
+              className="w-full h-full object-center object-cover sm:rounded-lg shadow"
               layout="fill"
               objectFit="cover"
               objectPosition="center"
