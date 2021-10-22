@@ -22,6 +22,12 @@ export default NextAuth({
       clientSecret: process.env.COGNITO_CLIENT_SECRET,
       domain: process.env.COGNITO_ISSUER,
     }),
+    Providers.Auth0({
+      clientId: "4ntOFDWY8Uz23P985TBbg8WmkM3UiqP8",
+      clientSecret:
+        "-M67iuwKYSrUH71fc1XMmO28UBS41Xn_6UMN2-TM1fKc1k3QmU-aq55HkvjANgOo3",
+      domain: "axialabs.us.auth0.com",
+    }),
   ],
   adapter: DynamoDBAdapter(new AWS.DynamoDB.DocumentClient(), {
     tableName: "realium-users",

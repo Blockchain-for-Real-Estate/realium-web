@@ -1,8 +1,4 @@
-import {
-  ClipboardCopyIcon,
-  CreditCardIcon,
-  ExternalLinkIcon,
-} from "@heroicons/react/outline";
+import { ExternalLinkIcon } from "@heroicons/react/outline";
 import Heading2 from "components/general/Heading2";
 
 const AccountFaucetSection = () => {

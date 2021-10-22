@@ -53,10 +53,16 @@ export default function HeaderDefault() {
               </div>
             ) : (
               <>
-                <button onClick={signIn} className="btn-secondary  px-3 py-2">
+                <a
+                  onClick={() => signUp("cognito", {})}
+                  className="btn-secondary  px-3 py-2"
+                >
                   Sign Up
-                </button>
-                <button onClick={signIn} className="btn-primary  px-3 py-2">
+                </a>
+                <button
+                  onClick={() => signIn("auth0")}
+                  className="btn-primary  px-3 py-2"
+                >
                   Sign in
                 </button>
               </>
