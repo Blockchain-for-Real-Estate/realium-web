@@ -1,8 +1,9 @@
-import GetEthersProvider from "api/helpers/GetEthersProvider";
+import useAVAX from "context/hooks/useAVAX";
 import UserModel from "api/models/User";
 import WalletModel from "api/models/Wallet";
 
 const CreateWallet = async (user) => {
+  let AVAX = await useAVAX("/ext/keystore");
   debugger;
   try {
     let wallet = await WalletModel.get(user.id);
@@ -10,9 +11,8 @@ const CreateWallet = async (user) => {
       wallet = await WalletModel.create({ username: user.id });
     }
 
-    let ETHERS = await GetEthersProvider("/ext/keystore");
     try {
-      await ETHERS.send("keystore.createUser", {
+      await AVAX.send("keystore.createUser", {
         username: wallet.username,
         password: wallet.password,
       });
@@ -20,8 +20,7 @@ const CreateWallet = async (user) => {
       console.log(error.error.message);
     }
 
-    ETHERS = await GetEthersProvider();
-    const { address } = await ETHERS.send("avm.createAddress", {
+    const { address } = await AVAX.send("avm.createAddress", {
       username: wallet.username,
       password: wallet.password,
     });

@@ -2,13 +2,12 @@ import NavLink from "components/base/NavLink";
 import Link from "next/link";
 import header from "data/static/headerLinks";
 import { MenuIcon, UserCircleIcon } from "@heroicons/react/outline";
-import { signIn } from "next-auth/client";
-import { useSession } from "next-auth/client";
 import Image from "next/image";
 import AccountBalance from "components/avax/AccountBalance";
+import useUser from "context/queries/useUser";
 
 export default function HeaderDefault() {
-  const [session] = useSession();
+  const { data: user } = useUser();
 
   return (
     <header className="bg-white z-30 shadow">
@@ -42,7 +41,7 @@ export default function HeaderDefault() {
 
           {/* DESKTOP */}
           <div className="hidden lg:block ml-10 space-x-4">
-            {session ? (
+            {user ? (
               <div className="flex items-center">
                 <Link href="/account/dashboard" passHref>
                   <button>
@@ -53,18 +52,12 @@ export default function HeaderDefault() {
               </div>
             ) : (
               <>
-                <a
-                  onClick={() => signUp("cognito", {})}
-                  className="btn-secondary  px-3 py-2"
-                >
-                  Sign Up
-                </a>
-                <button
-                  onClick={() => signIn("auth0")}
-                  className="btn-primary  px-3 py-2"
-                >
-                  Sign in
-                </button>
+                <Link href="/auth/register" passHref>
+                  <button className="btn-secondary px-3 py-2">Sign Up</button>
+                </Link>
+                <Link href="/auth/signin" passHref>
+                  <button className="btn-primary  px-3 py-2">Sign in</button>
+                </Link>
               </>
             )}
           </div>

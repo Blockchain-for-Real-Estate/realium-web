@@ -1,15 +1,19 @@
 import { useQuery } from "react-query";
-import axios from "axios";
+import useUser from "./useUser";
+import useAVAX from "context/hooks/useAVAX";
 
 export const GetUserBalance = async () => {
-  const { data: user } = await axios.get(`/api/user/balance`);
-  return user;
+  const { XChain } = useAVAX();
+  let res = await XChain.getAllBalances(process.env.NEXT_PUBLIC_WALLET, "AVAX");
+  return res;
 };
 
 export const QUERY_KEY = "USER_BALANCE";
 
 export default function useUserBalance() {
+  const { data: user } = useUser();
+
   return useQuery([QUERY_KEY], () => GetUserBalance(), {
-    staleTime: 5 * 60 * 900,
+    enabled: !!user,
   });
 }

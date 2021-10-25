@@ -1,15 +1,6 @@
 import AccountDashboardPage from "pages/account/dashboard/AccountDashboardPage";
-import { getSession } from "next-auth/client";
 
-export async function getServerSideProps(ctx) {
-  return {
-    props: {
-      session: await getSession(ctx),
-    },
-  };
-}
-
-const Page = () => <AccountDashboardPage />;
+const Page = (props) => <AccountDashboardPage {...props} />;
 
 Page.title = null;
 Page.description = null;

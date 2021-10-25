@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Head from "next/head";
 import "../index.css";
+import Amplify from "../amplify";
 
 // CONTEXT
 import { AppProvider } from "context/AppContext";
-import { Provider as AuthProvider, useSession, signIn } from "next-auth/client";
 import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import DefaultLayout from "layout/DefaultLayout";
 import AccountLayout from "layout/AccountLayout";
+import Toasts from "components/base/Toasts";
 
 function Realium({ Component, pageProps }) {
   const [queryClient] = useState(
@@ -18,10 +19,13 @@ function Realium({ Component, pageProps }) {
         defaultOptions: {
           queries: {
             staleTime: Infinity,
+            retry: process.env.NODE_ENV === "production" ? true : false,
           },
         },
       })
   );
+
+  Amplify();
 
   return (
     <>
@@ -37,9 +41,10 @@ function Realium({ Component, pageProps }) {
       </Head>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <AuthProvider session={pageProps.session}>
-            <AppProvider>{getLayout(Component, pageProps)}</AppProvider>
-          </AuthProvider>
+          <AppProvider>
+            {getLayout(Component, pageProps)}
+            <Toasts />
+          </AppProvider>
         </Hydrate>
         <ReactQueryDevtools />
       </QueryClientProvider>

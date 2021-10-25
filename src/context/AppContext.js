@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, useContext } from "react";
 
-import RemoveToastAction from "./actions/layout/RemoveToastAction";
-import AddToastAction from "./actions/layout/AddToastAction";
+import RemoveToastAction from "./actions/RemoveToastAction";
+import AddToastAction from "./actions/AddToastAction";
 
 const AppContext = createContext();
 

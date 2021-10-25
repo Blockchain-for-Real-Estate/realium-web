@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { ClipboardCopyIcon, CreditCardIcon } from "@heroicons/react/outline";
 import Heading2 from "components/general/Heading2";
-import { useSession } from "next-auth/client";
+import useUser from "context/queries/useUser";
 
 const AccountWalletIdSection = () => {
+  const { data: user } = useUser();
   const [copied, setCopied] = useState(false);
-  const [session] = useSession();
-  const { user } = session;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(user.walletAddress);
@@ -38,7 +37,7 @@ const AccountWalletIdSection = () => {
             type="wallet"
             name="wallet"
             id="wallet"
-            value={user.walletAddress}
+            value={user?.walletAddress}
             disabled={true}
             className="block w-full rounded-none rounded-l-md pl-10 sm:text-sm border border-gray-300 bg-white"
           />

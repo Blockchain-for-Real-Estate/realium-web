@@ -1,8 +1,7 @@
-import axios from "axios";
 import { useMutation } from "react-query";
 
 const UpdateUser = async (user) => {
-  await axios.put("/api/user", user);
+  // await axios.put("/api/user", user);
 };
 
 const useUpdateUserMutation = () => {
