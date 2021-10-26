@@ -16,10 +16,6 @@ const PropertySchema = new dynamoose.Schema(
       type: String,
       default: () => "Residential",
     },
-    propertyExcerpt: {
-      type: String,
-      default: () => "Residential",
-    },
     smartContractAddress: {
       type: String,
       required: true,
@@ -83,7 +79,7 @@ const PropertySchema = new dynamoose.Schema(
         },
       },
     },
-    featuredImage: {
+    description: {
       type: String,
       required: true,
     },

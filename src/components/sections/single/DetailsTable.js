@@ -3,17 +3,6 @@ import NumberFormat from "react-number-format"
 
 export function DetailsTable(props) {
 
-    // var sales = []
-    // props.event.forEach(event => {
-    //     if (event.eventType === "SALE") {
-    //         sales.push(event)
-    //     }
-    // })
-
-    // sales.sort(function(a, b) {
-    //     return a.listedPrice - b.listedPrice;
-    // });
-
     return (
         <div className="bg-gray-50">
         <div className="max-w-6xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
@@ -46,7 +35,7 @@ export function DetailsTable(props) {
                             <path d="M10.5 17.5H8V14.5H6.5V17.5H4V2L10.5 6V8.5M10.5 17.5V8.5M10.5 17.5H16.5V8.5H10.5M12.5 10.5V13.5H14.5V10.5H12.5Z" stroke="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Type</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.Property.propertyType || "Residential"}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || "Residential"}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
