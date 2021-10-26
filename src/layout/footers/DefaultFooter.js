@@ -31,7 +31,7 @@ export default function DefaultFooter() {
         </div>
         <div className="mt-12 border-t border-gray-200 pt-8">
           <p className="text-base text-gray-400 xl:text-center">
-            &copy; 2020 Realium, Inc. All rights reserved.
+            &copy; {new Date().getFullYear()} Realium, Inc. All rights reserved.
           </p>
         </div>
       </div>
