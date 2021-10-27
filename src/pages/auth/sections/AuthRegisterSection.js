@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { Auth } from "aws-amplify";
 import useUI from "context/hooks/useUI";
+import axios from "axios";
 
 const FIELDS = [
   {
@@ -53,7 +54,7 @@ const AuthRegisterSection = ({ validateUser }) => {
   );
 
   const { mutate } = useMutation(
-    async () =>
+    async () => {
       await Auth.signUp({
         username: state.email,
         password: state.password,
@@ -61,7 +62,9 @@ const AuthRegisterSection = ({ validateUser }) => {
           given_name: state.given_name,
           family_name: state.family_name,
         },
-      }),
+      });
+      // await axios.post(`${process.env.NEXT_PUBLIC_SITE_URL}/api/wallet`);
+    },
     {
       onSuccess: (user) => validateUser(user),
       onError: (error) => {

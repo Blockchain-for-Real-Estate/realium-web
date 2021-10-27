@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Heading2 from "components/general/Heading2";
 import useUpdateUserMutation from "context/mutations/useUpdateUserMutation";
-import { useSession } from "next-auth/client";
+import useUser from "context/queries/useUser";
 
 const FIELDS = [
   {
-    name: "notification_email",
+    name: "custom:pref_email",
     label: "Email Notifications",
     description: "Get notified by email for actions on your account",
     default: true,
@@ -16,8 +16,7 @@ const FIELDS = [
 ];
 
 const AccountProfileNotificationSection = () => {
-  const [session] = useSession();
-  const { user } = session;
+  const { data: user } = useUser();
   const { mutate: UpdateUser, isLoading } = useUpdateUserMutation();
 
   const [state, setState] = useState(

@@ -11,6 +11,8 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import DefaultLayout from "layout/DefaultLayout";
 import AccountLayout from "layout/AccountLayout";
 import Toasts from "components/base/Toasts";
+import useUser from "context/queries/useUser";
+import NotAuthorized from "pages/NotAuthorized";
 
 function Realium({ Component, pageProps }) {
   const [queryClient] = useState(
@@ -42,7 +44,11 @@ function Realium({ Component, pageProps }) {
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
           <AppProvider>
-            {getLayout(Component, pageProps)}
+            {Component.restricted ? (
+              <Auth>{getLayout(Component, pageProps)}</Auth>
+            ) : (
+              getLayout(Component, pageProps)
+            )}
             <Toasts />
           </AppProvider>
         </Hydrate>
@@ -69,6 +75,18 @@ const getLayout = (Component, pageProps) => {
     default:
       return <Component {...pageProps} />;
   }
+};
+
+const Auth = ({ children }) => {
+  const { data: user, isLoading } = useUser();
+  if (isLoading) return null;
+  if (!user)
+    return (
+      <DefaultLayout>
+        <NotAuthorized />
+      </DefaultLayout>
+    );
+  if (user) return <>{children}</>;
 };
 
 export default Realium;

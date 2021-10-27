@@ -4,8 +4,11 @@ import useAVAX from "context/hooks/useAVAX";
 
 export const GetUserBalance = async () => {
   const { XChain } = useAVAX();
-  let res = await XChain.getAllBalances(process.env.NEXT_PUBLIC_WALLET, "AVAX");
-  return res;
+  let { balance } = await XChain.getBalance(
+    process.env.NEXT_PUBLIC_WALLET,
+    "AVAX"
+  );
+  return balance;
 };
 
 export const QUERY_KEY = "USER_BALANCE";

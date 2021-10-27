@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import AuthSigninSection from "./sections/AuthSigninSection";
 import AuthCompletePasswordSection from "./sections/AuthCompletePasswordSection";
@@ -8,27 +8,54 @@ import AuthConfirmEmailSection from "./sections/AuthConfirmEmailSection";
 import { useRouter } from "next/router";
 import useUI from "context/hooks/useUI";
 import { useQueryClient } from "react-query";
+import useUser from "context/queries/useUser";
+import AuthMFASection from "./sections/AuthMFASection";
+import AuthForgotSection from "./sections/AuthForgotSection";
+import AuthLoadingSection from "./sections/AuthLoadingSection";
 
 const AuthPage = ({ page }) => {
   const router = useRouter();
   const { toast } = useUI();
+  const { data: user } = useUser();
   const queryClient = useQueryClient();
 
   const [data, setData] = useState();
   const [authPage, setAuthPage] = useState(page);
 
+  useEffect(() => {
+    const checkUser = async () => {
+      if (user) {
+        await router.push("/account/dashboard");
+        toast("Sign in successful");
+      }
+    };
+    checkUser();
+  }, [user, router, toast]);
+
   const validateUser = async (user) => {
-    if (user.challengeName === "NEW_PASSWORD_REQUIRED") {
+    if (user.signInUserSession) {
+      setAuthPage("loading");
+      await queryClient.invalidateQueries("USER");
+    } else if (user.challengeName === "NEW_PASSWORD_REQUIRED") {
       setData(user);
       setAuthPage("completePassword");
       toast("Password reset required", "Please reset your password", "warn");
+    } else if (user.challengeName === "SOFTWARE_TOKEN_MFA") {
+      setData(user);
+      setAuthPage("softwareMFA");
+      toast("2FA Required", "Please enter 2FA from authenticator app", "warn");
+    } else if (user.challengeName === "SMS_MFA") {
+      setData(user);
+      setAuthPage("smsMFA");
+      toast("2FA Required", "Please enter 2FA from text message", "warn");
     } else if (user.codeDeliveryDetails) {
-      setData({ ...user.codeDeliveryDetails, email: user.user.username });
+      setData({
+        ...user.codeDeliveryDetails,
+        email: user.user?.username || user.codeDeliveryDetails.email,
+      });
       setAuthPage("confirmEmail");
     } else {
-      await router.push(router.query.redirect || "/account/dashboard");
-      await queryClient.invalidateQueries("USER");
-      toast("Signed In", "You are successfully signed in");
+      setAuthPage("signin");
     }
   };
 
@@ -48,6 +75,8 @@ const AuthPage = ({ page }) => {
             user={data}
           />
         );
+      case "forgot":
+        return <AuthForgotSection setAuthPage={setAuthPage} />;
       case "confirmEmail":
         return (
           <AuthConfirmEmailSection
@@ -55,15 +84,38 @@ const AuthPage = ({ page }) => {
             deliveryDetails={data}
           />
         );
+      case "softwareMFA":
+        return (
+          <AuthMFASection
+            validateUser={validateUser}
+            user={data}
+            type={"SOFTWARE_TOKEN_MFA"}
+          />
+        );
+      case "smsMFA":
+        return (
+          <AuthMFASection
+            validateUser={validateUser}
+            user={data}
+            type="SMS_MFA"
+          />
+        );
       case "register":
-        return <AuthRegisterSection validateUser={validateUser} />;
+        return (
+          <AuthRegisterSection
+            validateUser={validateUser}
+            setAuthPage={setAuthPage}
+          />
+        );
+      case "loading":
+        return <AuthLoadingSection />;
       default:
         return <div>Not Found</div>;
     }
   };
 
   return (
-    <div className="h-full bg-white flex">
+    <div className="h-full bg-white flex" key={page}>
       <div className="flex-1 flex items-center px-4">{GetPage()}</div>
       <div className="flex-1 relative">
         <Image

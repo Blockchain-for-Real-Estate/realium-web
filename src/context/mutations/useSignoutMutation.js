@@ -11,8 +11,8 @@ const useSignoutMutation = () => {
   return useMutation(async () => await Auth.signOut(), {
     onSuccess: async () => {
       queryClient.clear();
-      toast("Signed out");
       await router.push("/");
+      toast("Signed out");
     },
     onError: (error) => {
       toast("Could not sign out", error.message, "error");

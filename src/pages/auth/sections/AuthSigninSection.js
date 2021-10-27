@@ -4,7 +4,7 @@ import { useMutation } from "react-query";
 import { Auth } from "aws-amplify";
 import useUI from "context/hooks/useUI";
 
-const AuthSigninSection = ({ validateUser }) => {
+const AuthSigninSection = ({ validateUser, setAuthPage }) => {
   const { toast } = useUI();
 
   const [email, setEmail] = useState("");
@@ -17,7 +17,15 @@ const AuthSigninSection = ({ validateUser }) => {
         validateUser(user);
       },
       onError: (error) => {
-        toast("Sign in failed", error.message, "error");
+        if (error.code === "UserNotConfirmedException") {
+          validateUser({
+            codeDeliveryDetails: {
+              email,
+            },
+          });
+        } else {
+          toast("Sign in failed", error.message, "error");
+        }
       },
     }
   );
@@ -76,7 +84,7 @@ const AuthSigninSection = ({ validateUser }) => {
             <button
               type="button"
               className="text-ss-light-blue"
-              onClick={() => setPage("forgot")}
+              onClick={() => setAuthPage("forgot")}
             >
               Forgot Password?
             </button>

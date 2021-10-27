@@ -8,7 +8,7 @@ const AuthConfirmEmailSection = ({ validateUser, deliveryDetails }) => {
 
   const [code, setcode] = useState("");
 
-  const { mutate } = useMutation(
+  const { mutate: confirm } = useMutation(
     async () => await Auth.confirmSignUp(deliveryDetails.email, code),
     {
       onSuccess: (user) => validateUser(user),
@@ -18,14 +18,27 @@ const AuthConfirmEmailSection = ({ validateUser, deliveryDetails }) => {
     }
   );
 
+  const { mutate: resendCode } = useMutation(
+    async () => await Auth.resendSignUp(deliveryDetails.email),
+    {
+      onSuccess: () => {
+        toast("Code has been resent");
+      },
+      onError: (error) => {
+        toast("New code failed to send", error.message, "error");
+      },
+    }
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutate();
+    confirm();
   };
 
   return (
     <div className="container-primary">
-      <h4 className="mb-4 text-center">Set code</h4>
+      <h4 className="mb-4 text-center">Enter Confirmation Code</h4>
+      <div>Sent to: {deliveryDetails.email}</div>
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label
@@ -49,8 +62,14 @@ const AuthConfirmEmailSection = ({ validateUser, deliveryDetails }) => {
         </div>
 
         <div>
+          <button type="button" onClick={resendCode}>
+            Resend Verification Code
+          </button>
+        </div>
+
+        <div>
           <button type="submit" className="btn-primary w-full p-2">
-            Set code
+            Confirm
           </button>
         </div>
       </form>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Heading2 from "components/general/Heading2";
 import useUpdateUserMutation from "context/mutations/useUpdateUserMutation";
-import { useSession } from "next-auth/client";
+import useUser from "context/queries/useUser";
 
 const FIELDS = [
   {
-    name: "fName",
+    name: "given_name",
     label: "First Name",
     default: "",
     type: "text",
@@ -14,7 +14,7 @@ const FIELDS = [
     disabled: false,
   },
   {
-    name: "lName",
+    name: "family_name",
     label: "Last Name",
     default: "",
     type: "text",
@@ -23,16 +23,7 @@ const FIELDS = [
     disabled: false,
   },
   {
-    name: "email",
-    label: "Email (Notifications)",
-    default: "",
-    type: "email",
-    autoComplete: "email",
-    columns: "col-span-3",
-    disabled: false,
-  },
-  {
-    name: "phone",
+    name: "phone_number",
     label: "Phone",
     default: "",
     type: "tel",
@@ -41,12 +32,12 @@ const FIELDS = [
     disabled: false,
   },
   {
-    name: "country",
+    name: "custom:country",
     label: "Country",
     default: "",
     type: "text",
     autoComplete: "country-name",
-    columns: "col-span-3 md:col-span-6",
+    columns: "col-span-3",
     disabled: false,
   },
   {
@@ -59,7 +50,7 @@ const FIELDS = [
     disabled: false,
   },
   {
-    name: "city",
+    name: "custom:city",
     label: "City",
     default: "",
     type: "text",
@@ -68,7 +59,7 @@ const FIELDS = [
     disabled: false,
   },
   {
-    name: "state",
+    name: "custom:state",
     label: "State",
     default: "",
     type: "text",
@@ -77,7 +68,7 @@ const FIELDS = [
     disabled: false,
   },
   {
-    name: "postal_code",
+    name: "custom:postal_code",
     label: "Postal Code",
     default: "",
     type: "text",
@@ -88,8 +79,7 @@ const FIELDS = [
 ];
 
 const AccountProfileInfoSection = () => {
-  const [session] = useSession();
-  const { user } = session;
+  const { data: user } = useUser();
   const { mutate: UpdateUser } = useUpdateUserMutation();
 
   const [state, setState] = useState(
@@ -100,11 +90,11 @@ const AccountProfileInfoSection = () => {
   );
 
   useEffect(() => {
-    if (user) {
+    if (user?.attributes) {
       const _state = { ...state };
-      Object.keys(user).forEach((key) => {
+      Object.keys(user.attributes).forEach((key) => {
         if (_state[key] !== undefined) {
-          _state[key] = user[key];
+          _state[key] = user.attributes[key];
         }
       });
       setState(_state);
@@ -114,7 +104,7 @@ const AccountProfileInfoSection = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    UpdateUser({ ...user, ...state });
+    UpdateUser({ user, attributes: state });
   };
 
   return (
