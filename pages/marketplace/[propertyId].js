@@ -1,6 +1,6 @@
-import PropertySingle from "pages/PropertySingle";
+import PropertyDetails from "pages/marketplace/sections/PropertyDetails";
 
-const Page = () => <PropertySingle />;
+const Page = () => <PropertyDetails />;
 
 Page.title = null;
 Page.description = null;
