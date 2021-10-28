@@ -1,16 +1,16 @@
 import NavLink from "components/base/NavLink";
 import Link from "next/link";
 import header from "data/static/headerLinks";
-import { MenuIcon } from "@heroicons/react/outline";
-import { signIn } from "next-auth/client";
-import { useSession } from "next-auth/client";
+import { MenuIcon, UserCircleIcon } from "@heroicons/react/outline";
 import Image from "next/image";
+import AccountBalance from "components/avax/AccountBalance";
+import useUser from "context/queries/useUser";
 
 export default function HeaderDefault() {
-  const [session] = useSession();
+  const { data: user } = useUser();
 
   return (
-    <header className="bg-white z-30 shadow">
+    <header className="bg-gray-50 z-30 shadow">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="w-full py-6 flex items-center justify-between">
           <div className="flex items-center">
@@ -22,6 +22,7 @@ export default function HeaderDefault() {
                     src={"/images/realium.svg"}
                     layout="fill"
                     objectFit="contain"
+                    alt="realium"
                   />
                 </div>
               </a>
@@ -40,18 +41,23 @@ export default function HeaderDefault() {
 
           {/* DESKTOP */}
           <div className="hidden lg:block ml-10 space-x-4">
-            {session ? (
-              <Link href="/account">
-                <button className="btn-primary px-3 py-2">My Account</button>
-              </Link>
+            {user ? (
+              <div className="flex items-center">
+                <Link href="/account/dashboard" passHref>
+                  <button>
+                    <UserCircleIcon className="h-10 w-10" />
+                  </button>
+                </Link>
+                <AccountBalance />
+              </div>
             ) : (
               <>
-                <button onClick={signIn} className="btn-secondary  px-3 py-2">
-                  Sign Up
-                </button>
-                <button onClick={signIn} className="btn-primary  px-3 py-2">
-                  Sign in
-                </button>
+                <Link href="/auth/register" passHref>
+                  <button className="btn-secondary px-3 py-2">Sign Up</button>
+                </Link>
+                <Link href="/auth/signin" passHref>
+                  <button className="btn-primary  px-3 py-2">Sign in</button>
+                </Link>
               </>
             )}
           </div>

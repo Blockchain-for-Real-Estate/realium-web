@@ -1,4 +1,6 @@
-const Page = () => <div>Welcome</div>;
+import AuthPage from "pages/auth/AuthPage";
+
+const Page = () => <AuthPage page="register" />;
 
 Page.title = null;
 Page.description = null;

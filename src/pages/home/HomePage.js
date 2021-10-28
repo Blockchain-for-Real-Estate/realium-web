@@ -1,3 +1,4 @@
+import useUI from "context/hooks/useUI";
 import {
   HomeExploreSection,
   HomeFAQSection,
@@ -8,8 +9,11 @@ import {
 } from "./sections";
 
 const HomePage = () => {
+  const { modal } = useUI();
+
   return (
     <>
+      <button onClick={() => modal("Hello", <>Testing</>)}>Launch Modal</button>
       <HomeHeroSection />
       <HomeStatsSection />
       <HomeExploreSection />

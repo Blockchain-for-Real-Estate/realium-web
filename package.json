@@ -3,23 +3,27 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.4",
-    "@next-auth/dynamodb-adapter": "^0.4.2",
-    "@svgr/webpack": "^5.5.0",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.1",
+    "avalanche": "^3.9.2",
+    "aws-amplify": "^4.3.3",
     "aws-sdk": "^2.995.0",
     "axios": "^0.21.4",
     "dynamoose": "^2.8.2",
+    "ethers": "^5.5.1",
+    "isomorphic-dompurify": "^0.15.0",
     "lodash.debounce": "^4.0.8",
     "next": "latest",
-    "next-auth": "^3.29.0",
+    "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
+    "react-code-input": "^3.10.1",
     "react-dom": "^17.0.2",
     "react-number-format": "^4.7.3",
     "react-query": "^3.24.4",
@@ -28,6 +32,8 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.3.5",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
     "postcss": "^8.3.7",
     "tailwindcss": "^2.2.15"
   }

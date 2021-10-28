@@ -1,9 +1,9 @@
-import AccountSecurityPage from "pages/account/AccountSecurityPage";
+import AccountSecurityPage from "pages/account/security/AccountSecurityPage";
 
 const Page = () => <AccountSecurityPage />;
 
 Page.title = null;
 Page.description = null;
-Page.restricted = false;
 Page.layout = "account";
+Page.restricted = true;
 export default Page;

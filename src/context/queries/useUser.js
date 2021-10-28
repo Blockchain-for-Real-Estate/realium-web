@@ -1,15 +1,20 @@
 import { useQuery } from "react-query";
-import axios from "axios";
+import { Auth } from "aws-amplify";
 
 export const GetUser = async () => {
-  const { data: listings } = await axios.get("/api/user");
-  return listings;
+  try {
+    const user = await Auth.currentAuthenticatedUser();
+    return user;
+  } catch (error) {
+    return false;
+  }
 };
 
 export const QUERY_KEY = "USER";
 
 export default function useUser() {
-  return useQuery(QUERY_KEY, GetUser, {
-    staleTime: 5 * 60 * 900, // Just under 5 minutes
+  return useQuery([QUERY_KEY], () => GetUser(), {
+    staleTime: 5 * 60 * 900,
+    retry: false,
   });
 }

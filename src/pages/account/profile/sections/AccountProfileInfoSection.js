@@ -1,83 +1,87 @@
 import React, { useEffect, useState } from "react";
 import Heading2 from "components/general/Heading2";
+import useUpdateUserMutation from "context/mutations/useUpdateUserMutation";
 import useUser from "context/queries/useUser";
 
 const FIELDS = [
   {
-    name: "fName",
+    name: "given_name",
     label: "First Name",
     default: "",
     type: "text",
-    autoComplete: "",
+    autoComplete: "given_name",
     columns: "col-span-3",
+    disabled: false,
   },
   {
-    name: "lName",
+    name: "family_name",
     label: "Last Name",
     default: "",
     type: "text",
-    autoComplete: "",
+    autoComplete: "family_name",
     columns: "col-span-3",
+    disabled: false,
   },
   {
-    name: "email",
-    label: "Email",
-    default: "",
-    type: "email",
-    autoComplete: "",
-    columns: "col-span-3",
-  },
-  {
-    name: "phone",
+    name: "phone_number",
     label: "Phone",
     default: "",
     type: "tel",
-    autoComplete: "",
+    autoComplete: "tel",
     columns: "col-span-3",
+    disabled: false,
   },
   {
-    name: "country",
+    name: "custom:country",
     label: "Country",
     default: "",
     type: "text",
-    autoComplete: "",
-    columns: "col-span-3 md:col-span-6",
+    autoComplete: "country-name",
+    columns: "col-span-3",
+    disabled: false,
   },
   {
     name: "address",
     label: "Address",
     default: "",
     type: "text",
-    autoComplete: "",
+    autoComplete: "street-address",
     columns: "col-span-3 md:col-span-6",
+    disabled: false,
   },
   {
-    name: "city",
+    name: "custom:city",
     label: "City",
     default: "",
     type: "text",
-    autoComplete: "",
+    autoComplete: "address-level2",
     columns: "col-span-3 md:col-span-2",
+    disabled: false,
   },
   {
-    name: "state",
+    name: "custom:state",
     label: "State",
     default: "",
     type: "text",
-    autoComplete: "",
+    autoComplete: "address-level1",
     columns: "col-span-3 md:col-span-2",
+    disabled: false,
   },
   {
-    name: "zip",
-    label: "Zip",
+    name: "custom:postal_code",
+    label: "Postal Code",
     default: "",
     type: "text",
-    autoComplete: "",
+    autoComplete: "postal-code",
     columns: "col-span-3 md:col-span-2",
+    disabled: false,
   },
 ];
 
 const AccountProfileInfoSection = () => {
+  const { data: user } = useUser();
+  const { mutate: UpdateUser } = useUpdateUserMutation();
+
   const [state, setState] = useState(
     FIELDS.reduce(
       (obj, item) => Object.assign(obj, { [item.name]: item.default }),
@@ -85,26 +89,29 @@ const AccountProfileInfoSection = () => {
     )
   );
 
-  const { data: user } = useUser();
-
   useEffect(() => {
-    if (user) {
+    if (user?.attributes) {
       const _state = { ...state };
-      Object.keys(user).forEach((key) => {
-        if (_state[key]) {
-          _state[key] = user[key];
+      Object.keys(user.attributes).forEach((key) => {
+        if (_state[key] !== undefined) {
+          _state[key] = user.attributes[key];
         }
       });
       setState(_state);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    UpdateUser({ user, attributes: state });
   };
 
   return (
-    <form className="border-b border-gray-200 bg-white rounded-lg shadow">
+    <form
+      className="border-b border-gray-200 bg-white rounded-lg shadow"
+      onSubmit={handleSubmit}
+    >
       <div className=" p-4">
         <Heading2
           title="Account Information"
@@ -131,6 +138,7 @@ const AccountProfileInfoSection = () => {
                   onChange={(e) =>
                     setState({ ...state, [field.name]: e.target.value })
                   }
+                  disabled={field.disabled}
                   className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md disabled:bg-gray-100"
                 />
               </div>

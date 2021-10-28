@@ -5,11 +5,10 @@ import {
   KeyIcon,
   LogoutIcon,
   TemplateIcon,
-  TicketIcon,
   UserCircleIcon,
   UsersIcon,
 } from "@heroicons/react/outline";
-import { signOut } from "next-auth/client";
+import useSignoutMutation from "context/mutations/useSignoutMutation";
 
 export const links = [
   {
@@ -50,6 +49,8 @@ export const links = [
 ];
 
 const AccountSidebar = () => {
+  const { mutate: signout } = useSignoutMutation();
+
   return (
     <div className="pr-4 relative h-full">
       <div className="sticky top-5">
@@ -63,7 +64,7 @@ const AccountSidebar = () => {
           </div>
           <div className="mt-3 border-t border-gray-300 flex-1" />
         </div>
-        <div className="md:pl-4" onClick={signOut}>
+        <div className="md:pl-4" onClick={signout}>
           <AccountSidebarLink
             link={{ name: "Sign Out", Icon: LogoutIcon, href: "#" }}
           />

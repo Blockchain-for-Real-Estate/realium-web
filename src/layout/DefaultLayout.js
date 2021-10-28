@@ -7,11 +7,11 @@ const DefaultLayout = ({ children }) => {
   return (
     <div className="h-full flex flex-col">
       <div>
-        <DefaultHeader />
         <TopBanner
           message="Welcome to Realium! We are currently in testing mode so funds and properties are not real for now."
           Icon={InformationCircleIcon}
         />
+        <DefaultHeader />
       </div>
       <div className="flex-1">{children}</div>
       <DefaultFooter />

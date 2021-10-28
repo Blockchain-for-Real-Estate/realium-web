@@ -2,7 +2,9 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 export const GetProperties = async () => {
-  const { data: listings } = await axios.get("/api/properties");
+  const { data: listings } = await axios.get(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/properties`
+  );
   return listings;
 };
 

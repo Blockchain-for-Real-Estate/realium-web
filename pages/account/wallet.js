@@ -1,9 +1,9 @@
-import AccountWalletPage from "pages/account/AccountWalletPage";
+import AccountWalletPage from "pages/account/wallet/AccountWalletPage";
 
 const Page = () => <AccountWalletPage />;
 
 Page.title = null;
 Page.description = null;
-Page.restricted = false;
 Page.layout = "account";
+Page.restricted = true;
 export default Page;

@@ -4,6 +4,6 @@ const Page = () => <AccountProfilePage />;
 
 Page.title = null;
 Page.description = null;
-Page.restricted = false;
 Page.layout = "account";
+Page.restricted = true;
 export default Page;

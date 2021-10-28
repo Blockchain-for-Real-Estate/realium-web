@@ -1,15 +1,9 @@
-import SigninPage from "pages/auth/SigninPage";
-import { getSession } from "next-auth/client";
+import AuthPage from "pages/auth/AuthPage";
 
-const Page = (props) => <SigninPage {...props} />;
-
-export async function getServerSideProps(context) {
-  const session = await getSession(context);
-  return { props: { session } };
-}
+const Page = () => <AuthPage page="signin" />;
 
 Page.title = null;
 Page.description = null;
 Page.restricted = false;
-Page.layout = "";
+Page.layout = "default";
 export default Page;
