@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { Auth } from "aws-amplify";
 import useUI from "context/hooks/useUI";
+import AuthBox from "../components/AuthBox";
+import { HomeIcon } from "@heroicons/react/outline";
 
 const AuthSigninSection = ({ validateUser, setAuthPage }) => {
   const { toast } = useUI();
@@ -36,15 +38,33 @@ const AuthSigninSection = ({ validateUser, setAuthPage }) => {
   };
 
   return (
-    <div className="container-primary">
-      <h4 className="mb-4 text-center text-gray-900 font-bold">Sign In</h4>
+    <AuthBox
+      title="Sign In"
+      description={
+        <>
+          or{" "}
+          <button
+            onClick={() => setAuthPage("register")}
+            className="text-indigo-500"
+          >
+            Create Account
+          </button>
+        </>
+      }
+      footer={{
+        text: "Forgot Password? ",
+        page: "forgot",
+        linkText: "Reset Password",
+      }}
+      setAuthPage={setAuthPage}
+    >
       <form className="space-y-4" onSubmit={handleSignIn}>
         <div>
           <label
             htmlFor="username"
             className="block text-sm font-medium text-gray-700"
           >
-            Email address
+            Email
           </label>
           <div className="mt-1">
             <input
@@ -79,39 +99,18 @@ const AuthSigninSection = ({ validateUser, setAuthPage }) => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between">
-          <div className="text-sm">
-            <button
-              type="button"
-              className="text-ss-light-blue"
-              onClick={() => setAuthPage("forgot")}
-            >
-              Forgot Password?
-            </button>
-          </div>
-        </div>
-
-        <button type="submit" className="btn-primary w-full p-2">
-          {isLoading ? "..." : "Sign in"}
+        <button
+          type="submit"
+          className="btn-primary w-full p-2 flex justify-center"
+        >
+          {isLoading ? (
+            <HomeIcon className="w-5 h-5 animate-pulse" />
+          ) : (
+            "Sign in"
+          )}
         </button>
       </form>
-
-      <div className="mt-6 pb-4">
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-gray-500">
-              Don&apos;t have an account?{" "}
-              <Link href="/auth/register" passHref>
-                <button className="text-ss-light-blue">Register Now</button>
-              </Link>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+    </AuthBox>
   );
 };
 

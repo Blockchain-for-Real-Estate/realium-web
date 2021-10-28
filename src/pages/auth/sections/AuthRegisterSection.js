@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { Auth } from "aws-amplify";
 import useUI from "context/hooks/useUI";
-import axios from "axios";
+import Link from "next/link";
+import states from "data/static/states";
+import AuthBox from "../components/AuthBox";
+import { HomeIcon } from "@heroicons/react/outline";
 
 const FIELDS = [
   {
@@ -11,7 +14,7 @@ const FIELDS = [
     default: "",
     type: "text",
     autoComplete: "given_name",
-    columns: "col-span-3",
+    columns: "col-span-6",
     disabled: false,
   },
   {
@@ -20,7 +23,7 @@ const FIELDS = [
     default: "",
     type: "text",
     autoComplete: "family_name",
-    columns: "col-span-3",
+    columns: "col-span-6",
     disabled: false,
   },
   {
@@ -33,6 +36,16 @@ const FIELDS = [
     disabled: false,
   },
   {
+    name: "custom:state",
+    label: "State",
+    default: "",
+    type: "select",
+    autoComplete: "state",
+    columns: "col-span-6",
+    disabled: false,
+    options: states,
+  },
+  {
     name: "password",
     label: "Password",
     default: "",
@@ -43,7 +56,7 @@ const FIELDS = [
   },
 ];
 
-const AuthRegisterSection = ({ validateUser }) => {
+const AuthRegisterSection = ({ validateUser, setAuthPage }) => {
   const { toast } = useUI();
 
   const [state, setState] = useState(
@@ -53,7 +66,7 @@ const AuthRegisterSection = ({ validateUser }) => {
     )
   );
 
-  const { mutate } = useMutation(
+  const { mutate: signUp, isLoading } = useMutation(
     async () => {
       await Auth.signUp({
         username: state.email,
@@ -61,6 +74,7 @@ const AuthRegisterSection = ({ validateUser }) => {
         attributes: {
           given_name: state.given_name,
           family_name: state.family_name,
+          "custom:state": state["custom:state"],
         },
       });
       // await axios.post(`${process.env.NEXT_PUBLIC_SITE_URL}/api/wallet`);
@@ -75,47 +89,84 @@ const AuthRegisterSection = ({ validateUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutate();
+    signUp();
   };
 
   return (
-    <form
-      className="border-b border-gray-200 bg-white rounded-lg shadow"
-      onSubmit={handleSubmit}
+    <AuthBox
+      title="Create Account"
+      description="Create an account to get started"
+      footer={{
+        text: "Already have an account? ",
+        page: "signin",
+        linkText: "Sign In",
+      }}
+      setAuthPage={setAuthPage}
     >
-      <div className=" p-4">
+      <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-3 md:grid-cols-6">
           {FIELDS.map((field) => (
-            <div key={field.name} className={`py-2 px-2 ${field.columns}`}>
+            <div key={field.name} className={`${field.columns} py-1`}>
               <label
                 htmlFor={field.name}
                 className="block text-sm font-medium text-gray-700 required-field capitalize"
               >
                 {field.label}
               </label>
-              <div className="mt-1 relative rounded-md shadow-sm">
-                <input
-                  type={field.type}
-                  name={field.name}
-                  id={field.name}
-                  autoComplete={field.autoComplete}
-                  value={state[field.name]}
-                  onChange={(e) =>
-                    setState({ ...state, [field.name]: e.target.value })
-                  }
-                  disabled={field.disabled}
-                  className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md disabled:bg-gray-100"
-                />
+              <div className="relative rounded-md shadow-sm">
+                {field.type !== "select" ? (
+                  <input
+                    type={field.type}
+                    name={field.name}
+                    id={field.name}
+                    autoComplete={field.autoComplete}
+                    value={state[field.name]}
+                    onChange={(e) =>
+                      setState({ ...state, [field.name]: e.target.value })
+                    }
+                    disabled={field.disabled}
+                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md disabled:bg-gray-100"
+                  ></input>
+                ) : (
+                  <select
+                    type={field.type}
+                    name={field.name}
+                    id={field.name}
+                    autoComplete={field.autoComplete}
+                    value={state[field.name]}
+                    onChange={(e) =>
+                      setState({ ...state, [field.name]: e.target.value })
+                    }
+                    disabled={field.disabled}
+                    className="focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md disabled:bg-gray-100"
+                  >
+                    <option className="text-gray-200" disabled value="">
+                      -- Select State --
+                    </option>
+                    {field.type === "select" &&
+                      field.options?.map((option) => (
+                        <option key={option} value={option.value}>
+                          {option.name}
+                        </option>
+                      ))}
+                  </select>
+                )}
               </div>
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="bg-gray-200 text-right px-4 py-2">
-        <button className="btn-primary py-2 px-4">Save</button>
-      </div>
-    </form>
+        <button
+          type="submit"
+          className="btn-primary w-full p-2 flex justify-center"
+        >
+          {isLoading ? (
+            <HomeIcon className="w-5 h-5 animate-pulse" />
+          ) : (
+            "Set Password"
+          )}
+        </button>
+      </form>
+    </AuthBox>
   );
 };
 

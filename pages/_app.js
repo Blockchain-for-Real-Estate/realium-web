@@ -13,6 +13,7 @@ import AccountLayout from "layout/AccountLayout";
 import Toasts from "components/base/Toasts";
 import useUser from "context/queries/useUser";
 import NotAuthorized from "pages/NotAuthorized";
+import Modal from "components/base/Modal";
 
 function Realium({ Component, pageProps }) {
   const [queryClient] = useState(
@@ -50,6 +51,7 @@ function Realium({ Component, pageProps }) {
               getLayout(Component, pageProps)
             )}
             <Toasts />
+            <Modal />
           </AppProvider>
         </Hydrate>
         <ReactQueryDevtools />

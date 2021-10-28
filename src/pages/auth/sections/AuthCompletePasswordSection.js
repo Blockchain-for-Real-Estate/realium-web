@@ -1,13 +1,16 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { Auth } from "aws-amplify";
+import useUI from "context/hooks/useUI";
+import AuthBox from "../components/AuthBox";
+import { HomeIcon } from "@heroicons/react/outline";
 
-const AuthCompletePasswordSection = ({ validateUser, user }) => {
+const AuthCompletePasswordSection = ({ setAuthPage, validateUser, user }) => {
   const { toast } = useUI();
 
   const [password, setPassword] = useState("");
 
-  const { mutate } = useMutation(
+  const { mutate: completeNewPassword, isLoading } = useMutation(
     async () => await Auth.completeNewPassword(user, password),
     {
       onSuccess: (user) => validateUser(user),
@@ -19,12 +22,20 @@ const AuthCompletePasswordSection = ({ validateUser, user }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutate();
+    completeNewPassword();
   };
 
   return (
-    <div className="container-primary">
-      <h4 className="mb-4 text-center">Set Password</h4>
+    <AuthBox
+      title="Password Expired"
+      description="Please change your password to continue"
+      footer={{
+        text: "Not ready? ",
+        page: "signin",
+        linkText: "Back to Sign In",
+      }}
+      setAuthPage={setAuthPage}
+    >
       <form className="space-y-6" onSubmit={handleSubmit}>
         <div>
           <label
@@ -48,12 +59,19 @@ const AuthCompletePasswordSection = ({ validateUser, user }) => {
         </div>
 
         <div>
-          <button type="submit" className="btn-primary w-full p-2">
-            Set Password
+          <button
+            type="submit"
+            className="btn-primary w-full p-2 flex justify-center"
+          >
+            {isLoading ? (
+              <HomeIcon className="w-5 h-5 animate-pulse" />
+            ) : (
+              "Set Password"
+            )}
           </button>
         </div>
       </form>
-    </div>
+    </AuthBox>
   );
 };
 

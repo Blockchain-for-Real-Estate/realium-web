@@ -10,7 +10,7 @@ export default function HeaderDefault() {
   const { data: user } = useUser();
 
   return (
-    <header className="bg-white z-30 shadow">
+    <header className="bg-gray-50 z-30 shadow">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
         <div className="w-full py-6 flex items-center justify-between">
           <div className="flex items-center">

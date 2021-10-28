@@ -71,6 +71,7 @@ const AuthPage = ({ page }) => {
       case "completePassword":
         return (
           <AuthCompletePasswordSection
+            setAuthPage={setAuthPage}
             validateUser={validateUser}
             user={data}
           />
@@ -80,6 +81,7 @@ const AuthPage = ({ page }) => {
       case "confirmEmail":
         return (
           <AuthConfirmEmailSection
+            setAuthPage={setAuthPage}
             validateUser={validateUser}
             deliveryDetails={data}
           />
@@ -108,15 +110,17 @@ const AuthPage = ({ page }) => {
           />
         );
       case "loading":
-        return <AuthLoadingSection />;
+        return <AuthLoadingSection setAuthPage={setAuthPage} />;
       default:
         return <div>Not Found</div>;
     }
   };
 
   return (
-    <div className="h-full bg-white flex" key={page}>
-      <div className="flex-1 flex items-center px-4">{GetPage()}</div>
+    <div className="h-full bg-white lg:flex " key={page}>
+      <div className="flex-1 flex items-center justify-center px-4 h-full py-10">
+        {GetPage()}
+      </div>
       <div className="flex-1 relative">
         <Image
           src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"

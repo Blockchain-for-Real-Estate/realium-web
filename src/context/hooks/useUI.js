@@ -15,7 +15,28 @@ const useUI = () => {
     });
   };
 
-  return { toast };
+  const modal = (
+    title,
+    content,
+    onConfirm,
+    confirmBtn = "Confirm",
+    onCancel,
+    cancelBtn = "cancel"
+  ) => {
+    dispatch({
+      type: "SET_MODAL",
+      payload: {
+        title,
+        content,
+        onConfirm,
+        confirmBtn,
+        onCancel,
+        cancelBtn,
+      },
+    });
+  };
+
+  return { toast, modal };
 };
 
 export default useUI;

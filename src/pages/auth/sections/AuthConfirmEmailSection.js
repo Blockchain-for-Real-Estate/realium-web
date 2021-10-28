@@ -2,13 +2,19 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { Auth } from "aws-amplify";
 import useUI from "context/hooks/useUI";
+import AuthBox from "../components/AuthBox";
+import ReactCodeInput from "react-code-input";
 
-const AuthConfirmEmailSection = ({ validateUser, deliveryDetails }) => {
+const AuthConfirmEmailSection = ({
+  setAuthPage,
+  validateUser,
+  deliveryDetails,
+}) => {
   const { toast } = useUI();
 
-  const [code, setcode] = useState("");
+  const [code, setCode] = useState("");
 
-  const { mutate: confirm } = useMutation(
+  const { mutate: confirmSignUp } = useMutation(
     async () => await Auth.confirmSignUp(deliveryDetails.email, code),
     {
       onSuccess: (user) => validateUser(user),
@@ -32,48 +38,50 @@ const AuthConfirmEmailSection = ({ validateUser, deliveryDetails }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    confirm();
+    confirmSignUp();
   };
 
   return (
-    <div className="container-primary">
-      <h4 className="mb-4 text-center">Enter Confirmation Code</h4>
-      <div>Sent to: {deliveryDetails.email}</div>
-      <form className="space-y-6" onSubmit={handleSubmit}>
-        <div>
-          <label
-            htmlFor="code"
-            className="block text-sm font-medium text-gray-700"
-          >
-            New code
-          </label>
-          <div className="mt-1">
-            <input
-              id="code"
-              name="code"
-              type="code"
-              autoComplete="new-code"
-              required
-              onChange={(e) => setcode(e.target.value)}
-              value={code}
-              className="no-arrows appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-            />
-          </div>
-        </div>
+    <AuthBox
+      title="Confirm Email"
+      description="Enter your email address below to reset your password"
+      footer={{
+        text: "Want to go back ",
+        page: "signin",
+        linkText: "Sign in",
+      }}
+      setAuthPage={setAuthPage}
+    >
+      <form onSubmit={handleSubmit}>
+        <label
+          htmlFor="code"
+          className="block text-sm font-medium text-gray-700"
+        >
+          6 digit confirmation code
+        </label>
+        <ReactCodeInput
+          fields={6}
+          type="text"
+          value={code}
+          onChange={setCode}
+          inputStyle={{
+            fontFamily: "Inter",
+            width: `${100 / 7}%`,
+            margin: "5px 5px 5px 0px",
+            borderRadius: "5px",
+            borderColor: "#D1D5DB",
+          }}
+        />
 
-        <div>
-          <button type="button" onClick={resendCode}>
-            Resend Verification Code
-          </button>
-        </div>
+        <button type="submit" className="btn-primary w-full p-2">
+          Confirm
+        </button>
 
-        <div>
-          <button type="submit" className="btn-primary w-full p-2">
-            Confirm
-          </button>
-        </div>
+        <button type="button" className="text-indigo-500" onClick={resendCode}>
+          Resend Verification Code
+        </button>
       </form>
-    </div>
+    </AuthBox>
   );
 };
 
