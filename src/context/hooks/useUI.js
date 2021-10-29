@@ -21,7 +21,7 @@ const useUI = () => {
     onConfirm,
     confirmBtn = "Confirm",
     onCancel,
-    cancelBtn = "cancel"
+    cancelBtn = "Cancel"
   ) => {
     dispatch({
       type: "SET_MODAL",
