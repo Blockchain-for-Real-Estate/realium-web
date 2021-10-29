@@ -1,4 +1,8 @@
+import useUI from "context/hooks/useUI";
+
 const HomeEmailList = () => {
+  const { toast } = useUI();
+
   const handleSubmit = () => {
     var form = document.getElementById('sheetdb-form');
     form.addEventListener("submit", e => {
@@ -9,6 +13,7 @@ const HomeEmailList = () => {
       }).then(
           response => response.json()
       ).then((html) => {
+        toast("Email Submitted")
       });
     });  
   };
