@@ -4,3 +4,4 @@ export { default as HomeExploreSection } from "./HomeExploreSection";
 export { default as HomeInfoSection } from "./HomeInfoSection";
 export { default as HomeSubscribeSection } from "./HomeSubscribeSection";
 export { default as HomeFAQSection } from "./HomeFAQSection";
+export { default as HomeEmailList } from "./HomeEmailList";
