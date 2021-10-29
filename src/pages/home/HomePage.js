@@ -5,16 +5,14 @@ import {
   HomeInfoSection,
   HomeStatsSection,
   HomeSubscribeSection,
-  HomeEmailList
 } from "./sections";
 
 const HomePage = () => {
-
   return (
     <>
       <HomeHeroSection />
       <HomeStatsSection />
-      <HomeEmailList />
+      <HomeSubscribeSection />
       <HomeExploreSection />
       <HomeInfoSection />
       <HomeSubscribeSection />
