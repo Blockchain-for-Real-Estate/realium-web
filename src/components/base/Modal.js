@@ -4,7 +4,7 @@ import { useAppContext } from "context/AppContext";
 
 const Modal = () => {
   const { state, dispatch } = useAppContext();
-  const { title, content, onConfirm, confirmBtn, onCancel, cancelBtn } =
+  const { title, content, bgColor, textColor, onConfirm, confirmBtn, onCancel, cancelBtn } =
     state.modal;
 
   const handleCancel = () => {
@@ -82,10 +82,10 @@ const Modal = () => {
 
               {/* TODO: ADD OPTIONAL TYPES */}
               <div className="sm:flex sm:items-start">
-                <div className="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                <div className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${bgColor} sm:mx-0 sm:h-10 sm:w-10`}>
                   {/* <!-- Heroicon name: outline/exclamation --> */}
                   <svg
-                    className="h-6 w-6 text-red-600"
+                    className={`h-6 w-6 ${textColor}`}
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -117,14 +117,14 @@ const Modal = () => {
                 <button
                   onClick={handleConfirm}
                   type="button"
-                  className="btn-danger ml-2"
+                  className="btn-primary ml-2 p-2"
                 >
                   {confirmBtn}
                 </button>
                 <button
                   onClick={handleCancel}
                   type="button"
-                  className="btn-white"
+                  className="btn-white p-2"
                 >
                   {cancelBtn}
                 </button>

@@ -11,7 +11,7 @@ export function DetailsTable(props) {
             <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">Break down {props.Property.propertyName} even further for your investment decisions. All details are updated live as listings are posted and transactions occur on the blockchain.</p>
 
             </div>
-            <div className="mt-4 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-1 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-3">
+            <div className="mt-4 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-1 sm:gap-6 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 xl:grid-cols-1">
             <div>
                 <div className="pt-4 pl-4 pr-4 pb-4">
                 <h2 className="text-lg leading-6 font-medium text-gray-900">Property Details</h2>
@@ -91,7 +91,8 @@ export function DetailsTable(props) {
                     </ul>
                 </div>
             </div>
-            <div>
+            {/* THESE TABLES NOT INCLUDED IN V1  */}
+            {/* <div>
                 <div className="pt-4 pl-4 pr-4 pb-4">
                 <h2 className="text-lg leading-6 font-medium text-gray-900">Investment Details</h2>
                 <div className="mt-2 border-t-4 border-indigo-600 pt-4">
@@ -300,7 +301,7 @@ export function DetailsTable(props) {
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     </div>

@@ -1,7 +1,11 @@
 import React from 'react'
+import useUI from "context/hooks/useUI";
+import { Buy } from '../transaction/Buy';
+import { List } from '../transaction/List';
 
-export function BuyListOffer(props) {
+export function BuyListOffer() {
   let [currentTab, setCurrentTab] = React.useState(0);
+  const { modal } = useUI();
 
   return (
     <div className="bg-white rounded-lg shadow-md">
@@ -104,7 +108,7 @@ export function BuyListOffer(props) {
                     12 days
                   </div>
                 </div>
-                <button className="w-full btn-primary px-3 py-4">
+                <button className="w-full btn-primary px-3 py-4" onClick={() => modal("Purchase Share", <Buy />)}>
                   Select and Buy
                 </button>
                 <div className="mb-4 sm:mb-0 mt-12 mx-4 flex">
@@ -159,7 +163,7 @@ export function BuyListOffer(props) {
                     12 days
                   </div>
                 </div>
-                <button className="w-full btn-primary px-3 py-4">
+                <button className="w-full btn-primary px-3 py-4" onClick={() => modal("List Token", <List />)}>
                   List Token
                 </button>
                 <div className="mb-4 sm:mb-0 mt-12 mx-4 flex">
@@ -177,7 +181,7 @@ export function BuyListOffer(props) {
               <div>
                 <div className="border-t-2 border-gray-100 rounded-b-lg pt-2 pb-1 px-6 bg-white shadow-md sm:px-10 sm:py-10 opacity-30">
                   <div className="m-2 space-y-6">
-                    <h3 class="font-bold text-xl md:text-center align-middle underline">
+                    <h3 className="font-bold text-xl md:text-center align-middle underline">
                       COMING SOON
                     </h3>
                     <h4 className="font-semibold text-lg">
@@ -197,7 +201,7 @@ export function BuyListOffer(props) {
                           <div className="w-1/2 flex-1 min-w-0">
                             <input
                               type="text"
-                              readonly
+                              readOnly
                               className="rounded-tl focus:ring-white-500 focus:border-white-500 relative block w-full rounded-none bg-transparent focus:z-10 sm:text-sm border-white text-white text-shadow"
                               placeholder="Shares"
                             />
@@ -215,7 +219,7 @@ export function BuyListOffer(props) {
                           <div className="w-1/2 flex-1 min-w-0">
                             <input
                               type="text"
-                              readonly
+                              readOnly
                               className="rounded-bl focus:ring-white-500 focus:border-white-500 relative block w-full rounded-none bg-transparent focus:z-10 sm:text-sm border-white text-white text-shadow"
                               placeholder="Share price"
                             />

@@ -18,16 +18,20 @@ const useUI = () => {
   const modal = (
     title,
     content,
+    bgColor = "bg-indigo-100",
+    textColor = "text-indigo-600",
     onConfirm,
     confirmBtn = "Confirm",
     onCancel,
-    cancelBtn = "cancel"
+    cancelBtn = "Cancel"
   ) => {
     dispatch({
       type: "SET_MODAL",
       payload: {
         title,
         content,
+        bgColor,
+        textColor,
         onConfirm,
         confirmBtn,
         onCancel,
