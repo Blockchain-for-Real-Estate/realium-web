@@ -1,6 +1,6 @@
 import useUI from "context/hooks/useUI";
 
-const HomeEmailList = () => {
+const HomeSubscribeSection = () => {
   const { toast } = useUI();
 
   const handleSubmit = () => {
@@ -68,4 +68,4 @@ const HomeEmailList = () => {
   );
 };
 
-export default HomeEmailList;
+export default HomeSubscribeSection;
