@@ -6,11 +6,18 @@ const GET_properties = async (req, res) => {
   res.status(200).send(response);
 };
 
+const POST_Property = async (req, res) => {
+  const newProperty = await PropertyModel.create(req.body);
+  res.status(200).send(newProperty.toJSON());
+};
+
 export default async function handler(req, res) {
   try {
     switch (req.method) {
       case "GET":
         await GET_properties(req, res);
+      case "POST":
+        await POST_Property(req, res)
       default:
         res.status(400).send();
     }

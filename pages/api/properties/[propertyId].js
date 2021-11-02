@@ -18,7 +18,7 @@ export default async function handler(req, res) {
       case "GET":
         await GetProperty(req, res);
         break;
-      case "UPDATE":
+      case "PUT":
         await UpdateProperty(req, res);
         break;
       default:
