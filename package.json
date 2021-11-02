@@ -17,7 +17,6 @@
     "aws-sdk": "^2.995.0",
     "axios": "^0.21.4",
     "dynamoose": "^2.8.2",
-    "ethereumjs-wallet": "^1.0.2",
     "ethers": "^5.5.1",
     "isomorphic-dompurify": "^0.15.0",
     "lodash.debounce": "^4.0.8",
