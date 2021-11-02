@@ -5,7 +5,6 @@ import {
   HomeInfoSection,
   HomeStatsSection,
   HomeSubscribeSection,
-  HomeEmailList,
 } from "./sections";
 
 const HomePage = () => {
@@ -13,7 +12,7 @@ const HomePage = () => {
     <>
       <HomeHeroSection />
       <HomeStatsSection />
-      <HomeEmailList />
+      <HomeSubscribeSection />
       <HomeExploreSection />
       <HomeInfoSection />
       <HomeSubscribeSection />
