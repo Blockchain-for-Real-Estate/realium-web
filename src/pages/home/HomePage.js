@@ -5,11 +5,10 @@ import {
   HomeInfoSection,
   HomeStatsSection,
   HomeSubscribeSection,
-  HomeEmailList
+  HomeEmailList,
 } from "./sections";
 
 const HomePage = () => {
-
   return (
     <>
       <HomeHeroSection />
