@@ -24,6 +24,7 @@ const getServerSideUser = async (req, res) => {
     const user = await Auth.currentAuthenticatedUser();
     return user;
   } catch (error) {
+    debugger;
     res.status(401);
     throw Error("Not Authenticated");
   }

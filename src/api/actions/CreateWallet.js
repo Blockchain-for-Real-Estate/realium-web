@@ -1,36 +1,43 @@
 import useAVAX from "context/hooks/useAVAX";
-import UserModel from "api/models/User";
-import WalletModel from "api/models/Wallet";
 
-const CreateWallet = async (user) => {
-  let AVAX = await useAVAX("/ext/keystore");
+const ADDRESS = "C-avax18z5jl0lfgsg09zx5qcrq0tzj59kyq80mwzy9m8";
+const PRIVATE_KEY =
+  "PrivateKey-ZLjFHyaDAAqdbhxHnu7CJXut6JuyRPGzsw7U33F1mGWmGmUAT";
+
+/**
+ * Creates a new CChain wallet address
+ * @param {*} userId the cognito sub id to connect this private key to
+ * @returns returns a new wallet object
+ */
+const CreateWallet = async (userId) => {
+  const { CChain } = useAVAX();
+  const chain = CChain.keyChain();
+  const keys = chain.makeKey();
+
+  const wallet = {
+    userId: userId,
+    address: keys.getAddressString(),
+    privateKey: keys.getPrivateKeyString(),
+    publicKey: keys.getPublicKeyString(),
+  };
+
+  const addresses = chain.getAddressStrings();
+
   debugger;
-  try {
-    let wallet = await WalletModel.get(user.id);
-    if (!wallet) {
-      wallet = await WalletModel.create({ username: user.id });
-    }
+  return wallet;
+};
 
-    try {
-      await AVAX.send("keystore.createUser", {
-        username: wallet.username,
-        password: wallet.password,
-      });
-    } catch (error) {
-      console.log(error.error.message);
-    }
+export const ReadWallet = async () => {
+  const { CChain } = useAVAX();
+  const chain = CChain.keyChain();
 
-    const { address } = await AVAX.send("avm.createAddress", {
-      username: wallet.username,
-      password: wallet.password,
-    });
+  const key = chain.importKey(PRIVATE_KEY);
+  const adddress = key.getAddressString();
 
-    user.walletAddress = address;
-    await UserModel.update(user);
-  } catch (error) {
-    debugger;
-    console.error(error);
-  }
+  CChain.getAssetBalance(adddress, 1, "AVAX");
+
+  const addresses = chain.getAddressStrings();
+  debugger;
 };
 
 export default CreateWallet;
