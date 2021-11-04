@@ -20,7 +20,7 @@ const methods = {
   },
   POST: {
     auth: "Admin",
-    origin: ["localhost:3001", "https://admin.realium.io"],
+    origin: "localhost:3001",
     function: CreateProperty,
   },
 };
