@@ -12,20 +12,18 @@ const UpdateProperty = async (req, res) => {
   res.status(200).send(newProperty.toJSON());
 };
 
-export default async function handler(req, res) {
-  try {
-    switch (req.method) {
-      case "GET":
-        await GetProperty(req, res);
-        break;
-      case "UPDATE":
-        await UpdateProperty(req, res);
-        break;
-      default:
-        res.status(400).send();
-    }
-  } catch (error) {
-    if (res.statusCode === 200) res.status(500);
-    res.send(error.message);
-  }
-}
+const methods = {
+  GET: {
+    auth: false,
+    origin: "*",
+    function: GetProperty,
+  },
+  POST: {
+    auth: "Admin",
+    origin: "http://localhost:3001",
+    function: UpdateProperty,
+  },
+};
+
+const handler = (req, res) => DefaultHandler(req, res, methods);
+export default handler;

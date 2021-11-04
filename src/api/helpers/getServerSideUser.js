@@ -16,15 +16,16 @@ export const getServerSideAuth = (req, res) => {
 /**
  * Get's the current signed in user and will send a 401 if the user is not authenticated/found
  * @param {Object} req this is the request object in the api route handler
+ * @param {Object} res this is the response object in the api route handler
+ * @param {Object} role this is the role required to pass the get user
  * @returns the current authenticated user and their profile
  */
-const getServerSideUser = async (req, res) => {
+const getServerSideUser = async (req, res, role) => {
   const Auth = getServerSideAuth(req, res);
   try {
     const user = await Auth.currentAuthenticatedUser();
     return user;
   } catch (error) {
-    debugger;
     res.status(401);
     throw Error("Not Authenticated");
   }
