@@ -1,6 +1,6 @@
 import PropertyModel from "api/models/Property";
 
-const GetProperty = async (req, res) => {
+const ReadProperty = async (req, res) => {
   const { propertyId } = req.query;
   const property = await PropertyModel.get(propertyId);
   res.status(200).send(property);
@@ -16,9 +16,9 @@ const methods = {
   GET: {
     auth: false,
     origin: "*",
-    function: GetProperty,
+    function: ReadProperty,
   },
-  POST: {
+  PUT: {
     auth: "Admin",
     origin: "http://localhost:3001",
     function: UpdateProperty,
