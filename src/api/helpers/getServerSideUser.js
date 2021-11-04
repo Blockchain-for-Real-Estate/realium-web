@@ -24,7 +24,10 @@ const getServerSideUser = async (req, res, role) => {
   const Auth = getServerSideAuth(req, res);
   try {
     const user = await Auth.currentAuthenticatedUser();
-    return user;
+    const groups =
+      user.signInUserSession?.accessToken?.payload?.["cognito:groups"];
+    if (role && !groups.includes(role)) throw Error();
+    return { ...user, groups };
   } catch (error) {
     res.status(401);
     throw Error("Not Authenticated");
