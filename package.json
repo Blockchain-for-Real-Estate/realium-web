@@ -21,6 +21,7 @@
     "isomorphic-dompurify": "^0.15.0",
     "lodash.debounce": "^4.0.8",
     "next": "latest",
+    "nextjs-cors": "^2.0.0",
     "qrcode.react": "^1.0.1",
     "react": "^17.0.2",
     "react-code-input": "^3.10.1",
