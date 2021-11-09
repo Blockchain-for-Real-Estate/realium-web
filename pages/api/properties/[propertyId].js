@@ -1,3 +1,4 @@
+import DefaultHandler from "api/DefaultHandler";
 import PropertyModel from "api/models/Property";
 
 const ReadProperty = async (req, res) => {
