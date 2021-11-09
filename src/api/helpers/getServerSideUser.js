@@ -22,7 +22,6 @@ export const getServerSideAuth = (req, res) => {
  */
 const getServerSideUser = async (req, res, role) => {
   const Auth = getServerSideAuth(req, res);
-  debugger;
   try {
     const user = await Auth.currentAuthenticatedUser();
     const groups =
