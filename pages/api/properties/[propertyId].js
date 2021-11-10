@@ -1,3 +1,4 @@
+import DefaultHandler from "api/DefaultHandler";
 import PropertyModel from "api/models/Property";
 
 const ReadProperty = async (req, res) => {
@@ -12,7 +13,7 @@ const UpdateProperty = async (req, res) => {
   res.status(200).send(newProperty.toJSON());
 };
 
-const methods = {
+const handlers = {
   GET: {
     auth: false,
     origin: "*",
@@ -25,5 +26,5 @@ const methods = {
   },
 };
 
-const handler = (req, res) => DefaultHandler(req, res, methods);
+const handler = (req, res) => DefaultHandler(req, res, handlers);
 export default handler;
