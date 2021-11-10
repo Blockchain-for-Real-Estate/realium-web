@@ -125,7 +125,7 @@ const PropertySchema = new dynamoose.Schema(
 );
 
 const PropertyModel = dynamoose.model("realium-properties", PropertySchema, {
-  create: true,
+  create: false,
 });
 
 export default PropertyModel;
