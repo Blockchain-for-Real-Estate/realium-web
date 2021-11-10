@@ -7,7 +7,7 @@ import {
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(PROPERTIES_KEY, GetProperties);
+  // await queryClient.prefetchQuery(PROPERTIES_KEY, GetProperties);
 
   return {
     props: {
