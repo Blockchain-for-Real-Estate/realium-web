@@ -1,6 +1,7 @@
 import getServerSideUser from "./helpers/getServerSideUser";
 import NextCors from "nextjs-cors";
-import dynamoose from "dynamoose";
+import aws from "aws-sdk";
+
 /**
  * This is the default handler for all api routes it will apply authentication, and cors, and call the appropriate function based on the req method
  * @param {*} req request object from page route
@@ -10,9 +11,11 @@ import dynamoose from "dynamoose";
  */
 const DefaultHandler = async (req, res, handlers) => {
   try {
-    dynamoose.aws.sdk.config.update({
-      accessKeyId: process.env.ACCESS_KEY,
-      secretAccessKey: process.env.ACCESS_SECRET,
+    aws.config.update({
+      credentials: {
+        accessKeyId: process.env.ACCESS_KEY,
+        secretAccessKey: process.env.ACCESS_SECRET,
+      },
       region: process.env.NEXT_PUBLIC_AWS_REGION,
     });
 
