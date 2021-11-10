@@ -22,6 +22,7 @@ export default function ImageGallery({ images }) {
                       layout="fill"
                       objectFit="cover"
                       objectPosition="center"
+                      alt=""
                     />
                   </span>
                   <span
@@ -48,6 +49,7 @@ export default function ImageGallery({ images }) {
               layout="fill"
               objectFit="cover"
               objectPosition="center"
+              alt=""
             />
           </Tab.Panel>
         ))}
