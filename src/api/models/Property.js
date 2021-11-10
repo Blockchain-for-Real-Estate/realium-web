@@ -2,6 +2,12 @@ import states from "data/static/states";
 import dynamoose from "dynamoose";
 import { v4 as uuid } from "uuid";
 
+dynamoose.aws.sdk.config.update({
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.ACCESS_SECRET,
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
+});
+
 const PropertySchema = new dynamoose.Schema(
   {
     propertyId: {
