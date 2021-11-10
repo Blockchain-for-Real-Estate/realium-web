@@ -1,4 +1,4 @@
-import AccountVerificationPage from "pages/account/AccountVerificationPage";
+import AccountVerificationPage from "pages/account/verification/AccountVerificationPage";
 
 const Page = () => <AccountVerificationPage />;
 
