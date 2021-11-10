@@ -77,7 +77,7 @@ const AuthRegisterSection = ({ validateUser, setAuthPage }) => {
           "custom:state": state["custom:state"],
         },
       });
-      // await axios.post(`${process.env.NEXT_PUBLIC_SITE_URL}/api/wallet`);
+      // await axios.post(`/api/wallet`);
     },
     {
       onSuccess: (user) => validateUser(user),
