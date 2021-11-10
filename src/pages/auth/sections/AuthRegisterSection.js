@@ -145,8 +145,8 @@ const AuthRegisterSection = ({ validateUser, setAuthPage }) => {
                     </option>
                     {field.type === "select" &&
                       field.options?.map((option) => (
-                        <option key={option} value={option.value}>
-                          {option.name}
+                        <option key={option} value={option}>
+                          {option}
                         </option>
                       ))}
                   </select>

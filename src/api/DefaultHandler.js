@@ -8,24 +8,24 @@ import NextCors from "nextjs-cors";
  * @param {*} methods This is an object that contains the different methods with auth role, origins, and a function to call.
  * @returns
  */
-const DefaultHandler = async (req, res, methods) => {
-  debugger;
+const DefaultHandler = async (req, res, handlers) => {
   try {
-    if (methods[req.method] || req.method === "OPTIONS") {
-      const method = methods[req.method];
+    const method = req.method;
+    const handler = handlers[method];
 
-      await NextCors(req, res, {
-        origin: method.origin,
-        methods: Object.keys(methods),
-      });
+    await NextCors(req, res, {
+      origin: handler?.origin || "*",
+      methods: Object.keys(handlers),
+    });
 
-      let user = method.auth
-        ? await getServerSideUser(req, res, method.auth)
+    if (handler) {
+      let user = handler.auth
+        ? await getServerSideUser(req, res, handler.auth)
         : null;
-      return method.function(req, res, user);
+      return handler.function(req, res, user);
     } else {
       res.status(405);
-      throw Error(`${req.method} Not Allowed`);
+      throw Error(`${method} Not Allowed`);
     }
   } catch (error) {
     if (res.status === 200) res.status(500);
