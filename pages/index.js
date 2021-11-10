@@ -1,5 +1,4 @@
 import HomePage from "pages/home/HomePage";
-
 import { dehydrate, QueryClient } from "react-query";
 import {
   QUERY_KEY as PROPERTIES_KEY,
