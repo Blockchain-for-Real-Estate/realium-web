@@ -1,9 +1,9 @@
-import AccountSecurityTOTPSection from "./sections/AccountSecurityTOTPSection";
+import AccountSecurityMFASection from "./sections/AccountSecurityMFASection";
 
 const AccountSecurityPage = () => {
   return (
     <div>
-      <AccountSecurityTOTPSection />
+      <AccountSecurityMFASection />
     </div>
   );
 };
