@@ -11,7 +11,7 @@ const ReadModel = async (req, res) => {
   }
 };
 
-const methods = {
+const handlers = {
   GET: {
     auth: false,
     origin: "*",
@@ -19,5 +19,5 @@ const methods = {
   },
 };
 
-const handler = (req, res) => DefaultHandler(req, res, methods);
+const handler = (req, res) => DefaultHandler(req, res, handlers);
 export default handler;

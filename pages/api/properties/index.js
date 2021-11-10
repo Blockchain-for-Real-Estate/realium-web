@@ -12,7 +12,7 @@ const CreateProperty = async (req, res, user) => {
   res.send(response);
 };
 
-const methods = {
+const handlers = {
   GET: {
     auth: false,
     origin: "*",
@@ -25,5 +25,5 @@ const methods = {
   },
 };
 
-const handler = (req, res) => DefaultHandler(req, res, methods);
+const handler = (req, res) => DefaultHandler(req, res, handlers);
 export default handler;
