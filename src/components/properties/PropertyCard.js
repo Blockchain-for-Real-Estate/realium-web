@@ -4,13 +4,14 @@ import React from "react";
 
 export default function PropertyCard({ property }) {
   return (
-    <Link href={`/marketplace/${property.propertyId}`}>
+    <Link href={`/marketplace/${property.propertyId}`} passHref>
       <div className="shadow h-full cursor-pointer rounded sm:rounded-lg">
         <div className="relative h-48">
           <Image
             src="/images/coming-soon.jpg"
             layout="fill"
             objectFit="cover"
+            alt="Coming Soon"
           />
         </div>
         <div className="p-6 space-y-2">
