@@ -68,7 +68,7 @@ const AuthRegisterSection = ({ validateUser, setAuthPage }) => {
 
   const { mutate: signUp, isLoading } = useMutation(
     async () => {
-      await Auth.signUp({
+      const user = await Auth.signUp({
         username: state.email,
         password: state.password,
         attributes: {
@@ -78,6 +78,7 @@ const AuthRegisterSection = ({ validateUser, setAuthPage }) => {
         },
       });
       // await axios.post(`/api/wallet`);
+      return user;
     },
     {
       onSuccess: (user) => validateUser(user),
