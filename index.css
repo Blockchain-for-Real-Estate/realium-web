@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply h-full;
+  }
+  body {
+    @apply text-base font-inter text-gray-700 h-full;
+  }
+  #__next {
+    @apply h-full;
+  }
+
+  /* BUILDING BLOCKS */
+  .section {
+    @apply px-4 sm:px-8 max-w-7xl mx-auto py-10 md:py-16;
+  }
+
+  /* BUTTON DEFAULTS */
+  .btn-disabled {
+    @apply disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray-500;
+  }
+
+  .btn {
+    @apply btn-disabled rounded-md tracking-widest text-base font-medium;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    @apply btn bg-indigo-600 hover:bg-indigo-800 text-white;
+  }
+  .btn-secondary {
+    @apply btn bg-white hover:bg-gray-200 text-indigo-600;
+  }
+  .btn-accent {
+    @apply btn bg-indigo-500 hover:bg-indigo-600 text-white hover:text-white;
+  }
+  .btn-positive {
+    @apply btn bg-green-100 hover:bg-green-200 text-green-700;
+  }
+  .btn-danger {
+    @apply btn bg-red-100 hover:bg-red-200 text-red-700;
+  }
+  .btn-white {
+    @apply btn bg-white hover:bg-gray-100 text-black  border border-gray-300;
+  }
+  .btn-icon {
+    @apply rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500;
+  }
+
+  /* FORMS */
+  .input-primary {
+    @apply shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm rounded-md p-2 border border-gray-300 text-gray-900;
+  }
+
+  .input-label {
+    @apply text-sm text-gray-700;
+  }
+}
