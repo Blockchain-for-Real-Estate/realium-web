@@ -21,13 +21,16 @@ const TABS = [
 
 const BuyListOfferSection = ({ property }) => {
   return (
-    <Tab.Group as="div" className="shadow rounded-lg">
+    <Tab.Group as="div" className="shadow rounded-lg sticky top-5">
       <Tab.List className="flex">
         {TABS.map((tab, key) => (
           <Tab
             key={key}
             className={({ selected }) =>
-              classNames("flex-1 rounded-t py-2", selected ? "" : "bg-gray-100")
+              classNames(
+                "flex-1 rounded-t py-2",
+                selected ? "bg-white" : "bg-gray-100"
+              )
             }
           >
             {tab.name}

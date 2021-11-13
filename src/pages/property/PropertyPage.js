@@ -25,7 +25,7 @@ const PropertyPage = ({}) => {
         <PropertyHeadingSection property={property} />
         <PropertyBreadCrumbsSection property={property} />
       </div>
-      <div className="md:flex max-w-6xl mx-auto gap-x-4 px-4">
+      <div className="md:flex max-w-6xl mx-auto gap-x-4 px-4 my-10">
         <div className="flex-1">
           <PropertyImageGallerySection
             images={[
@@ -37,8 +37,10 @@ const PropertyPage = ({}) => {
           />
           <PropertyDescriptionSection property={property} />
         </div>
-        <div className="flex-1 relative ">
-          <BuyListOfferSection className="sticky top-0" />
+        <div className="flex-1">
+          <div className="relative  h-full">
+            <BuyListOfferSection className="sticky top-0" />
+          </div>
         </div>
       </div>
       <PropertyDetailsSection property={property} />
