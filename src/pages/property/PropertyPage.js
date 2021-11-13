@@ -21,11 +21,11 @@ const PropertyPage = ({}) => {
 
   return (
     <>
-      <div className="flex justify-between items-end my-10 max-w-6xl mx-auto">
+      <div className="flex justify-between items-end my-10 max-w-6xl mx-auto px-4">
         <PropertyHeadingSection property={property} />
         <PropertyBreadCrumbsSection property={property} />
       </div>
-      <div className="flex max-w-6xl mx-auto">
+      <div className="md:flex max-w-6xl mx-auto gap-x-4 px-4">
         <div className="flex-1">
           <PropertyImageGallerySection
             images={[
@@ -37,8 +37,8 @@ const PropertyPage = ({}) => {
           />
           <PropertyDescriptionSection property={property} />
         </div>
-        <div className="flex-1">
-          <BuyListOfferSection />
+        <div className="flex-1 relative ">
+          <BuyListOfferSection className="sticky top-0" />
         </div>
       </div>
       <PropertyDetailsSection property={property} />
