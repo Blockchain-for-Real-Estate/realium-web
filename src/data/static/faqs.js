@@ -30,7 +30,7 @@ export const MARKETPLACE_FAQS = [
   {
     question: "How are properties managed?",
     answer:
-      "AAll Realium properties are managed by external management companies. These companies ensure that the property is rented out, cover basic maintenance, and collect rent.",
+      "All Realium properties are managed by external management companies. These companies ensure that the property is rented out, cover basic maintenance, and collect rent.",
   },
   {
     question: "Who owns the properties on the platform?",
