@@ -1,6 +1,5 @@
 import getServerSideUser from "./helpers/getServerSideUser";
 import NextCors from "nextjs-cors";
-
 /**
  * This is the default handler for all api routes it will apply authentication, and cors, and call the appropriate function based on the req method
  * @param {*} req request object from page route

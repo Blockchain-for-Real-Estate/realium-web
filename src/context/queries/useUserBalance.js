@@ -11,12 +11,12 @@ export const GetUserBalance = async () => {
   return balance;
 };
 
-export const QUERY_KEY = "USER_BALANCE";
+export const KEY = "USER_BALANCE";
 
 export default function useUserBalance() {
   const { data: user } = useUser();
 
-  return useQuery([QUERY_KEY], () => GetUserBalance(), {
+  return useQuery([KEY], () => GetUserBalance(), {
     enabled: !!user,
   });
 }
