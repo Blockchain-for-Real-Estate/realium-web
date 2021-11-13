@@ -1,6 +1,6 @@
-import PropertyDetails from "src/pages/marketplace/sections/PropertyDetails";
+import PropertyPage from "src/pages/property/PropertyPage";
 
-const Page = () => <PropertyDetails />;
+const Page = () => <PropertyPage />;
 
 Page.title = null;
 Page.description = null;
