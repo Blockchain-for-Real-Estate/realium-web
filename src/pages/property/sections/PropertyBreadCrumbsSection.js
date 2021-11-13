@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ChevronRightIcon, HomeIcon } from "@heroicons/react/solid";
 
-export function Breadcrumbs({ Property }) {
+const PropertyBreadCrumbsSection = ({ property }) => {
   return (
     <nav className="flex pt-8 ml-4 sm:pt-0" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-4">
@@ -33,11 +33,11 @@ export function Breadcrumbs({ Property }) {
           <div className="flex items-center">
             <ChevronRightIcon className="h-5 w-5" />
             <Link
-              href={`/marketplace/${Property.propertyId}`}
+              href={`/marketplace/${property?.propertyId}`}
               className="ml-4 text-sm font-medium text-gray-600 hover:text-gray-800"
             >
               <a className="ml-4 text-sm font-medium text-gray-600 hover:text-gray-800 text-decoration-none">
-                {Property.propertyName}
+                {property?.propertyName}
               </a>
             </Link>
           </div>
@@ -45,4 +45,6 @@ export function Breadcrumbs({ Property }) {
       </ol>
     </nav>
   );
-}
+};
+
+export default PropertyBreadCrumbsSection;
