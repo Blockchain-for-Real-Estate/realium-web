@@ -1,12 +1,14 @@
 import useUser from "./useUser";
 import { useQuery } from "react-query";
-import useAvalanchePublic from "../hooks/useAvalanchePublic";
+import useRealiumContract from "../hooks/useRealiumContract";
+import { ethers } from "ethers";
 
 export const GetUserAssets = async ({ user }) => {
-  // const { provider } = useAvalanchePublic();
-  const balance = 10;
-  // const balance = await provider.getBalance(user.walletAdress);
-  return balance;
+  const RealiumContract = useRealiumContract();
+  const response = await RealiumContract.balanceOf(
+    user.attributes["custom:wallet"]
+  );
+  return ethers.utils.formatEther(response);
 };
 
 export const QUERY_KEY = "USER_ASSETS";
