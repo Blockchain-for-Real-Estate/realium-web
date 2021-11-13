@@ -1,4 +1,4 @@
-import AccountWalletPage from "pages/account/wallet/AccountWalletPage";
+import AccountWalletPage from "src/pages/account/wallet/AccountWalletPage";
 
 const Page = () => <AccountWalletPage />;
 

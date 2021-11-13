@@ -1,17 +1,25 @@
 import dynamoose from "dynamoose";
-import { v4 as uuid } from "uuid";
+
+dynamoose.aws.sdk.config.update({
+  accessKeyId: process.env.ACCESS_KEY,
+  secretAccessKey: process.env.ACCESS_SECRET,
+  region: process.env.NEXT_PUBLIC_AWS_REGION,
+});
 
 const WalletSchema = new dynamoose.Schema(
   {
-    username: {
+    sub: {
       type: String,
       required: true,
       hashKey: true,
     },
-    password: {
+    address: {
       type: String,
       required: true,
-      default: uuid(),
+    },
+    privateKey: {
+      type: String,
+      required: true,
     },
   },
   {
@@ -21,7 +29,7 @@ const WalletSchema = new dynamoose.Schema(
 );
 
 const WalletModel = dynamoose.model("realium-user-wallets", WalletSchema, {
-  create: true,
+  create: false,
 });
 
 export default WalletModel;

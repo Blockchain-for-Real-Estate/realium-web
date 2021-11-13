@@ -1,9 +1,9 @@
-import useUserMFA from "context/queries/useUserMFA";
+import useUserMFA from "src/context/queries/useUserMFA";
 import { Fragment, useState } from "react";
 import QRCode from "qrcode.react";
 import Auth from "@aws-amplify/auth";
-import useUI from "context/hooks/useUI";
-import useUser from "context/queries/useUser";
+import useUI from "src/context/hooks/useUI";
+import useUser from "src/context/queries/useUser";
 import ReactCodeInput from "react-code-input";
 import { Switch, Dialog, Transition } from "@headlessui/react";
 

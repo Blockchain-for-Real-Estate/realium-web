@@ -1,4 +1,4 @@
-import MarketplacePage from "pages/marketplace/MarketplacePage";
+import MarketplacePage from "src/pages/marketplace/MarketplacePage";
 
 const Page = () => <MarketplacePage />;
 

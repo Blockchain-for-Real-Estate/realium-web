@@ -1,4 +1,4 @@
-import footer from "data/static/footerLinks";
+import footer from "src/data/footerLinks";
 import Link from "next/link";
 import Image from "next/image";
 

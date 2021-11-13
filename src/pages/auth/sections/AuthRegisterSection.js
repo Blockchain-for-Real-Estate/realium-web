@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { Auth } from "aws-amplify";
-import useUI from "context/hooks/useUI";
+import useUI from "src/context/hooks/useUI";
 import Link from "next/link";
-import states from "data/static/states";
+import states from "src/data/states";
 import AuthBox from "../components/AuthBox";
 import { HomeIcon } from "@heroicons/react/outline";
 

@@ -1,5 +1,9 @@
+import AmplifyInit from "amplify.config";
 import DefaultHandler from "api/DefaultHandler";
 import PropertyModel from "api/models/Property";
+
+// REQUIRED ON ANY ROUTES WITH AUTH
+AmplifyInit();
 
 const ReadProperties = async (req, res, user) => {
   const { limit } = req.query;
@@ -19,7 +23,7 @@ const handlers = {
     function: ReadProperties,
   },
   POST: {
-    auth: false,
+    auth: "Admin",
     origin: "*",
     function: CreateProperty,
   },

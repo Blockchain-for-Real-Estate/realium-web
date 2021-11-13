@@ -1,5 +1,5 @@
-import Heading2 from "components/general/Heading2";
-import useUserAssets from "context/queries/useUserAssets";
+import Heading2 from "src/components/general/Heading2";
+import useUserAssets from "src/context/queries/useUserAssets";
 
 const AccountDashboardPortfolioSection = () => {
   const { data } = useUserAssets();

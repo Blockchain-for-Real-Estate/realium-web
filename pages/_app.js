@@ -1,19 +1,19 @@
 import { useState } from "react";
 import Head from "next/head";
 import "../index.css";
-import Amplify from "../amplify";
 
 // CONTEXT
-import { AppProvider } from "context/AppContext";
+import { AppProvider } from "src/context/AppContext";
 import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-import DefaultLayout from "layout/DefaultLayout";
-import AccountLayout from "layout/AccountLayout";
-import Toasts from "components/base/Toasts";
-import useUser from "context/queries/useUser";
-import NotAuthorized from "pages/NotAuthorized";
-import Modal from "components/base/Modal";
+import DefaultLayout from "src/layout/DefaultLayout";
+import AccountLayout from "src/layout/AccountLayout";
+import Toasts from "src/components/base/Toasts";
+import useUser from "src/context/queries/useUser";
+import NotAuthorized from "src/pages/NotAuthorized";
+import Modal from "src/components/base/Modal";
+import AmplifyInit from "amplify.config";
 
 function Realium({ Component, pageProps }) {
   const [queryClient] = useState(
@@ -28,7 +28,7 @@ function Realium({ Component, pageProps }) {
       })
   );
 
-  Amplify();
+  AmplifyInit();
 
   return (
     <>

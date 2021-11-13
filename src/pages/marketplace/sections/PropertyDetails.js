@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
-import ImageGallery from "components/sections/single/ImageGallery";
-import usePropertyQuery from "data/queries/usePropertyQuery";
-import { Breadcrumbs } from "components/sections/single/BreadCrumbs";
+import ImageGallery from "src/components/sections/single/ImageGallery";
+import usePropertyQuery from "src/data/queries/usePropertyQuery";
+import { Breadcrumbs } from "src/components/sections/single/BreadCrumbs";
 //import Avax from "assets/svg/temp/avax";
 import NumberFormat from "react-number-format";
-import useTokenQuery from "data/queries/useTokenQuery";
-import { DetailsTable } from "components/sections/single/DetailsTable";
-import { BuyListOffer } from "components/sections/single/BuyListOffer";
+import useTokenQuery from "src/data/queries/useTokenQuery";
+import { DetailsTable } from "src/components/sections/single/DetailsTable";
+import { BuyListOffer } from "src/components/sections/single/BuyListOffer";
 
 export default function PropertyDetails() {
   const {
@@ -27,9 +27,9 @@ export default function PropertyDetails() {
     isIdle: isIdleTokens,
   } = useTokenQuery(propertyId);
 
-  let isLoading = isLoadingProperty //|| isLoadingTokens;
-  let isError = isErrorProperty //|| isErrorTokens;
-  let isIdle = isIdleProperty //|| isIdleTokens;
+  let isLoading = isLoadingProperty; //|| isLoadingTokens;
+  let isError = isErrorProperty; //|| isErrorTokens;
+  let isIdle = isIdleProperty; //|| isIdleTokens;
 
   if (isIdle || isLoading) return <div>Loading</div>;
   if (isError) return <div>Could not get Property</div>;
@@ -48,13 +48,15 @@ export default function PropertyDetails() {
           </div>
           <div className="mb-2 text-base sm:text-xl">
             <div className="font-weight-bold">
-              {Property.propertyType || "Single Family Home"} in {Property.city || "Santa Barbara"}, {Property.state || "CA"}
+              {Property.propertyType || "Single Family Home"} in{" "}
+              {Property.city || "Santa Barbara"}, {Property.state || "CA"}
             </div>
           </div>
 
           <div className="flex justify-between mb-2 sm:mb-4">
             <div className="text-xs sm:text-base">
-              {Property.streetAddress || "588 South Beachfront Lane"} | {Property.city  || "Santa Barbara"}, {Property.state  || "CA"} |{" "}
+              {Property.streetAddress || "588 South Beachfront Lane"} |{" "}
+              {Property.city || "Santa Barbara"}, {Property.state || "CA"} |{" "}
               {Property.zipCode || "90110"}
             </div>
           </div>
@@ -68,7 +70,12 @@ export default function PropertyDetails() {
           {/* IMAGE AND DESCRIPTION */}
           <div className="mx-0 sm:mx-4 max-w-2xl">
             <ImageGallery
-              images={["/images/hero-blue.jpg", "/images/hero-green.jpg", "/images/hero-red.jpg", "/images/hero-orange.jpg"]}
+              images={[
+                "/images/hero-blue.jpg",
+                "/images/hero-green.jpg",
+                "/images/hero-red.jpg",
+                "/images/hero-orange.jpg",
+              ]}
             />
             <div className="mx-6 sm:mx-0">
               <div className="font-bold pt-8" style={{ fontSize: "1.1rem" }}>
@@ -76,8 +83,9 @@ export default function PropertyDetails() {
               </div>
 
               <div className="mb-12">
-                {Property.propertyName} is located in {Property.city || "Santa Barbara"}, {Property.state || "CA"}{" "}
-                for a steal at{" "}
+                {Property.propertyName} is located in{" "}
+                {Property.city || "Santa Barbara"}, {Property.state || "CA"} for
+                a steal at{" "}
                 {
                   <NumberFormat
                     value={"1.00" || token.purchasedPrice}
@@ -85,10 +93,8 @@ export default function PropertyDetails() {
                     thousandSeparator={true}
                   />
                 }
-                <div className="h-4 inline-flex px-1">
-                  {/* <Avax /> */}
-                </div>
-                . {Property.llcName || "Luxurious beachfront home."}
+                <div className="h-4 inline-flex px-1">{/* <Avax /> */}</div>.{" "}
+                {Property.llcName || "Luxurious beachfront home."}
               </div>
             </div>
           </div>
@@ -98,7 +104,7 @@ export default function PropertyDetails() {
           </div>
         </div>
       </div>
-      
+
       {/* DETAILS TABLE */}
       <DetailsTable Property={Property} token={token} />
       {/* <Transactions Property={Property} /> */}

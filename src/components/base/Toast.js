@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Transition } from "@headlessui/react";
-import { useLayoutContext, closeToast } from "context/layout/LayoutContext";
+import { useLayoutContext, closeToast } from "src/context/layout/LayoutContext";
 
 const Toast = () => {
   const { layoutState, layoutDispatch } = useLayoutContext();

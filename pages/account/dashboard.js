@@ -1,4 +1,4 @@
-import AccountDashboardPage from "pages/account/dashboard/AccountDashboardPage";
+import AccountDashboardPage from "src/pages/account/dashboard/AccountDashboardPage";
 
 const Page = (props) => <AccountDashboardPage {...props} />;
 

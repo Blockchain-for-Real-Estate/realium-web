@@ -1,5 +1,9 @@
+import AmplifyInit from "amplify.config";
 import DefaultHandler from "api/DefaultHandler";
 import PropertyModel from "api/models/Property";
+
+// REQUIRED ON ANY ROUTES WITH AUTH
+AmplifyInit();
 
 const ReadProperty = async (req, res) => {
   const { propertyId } = req.query;

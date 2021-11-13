@@ -1,10 +1,10 @@
-import NavLink from "components/base/NavLink";
+import NavLink from "src/components/base/NavLink";
 import Link from "next/link";
-import header from "data/static/headerLinks";
+import header from "src/data/headerLinks";
 import { MenuIcon, UserCircleIcon } from "@heroicons/react/outline";
 import Image from "next/image";
-import AccountBalance from "components/avax/AccountBalance";
-import useUser from "context/queries/useUser";
+import AccountBalance from "src/components/avax/AccountBalance";
+import useUser from "src/context/queries/useUser";
 
 export default function HeaderDefault() {
   const { data: user } = useUser();

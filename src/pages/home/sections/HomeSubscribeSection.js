@@ -1,4 +1,4 @@
-import useUI from "context/hooks/useUI";
+import useUI from "src/context/hooks/useUI";
 
 const HomeSubscribeSection = () => {
   const { toast } = useUI();

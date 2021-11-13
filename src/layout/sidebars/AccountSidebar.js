@@ -1,5 +1,5 @@
 import React from "react";
-import NavLink from "components/base/NavLink";
+import NavLink from "src/components/base/NavLink";
 import {
   CreditCardIcon,
   KeyIcon,
@@ -8,7 +8,7 @@ import {
   UserCircleIcon,
   UsersIcon,
 } from "@heroicons/react/outline";
-import useSignoutMutation from "context/mutations/useSignoutMutation";
+import useSignoutMutation from "src/context/mutations/useSignoutMutation";
 
 export const links = [
   {

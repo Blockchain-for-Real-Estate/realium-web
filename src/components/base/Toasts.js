@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment, useState, useRef } from "react";
 import { Transition } from "@headlessui/react";
-import { useAppContext } from "context/AppContext";
+import { useAppContext } from "src/context/AppContext";
 import {
   XIcon,
   CheckCircleIcon,

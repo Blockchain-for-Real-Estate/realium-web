@@ -1,4 +1,4 @@
-import AuthPage from "pages/auth/AuthPage";
+import AuthPage from "src/pages/auth/AuthPage";
 
 const Page = () => <AuthPage page="register" />;
 

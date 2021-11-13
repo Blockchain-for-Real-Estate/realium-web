@@ -6,9 +6,9 @@ import AuthCompletePasswordSection from "./sections/AuthCompletePasswordSection"
 import AuthRegisterSection from "./sections/AuthRegisterSection";
 import AuthConfirmEmailSection from "./sections/AuthConfirmEmailSection";
 import { useRouter } from "next/router";
-import useUI from "context/hooks/useUI";
+import useUI from "src/context/hooks/useUI";
 import { useQueryClient } from "react-query";
-import useUser from "context/queries/useUser";
+import useUser from "src/context/queries/useUser";
 import AuthMFASection from "./sections/AuthMFASection";
 import AuthForgotSection from "./sections/AuthForgotSection";
 import AuthLoadingSection from "./sections/AuthLoadingSection";

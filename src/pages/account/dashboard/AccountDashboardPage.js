@@ -1,4 +1,4 @@
-import ComingSoon from "components/ComingSoon";
+import ComingSoon from "src/components/ComingSoon";
 import AccountDashboardPortfolioSection from "./sections/AccountDashboardPortfolioSection";
 import AccountDashboardTransactionsSection from "./sections/AccountDashboardTransactionsSection";
 
