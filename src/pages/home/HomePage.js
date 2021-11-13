@@ -15,7 +15,6 @@ const HomePage = () => {
       <HomeSubscribeSection />
       <HomeExploreSection />
       <HomeInfoSection />
-      <HomeSubscribeSection />
       <HomeFAQSection />
     </>
   );

@@ -35,21 +35,21 @@ export function DetailsTable(props) {
                             <path d="M10.5 17.5H8V14.5H6.5V17.5H4V2L10.5 6V8.5M10.5 17.5V8.5M10.5 17.5H16.5V8.5H10.5M12.5 10.5V13.5H14.5V10.5H12.5Z" stroke="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Type</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || "Residential"}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.propertyType || "Residential"}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M4 13.25V9.125H6M4 13.25V16M4 13.25H16M16 16V13.25M16 13.25V9.125H14M6 9.125V5H14V9.125M6 9.125H14" stroke="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Bedrooms</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || 3}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.bedrooms || 3}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5.48197 10.7778V12.2593L6.50228 14.8519H7.5226M5.48197 10.7778H4M5.48197 10.7778V4.48148L6.84239 3L7.8627 3.37037M5.48197 10.7778H15.6851M15.6851 10.7778V12.2593L14.6648 14.8519H13.6445M15.6851 10.7778H17M7.8627 3.37037V4.85185L8.54291 5.96296L8.20281 6.7037L8.88302 7.44444L11.6039 4.48148L10.9236 3.74074L10.2434 4.11111L9.22312 3.37037H7.8627ZM7.5226 14.8519L6.91041 17M7.5226 14.8519H13.6445M13.6445 14.8519L14.2567 17" stroke="#4F46E5"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Bathrooms</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || 3}</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.bathrooms || 3}</span>
                         </li>
                         <li className="flex space-x-3 py-3">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,7 +58,7 @@ export function DetailsTable(props) {
                         <span className="flex-1 text-sm text-gray-500">Area</span>
                         <span className="flex-1 text-sm text-gray-500">
                         <NumberFormat
-                            value={props.Property.details || 3295}
+                            value={props.Property.sqft}
                             displayType={'text'}
                             thousandSeparator={true}
                             suffix={' sqft'}
@@ -71,10 +71,10 @@ export function DetailsTable(props) {
                         <span className="flex-1 text-sm text-gray-500">Lot</span>
                         <span className="flex-1 text-sm text-gray-500">
                         <NumberFormat
-                            value={props.Property.details || 9800}
+                            value={props.Property.acerage}
                             displayType={'text'}
                             thousandSeparator={true}
-                            suffix={' sqft'}
+                            suffix={Number(props.Property.acerage) === 1 ? ' acre' : ' acres'}
                         /></span>
                         </li>
                         <li className="flex space-x-3 pt-3">
@@ -86,12 +86,12 @@ export function DetailsTable(props) {
                             <path d="M5.04763 12.2381C5.04763 11.1861 5.90042 10.3334 6.9524 10.3334C8.00437 10.3334 8.85717 11.1861 8.85717 12.2381M5.04763 12.2381C5.04763 13.2901 5.90042 14.1429 6.9524 14.1429C8.00437 14.1429 8.85717 13.2901 8.85717 12.2381M5.04763 12.2381C5.04763 12.1066 5.05439 11.9789 5.08573 11.8572H4.64101L2.76191 11.2404V8.54797H8.22007L14.106 8.64814L17.2381 9.63065V11.8572H15.6762C15.7076 11.9789 15.7143 12.1066 15.7143 12.2381M5.04763 12.2381C5.04763 12.3697 5.05439 12.4973 5.08573 12.6191L4.51917 12.6191L2 11.7922V8.01761L4.79727 5H11.649L14.3778 7.93489L18 9.07114V12.6191H15.6762C15.7076 12.4973 15.7143 12.3697 15.7143 12.2381M8.85717 12.2381C8.85717 12.1066 8.8504 11.9789 8.81906 11.8572H11.9429C11.9116 11.9789 11.9048 12.1066 11.9048 12.2381M8.85717 12.2381C8.85717 12.3697 8.8504 12.4973 8.81906 12.6191H11.9429C11.9116 12.4973 11.9048 12.3697 11.9048 12.2381M15.7143 12.2381C15.7143 11.1861 14.8615 10.3334 13.8096 10.3334C12.7576 10.3334 11.9048 11.1861 11.9048 12.2381M15.7143 12.2381C15.7143 13.2901 14.8615 14.1429 13.8096 14.1429C12.7576 14.1429 11.9048 13.2901 11.9048 12.2381M5.80954 12.2381C5.80954 11.6069 6.32121 11.0953 6.9524 11.0953C7.58358 11.0953 8.09526 11.6069 8.09526 12.2381C8.09526 12.8693 7.58358 13.381 6.9524 13.381C6.32121 13.381 5.80954 12.8693 5.80954 12.2381ZM11.3171 5.76191L13.2791 7.87205L8.60428 7.79249V5.76191H11.3171ZM7.84237 5.76191V7.78607H3.25354L5.1299 5.76191H7.84237ZM12.6667 12.2381C12.6667 11.6069 13.1784 11.0953 13.8096 11.0953C14.4407 11.0953 14.9524 11.6069 14.9524 12.2381C14.9524 12.8693 14.4407 13.381 13.8096 13.381C13.1784 13.381 12.6667 12.8693 12.6667 12.2381Z" stroke="#4F46E5" strokeWidth="0.2"/>
                         </svg>
                         <span className="flex-1 text-sm text-gray-500">Parking</span>
-                        <span className="flex-1 text-sm text-gray-500">{props.Property.details || 2} spaces</span>
+                        <span className="flex-1 text-sm text-gray-500">{props.Property.parkingSpaces}{Number(props.Property.parkingSpaces) === 1 ? ' space' : ' spaces'}</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            {/* THESE TABLES NOT INCLUDED IN V1  */}
+            {/* THESE TABLES TO COME AFTER DECIDING WHAT COMPUTED VALUES ARE FOUND MOST VALUABLE VIA USER FEEDBACK */}
             {/* <div>
                 <div className="pt-4 pl-4 pr-4 pb-4">
                 <h2 className="text-lg leading-6 font-medium text-gray-900">Investment Details</h2>

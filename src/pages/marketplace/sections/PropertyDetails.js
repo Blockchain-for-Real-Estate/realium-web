@@ -38,35 +38,33 @@ export default function PropertyDetails() {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto sm:divide-y">
         {/* HEADING */}
-        <div className="border-bottom border-gray-200 my-8 sm:mb-4 mx-4">
+        <div className="my-10 sm:mb-4 mx-4">
           <div className="mb-2">
             <h1 className="text-4xl font-extrabold text-gray-900">
               {Property.propertyName}
             </h1>
           </div>
           <div className="mb-2 text-base sm:text-xl">
-            <div className="font-weight-bold">
-              {Property.propertyType || "Single Family Home"} in{" "}
+            <div className="font-bold">
+              {Property.propertyType || "Residential"} property in{" "}
               {Property.city || "Santa Barbara"}, {Property.state || "CA"}
             </div>
           </div>
 
-          <div className="flex justify-between mb-2 sm:mb-4">
+          <div className="sm:flex sm:justify-between mb-2 sm:mb-4">
             <div className="text-xs sm:text-base">
               {Property.streetAddress || "588 South Beachfront Lane"} |{" "}
               {Property.city || "Santa Barbara"}, {Property.state || "CA"} |{" "}
               {Property.zipCode || "90110"}
             </div>
-          </div>
-          <div className="sm:mt-8">
             <Breadcrumbs Property={Property} />
           </div>
         </div>
 
         {/* MAIN SECTION */}
-        <div className="sm:flex my-10 sm:space-x-32">
+        <div className="sm:flex sm:justify-between sm:py-10 my-10">
           {/* IMAGE AND DESCRIPTION */}
           <div className="mx-0 sm:mx-4 max-w-2xl">
             <ImageGallery
@@ -84,17 +82,8 @@ export default function PropertyDetails() {
 
               <div className="mb-12">
                 {Property.propertyName} is located in{" "}
-                {Property.city || "Santa Barbara"}, {Property.state || "CA"} for
-                a steal at{" "}
-                {
-                  <NumberFormat
-                    value={"1.00" || token.purchasedPrice}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                  />
-                }
-                <div className="h-4 inline-flex px-1">{/* <Avax /> */}</div>.{" "}
-                {Property.llcName || "Luxurious beachfront home."}
+                {Property.city || "Santa Barbara"}, {Property.state || "CA"}.{" "}
+                {Property.propertyDescription}
               </div>
             </div>
           </div>
