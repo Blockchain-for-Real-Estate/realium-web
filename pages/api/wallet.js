@@ -7,7 +7,7 @@ import DefaultHandler from "server/DefaultHandler";
 AmplifyInit();
 
 const ReadWallet = async (req, res, user) => {
-  const wallet = await GetUserWallet(user.attributes.sub);
+  const wallet = await GetUserWallet(user);
   return res.send(wallet);
 };
 
