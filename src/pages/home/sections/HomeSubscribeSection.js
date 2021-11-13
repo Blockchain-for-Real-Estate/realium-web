@@ -1,4 +1,4 @@
-import { MailList } from "components/general/MailList"
+import MailList from "components/general/MailList"
 
 const HomeSubscribeSection = () => {
   return (

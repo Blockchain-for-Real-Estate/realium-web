@@ -22,8 +22,8 @@ export default function PropertyCard({ property }) {
             {property.propertyName || "aslkdfjlaskjdf;aksdjf"}
           </div>
           <div className="text-gray-500 text-base truncate">
-            {property.propertyExcerpt ||
-              "skldfjalsdjflaskjdfl;askjdflaksjdfl;askjdfl;aksjdf"}
+            {property.propertyDescription ||
+              "Luxurious residential property located in the temperate west coast."}
           </div>
         </div>
       </div>
