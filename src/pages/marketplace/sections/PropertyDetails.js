@@ -1,12 +1,9 @@
 import { useRouter } from "next/router";
-import ImageGallery from "components/sections/single/ImageGallery";
-import usePropertyQuery from "data/queries/usePropertyQuery";
-import { Breadcrumbs } from "components/sections/single/BreadCrumbs";
-//import Avax from "assets/svg/temp/avax";
-import NumberFormat from "react-number-format";
-import useTokenQuery from "data/queries/useTokenQuery";
-import { DetailsTable } from "components/sections/single/DetailsTable";
-import { BuyListOffer } from "components/sections/single/BuyListOffer";
+import ImageGallery from "src/components/sections/single/ImageGallery";
+import { Breadcrumbs } from "src/components/sections/single/BreadCrumbs";
+import { DetailsTable } from "src/components/sections/single/DetailsTable";
+import { BuyListOffer } from "src/components/sections/single/BuyListOffer";
+import useProperty from "src/context/queries/useProperty";
 
 export default function PropertyDetails() {
   const {
@@ -18,23 +15,14 @@ export default function PropertyDetails() {
     isLoading: isLoadingProperty,
     isError: isErrorProperty,
     isIdle: isIdleProperty,
-  } = usePropertyQuery(propertyId);
+  } = useProperty(propertyId);
 
-  const {
-    data: tokens,
-    isLoading: isLoadingTokens,
-    isError: isErrorTokens,
-    isIdle: isIdleTokens,
-  } = useTokenQuery(propertyId);
-
-  let isLoading = isLoadingProperty //|| isLoadingTokens;
-  let isError = isErrorProperty //|| isErrorTokens;
-  let isIdle = isIdleProperty //|| isIdleTokens;
+  let isLoading = isLoadingProperty;
+  let isError = isErrorProperty;
+  let isIdle = isIdleProperty;
 
   if (isIdle || isLoading) return <div>Loading</div>;
   if (isError) return <div>Could not get Property</div>;
-
-  const token = tokens?.[0];
 
   return (
     <>
@@ -48,16 +36,18 @@ export default function PropertyDetails() {
           </div>
           <div className="mb-2 text-base sm:text-xl">
             <div className="font-bold">
-              {Property.propertyType || "Residential"} property in {Property.city || "Santa Barbara"}, {Property.state || "CA"}
+              {Property.propertyType || "Residential"} property in{" "}
+              {Property.city || "Santa Barbara"}, {Property.state || "CA"}
             </div>
           </div>
 
           <div className="sm:flex sm:justify-between mb-2 sm:mb-4">
             <div className="text-xs sm:text-base">
-              {Property.streetAddress || "588 South Beachfront Lane"} | {Property.city  || "Santa Barbara"}, {Property.state  || "CA"} |{" "}
+              {Property.streetAddress || "588 South Beachfront Lane"} |{" "}
+              {Property.city || "Santa Barbara"}, {Property.state || "CA"} |{" "}
               {Property.zipCode || "90110"}
             </div>
-              <Breadcrumbs Property={Property} />
+            <Breadcrumbs Property={Property} />
           </div>
         </div>
 
@@ -66,7 +56,12 @@ export default function PropertyDetails() {
           {/* IMAGE AND DESCRIPTION */}
           <div className="mx-0 sm:mx-4 max-w-2xl">
             <ImageGallery
-              images={["/images/hero-blue.jpg", "/images/hero-green.jpg", "/images/hero-red.jpg", "/images/hero-orange.jpg"]}
+              images={[
+                "/images/hero-blue.jpg",
+                "/images/hero-green.jpg",
+                "/images/hero-red.jpg",
+                "/images/hero-orange.jpg",
+              ]}
             />
             <div className="mx-6 sm:mx-0">
               <div className="font-bold pt-8" style={{ fontSize: "1.1rem" }}>
@@ -74,7 +69,9 @@ export default function PropertyDetails() {
               </div>
 
               <div className="mb-12">
-                {Property.propertyName} is located in {Property.city || "Santa Barbara"}, {Property.state || "CA"}. {Property.propertyDescription}
+                {Property.propertyName} is located in{" "}
+                {Property.city || "Santa Barbara"}, {Property.state || "CA"}.{" "}
+                {Property.propertyDescription}
               </div>
             </div>
           </div>
@@ -84,9 +81,9 @@ export default function PropertyDetails() {
           </div>
         </div>
       </div>
-      
+
       {/* DETAILS TABLE */}
-      <DetailsTable Property={Property} token={token} />
+      <DetailsTable Property={Property} />
       {/* <Transactions Property={Property} /> */}
     </>
   );

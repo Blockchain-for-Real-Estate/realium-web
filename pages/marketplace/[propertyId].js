@@ -1,4 +1,4 @@
-import PropertyDetails from "pages/marketplace/sections/PropertyDetails";
+import PropertyDetails from "src/pages/marketplace/sections/PropertyDetails";
 
 const Page = () => <PropertyDetails />;
 

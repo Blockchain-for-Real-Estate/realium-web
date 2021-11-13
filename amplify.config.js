@@ -10,8 +10,8 @@ const AmplifyConfig = {
   ssr: true,
 };
 
-const initialize = () => {
+const AmplifyInit = () => {
   Amplify.configure(AmplifyConfig);
 };
 
-export default initialize;
+export default AmplifyInit;

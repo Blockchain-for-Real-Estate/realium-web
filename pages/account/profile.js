@@ -1,4 +1,4 @@
-import AccountProfilePage from "pages/account/profile/AccountProfilePage";
+import AccountProfilePage from "src/pages/account/profile/AccountProfilePage";
 
 const Page = () => <AccountProfilePage />;
 

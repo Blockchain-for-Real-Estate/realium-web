@@ -1,4 +1,4 @@
-import states from "data/static/states";
+import states from "src/data/states";
 import dynamoose from "dynamoose";
 import { v4 as uuid } from "uuid";
 

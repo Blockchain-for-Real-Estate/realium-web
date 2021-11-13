@@ -1,12 +1,12 @@
-import useUserBalance from "context/queries/useUserBalance";
+import useUserAvaxBalance from "src/context/queries/useUserAvaxBalance";
 import NumberFormat from "react-number-format";
-import AvaxRound from "utilities/avax/AvaxRound";
 
 const AccountBalance = () => {
-  const { data: balance } = useUserBalance();
+  const { data: balance } = useUserAvaxBalance();
+
   return (
     <div className="border border-indigo-500">
-      <NumberFormat value={AvaxRound(balance)} displayType="text" />
+      <NumberFormat value={balance} displayType="text" />
     </div>
   );
 };

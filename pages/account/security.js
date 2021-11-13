@@ -1,4 +1,4 @@
-import AccountSecurityPage from "pages/account/security/AccountSecurityPage";
+import AccountSecurityPage from "src/pages/account/security/AccountSecurityPage";
 
 const Page = () => <AccountSecurityPage />;
 

@@ -1,11 +1,19 @@
 import React from "react";
 import { Transition } from "@headlessui/react";
-import { useAppContext } from "context/AppContext";
+import { useAppContext } from "src/context/AppContext";
 
 const Modal = () => {
   const { state, dispatch } = useAppContext();
-  const { title, content, bgColor, textColor, onConfirm, confirmBtn, onCancel, cancelBtn } =
-    state.modal;
+  const {
+    title,
+    content,
+    bgColor,
+    textColor,
+    onConfirm,
+    confirmBtn,
+    onCancel,
+    cancelBtn,
+  } = state.modal;
 
   const handleCancel = () => {
     if (onCancel) onCancel();
@@ -82,7 +90,9 @@ const Modal = () => {
 
               {/* TODO: ADD OPTIONAL TYPES */}
               <div className="sm:flex sm:items-start">
-                <div className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${bgColor} sm:mx-0 sm:h-10 sm:w-10`}>
+                <div
+                  className={`mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full ${bgColor} sm:mx-0 sm:h-10 sm:w-10`}
+                >
                   {/* <!-- Heroicon name: outline/exclamation --> */}
                   <svg
                     className={`h-6 w-6 ${textColor}`}

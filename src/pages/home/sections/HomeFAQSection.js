@@ -1,4 +1,4 @@
-import Faq from "components/general/Faq";
+import Faq from "src/components/general/Faq";
 
 const HOME_FAQS = [
   {

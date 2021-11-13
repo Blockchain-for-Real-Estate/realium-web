@@ -1,33 +1,33 @@
-import CreateEthAccount from "api/actions/CreateWallet";
-import CreateWallet, { ReadWallet } from "api/actions/CreateWallet";
-import getServerSideUser, {
-  getServerSideAuth,
-} from "api/helpers/getServerSideUser";
+import AmplifyInit from "amplify.config";
+import CreateUserWallet from "server/actions/CreateUserWallet";
+import GetUserWallet from "server/actions/GetUserWallet";
+import DefaultHandler from "server/DefaultHandler";
 
-const CREATE_wallet = async (req, res, user) => {
-  if (user.attributes["custom:wallet"]) throw Error("User already has wallet");
+// REQUIRED ON ANY ROUTES WITH AUTH
+AmplifyInit();
 
-  // CREATE ETH ACCOUNT
-  // const wallet = await CreateWallet(user.attributes.sub);
-  ReadWallet();
-
-  // UPDATE USER
-  const Auth = getServerSideAuth();
-  await Auth.updateUserAttributes(user, { "custom:wallet": wallet.address });
+const ReadWallet = async (req, res, user) => {
+  const wallet = await GetUserWallet(user.attributes.sub);
+  return res.send(wallet);
 };
 
-export default async function handler(req, res) {
-  try {
-    const user = await getServerSideUser(req, res);
-    switch (req.method) {
-      case "GET":
-        await CREATE_wallet(req, res, user);
-        break;
-      default:
-        res.status(400).send();
-    }
-  } catch (error) {
-    if (res.statusCode === 200) res.status(500);
-    return res.send(error.message);
-  }
-}
+const CreateWallet = async (req, res, user) => {
+  const wallet = await CreateUserWallet(user);
+  return res.send(wallet);
+};
+
+const handlers = {
+  GET: {
+    auth: true,
+    origin: "",
+    function: ReadWallet,
+  },
+  POST: {
+    auth: true,
+    origin: "",
+    function: CreateWallet,
+  },
+};
+
+const handler = (req, res) => DefaultHandler(req, res, handlers);
+export default handler;

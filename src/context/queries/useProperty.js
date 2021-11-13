@@ -7,7 +7,7 @@ export const GetProperty = async (propertyId) => {
 };
 
 export const QUERY_KEY = "PROPERTY";
-export default function usePropertyQuery(propertyId) {
+export default function useProperty(propertyId) {
   return useQuery([QUERY_KEY, propertyId], () => GetProperty(propertyId), {
     enabled: !!propertyId,
   });

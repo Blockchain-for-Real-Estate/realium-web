@@ -1,4 +1,4 @@
-import Stats from "components/general/Stats";
+import Stats from "src/components/general/Stats";
 
 const HomeStats = [
   { name: "Properties", value: "12" },

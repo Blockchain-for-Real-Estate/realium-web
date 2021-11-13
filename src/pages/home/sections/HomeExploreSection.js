@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PropertyArchive from "pages/marketplace/sections/PropertyArchive";
+import PropertyArchive from "src/pages/marketplace/sections/PropertyArchive";
 
 const HomeExploreSection = () => {
   return (

@@ -1,4 +1,4 @@
-import useUI from "context/hooks/useUI";
+import useUI from "src/context/hooks/useUI";
 
 export default function MailList({ title, description }) {
   return (
@@ -19,43 +19,55 @@ export default function MailList({ title, description }) {
 export const MailForm = () => {
   const { toast } = useUI();
   const handleSubmit = () => {
-    var form = document.getElementById('sheetdb-form');
-    form.addEventListener("submit", e => {
+    var form = document.getElementById("sheetdb-form");
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
       e.stopImmediatePropagation();
       fetch(form.action, {
-          method : "POST",
-          body: new FormData(document.getElementById("sheetdb-form")),
-      }).then(
-          response => response.json()
-      ).then((html) => {
-        document.getElementById('email').value = ""
-        toast("Email Submitted")
-      });
-    });  
+        method: "POST",
+        body: new FormData(document.getElementById("sheetdb-form")),
+      })
+        .then((response) => response.json())
+        .then((html) => {
+          document.getElementById("email").value = "";
+          toast("Email Submitted");
+        });
+    });
   };
 
   return (
     <form
-      method="post" id="sheetdb-form"
-      action="https://sheetdb.io/api/v1/em65ljj2zvxh4">
-        <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0 sm:px-8">
-          <div className="inline-flex rounded-md">
-            <input
-              id="email"
-              type="email"
-              name="data[Email]"
-              placeholder="Enter your email"
-              className="inline-flex items-center justify-center sm:w-80 py-3 border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
-            />
-            <input name="data[Timestamp]" type="hidden" value={new Date().toLocaleString('en-US', {timeZone: 'America/Denver'})}/>
-          </div>
-          <div className="ml-3 inline-flex rounded-md shadow-sm">
-            <button onClick={handleSubmit} type="submit" className="inline-flex items-center justify-center text-center px-4 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600">
-              Notify Me
-            </button>
-          </div>
+      method="post"
+      id="sheetdb-form"
+      action="https://sheetdb.io/api/v1/em65ljj2zvxh4"
+    >
+      <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0 sm:px-8">
+        <div className="inline-flex rounded-md">
+          <input
+            id="email"
+            type="email"
+            name="data[Email]"
+            placeholder="Enter your email"
+            className="inline-flex items-center justify-center sm:w-80 py-3 border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-indigo-50"
+          />
+          <input
+            name="data[Timestamp]"
+            type="hidden"
+            value={new Date().toLocaleString("en-US", {
+              timeZone: "America/Denver",
+            })}
+          />
         </div>
+        <div className="ml-3 inline-flex rounded-md shadow-sm">
+          <button
+            onClick={handleSubmit}
+            type="submit"
+            className="inline-flex items-center justify-center text-center px-4 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600"
+          >
+            Notify Me
+          </button>
+        </div>
+      </div>
     </form>
   );
 };

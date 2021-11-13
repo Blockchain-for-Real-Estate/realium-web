@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { ClipboardCopyIcon, CreditCardIcon } from "@heroicons/react/outline";
-import Heading2 from "components/general/Heading2";
-import useUser from "context/queries/useUser";
+import Heading2 from "src/components/general/Heading2";
+import useUser from "src/context/queries/useUser";
 
-const AccountWalletIdSection = () => {
+const AccountWalletAddressSection = () => {
   const { data: user } = useUser();
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(user.walletAddress);
+    navigator.clipboard.writeText(user?.attributes["custom:wallet"]);
     setCopied(true);
   };
 
@@ -22,10 +22,10 @@ const AccountWalletIdSection = () => {
     <div className="border-b border-gray-200 bg-white rounded-lg shadow p-5">
       <Heading2
         title="Your Wallet Address"
-        subtitle="This address can be shared to reciev funds from"
+        subtitle="This address can be shared to recieve funds from"
       />
 
-      <div className="mt-1 flex rounded-md shadow-sm mt-4">
+      <div className="mt-1 flex rounded-md shadow-sm">
         <div className="relative flex items-stretch flex-grow focus-within:z-10">
           <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
             <CreditCardIcon
@@ -37,7 +37,7 @@ const AccountWalletIdSection = () => {
             type="wallet"
             name="wallet"
             id="wallet"
-            value={user?.walletAddress}
+            value={user?.attributes["custom:wallet"]}
             disabled={true}
             className="block w-full rounded-none rounded-l-md pl-10 sm:text-sm border border-gray-300 bg-white"
           />
@@ -62,4 +62,4 @@ const AccountWalletIdSection = () => {
   );
 };
 
-export default AccountWalletIdSection;
+export default AccountWalletAddressSection;
