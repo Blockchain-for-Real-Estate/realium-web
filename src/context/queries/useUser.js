@@ -4,10 +4,10 @@ import axios from "axios";
 
 export const GetUser = async () => {
   try {
-    const user = await Auth.currentAuthenticatedUser();
+    let user = await Auth.currentAuthenticatedUser();
     if (!user.attributes["custom:wallet"]) {
       const { data: wallet } = await axios.post("/api/wallet");
-      await Auth.updateUserAttributes(user, {
+      user = await Auth.updateUserAttributes(user, {
         "custom:wallet": wallet.address,
       });
     }

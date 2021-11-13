@@ -1,8 +1,7 @@
 import AmplifyInit from "amplify.config";
+import CreateUserWallet from "server/actions/CreateUserWallet";
 import GetUserWallet from "server/actions/GetUserWallet";
 import DefaultHandler from "server/DefaultHandler";
-import WalletModel from "server/models/Wallet";
-import { ethers } from "ethers";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
@@ -13,18 +12,7 @@ const ReadWallet = async (req, res, user) => {
 };
 
 const CreateWallet = async (req, res, user) => {
-  let wallet = await GetUserWallet(user.attributes.sub);
-  if (wallet) return res.send(wallet);
-
-  const _wallet = ethers.Wallet.createRandom();
-  wallet = WalletModel.create({
-    sub: user.attributes.sub,
-    address: _wallet.address,
-    privateKey: _wallet.privateKey,
-  });
-
-  delete wallet.privateKey;
-
+  const wallet = await CreateUserWallet(user);
   return res.send(wallet);
 };
 

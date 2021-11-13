@@ -1,4 +1,3 @@
-import useUserMFA from "src/context/queries/useUserMFA";
 import { Fragment, useState } from "react";
 import QRCode from "qrcode.react";
 import Auth from "@aws-amplify/auth";
@@ -8,9 +7,9 @@ import ReactCodeInput from "react-code-input";
 import { Switch, Dialog, Transition } from "@headlessui/react";
 
 const AccountSecurityAuthenticatorSection = () => {
-  const { data: user } = useUser();
-  const { data: MFA, refetch } = useUserMFA();
   const { toast } = useUI();
+  const { data: user } = useUser();
+  const MFA = user.preferredMFA || "NOMFA";
 
   const [QR, setQR] = useState();
   const [input, setInput] = useState();
