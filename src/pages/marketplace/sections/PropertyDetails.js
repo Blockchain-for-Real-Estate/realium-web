@@ -1,12 +1,9 @@
 import { useRouter } from "next/router";
 import ImageGallery from "src/components/sections/single/ImageGallery";
-import usePropertyQuery from "src/data/queries/usePropertyQuery";
 import { Breadcrumbs } from "src/components/sections/single/BreadCrumbs";
-//import Avax from "assets/svg/temp/avax";
-import NumberFormat from "react-number-format";
-import useTokenQuery from "src/data/queries/useTokenQuery";
 import { DetailsTable } from "src/components/sections/single/DetailsTable";
 import { BuyListOffer } from "src/components/sections/single/BuyListOffer";
+import useProperty from "src/context/queries/useProperty";
 
 export default function PropertyDetails() {
   const {
@@ -18,23 +15,14 @@ export default function PropertyDetails() {
     isLoading: isLoadingProperty,
     isError: isErrorProperty,
     isIdle: isIdleProperty,
-  } = usePropertyQuery(propertyId);
+  } = useProperty(propertyId);
 
-  const {
-    data: tokens,
-    isLoading: isLoadingTokens,
-    isError: isErrorTokens,
-    isIdle: isIdleTokens,
-  } = useTokenQuery(propertyId);
-
-  let isLoading = isLoadingProperty; //|| isLoadingTokens;
-  let isError = isErrorProperty; //|| isErrorTokens;
-  let isIdle = isIdleProperty; //|| isIdleTokens;
+  let isLoading = isLoadingProperty;
+  let isError = isErrorProperty;
+  let isIdle = isIdleProperty;
 
   if (isIdle || isLoading) return <div>Loading</div>;
   if (isError) return <div>Could not get Property</div>;
-
-  const token = tokens?.[0];
 
   return (
     <>
@@ -95,7 +83,7 @@ export default function PropertyDetails() {
       </div>
 
       {/* DETAILS TABLE */}
-      <DetailsTable Property={Property} token={token} />
+      <DetailsTable Property={Property} />
       {/* <Transactions Property={Property} /> */}
     </>
   );

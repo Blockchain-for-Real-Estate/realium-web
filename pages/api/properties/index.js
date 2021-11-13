@@ -5,15 +5,14 @@ import PropertyModel from "api/models/Property";
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
 
-const ReadProperties = async (req, res, user) => {
-  const { limit } = req.query;
-  const response = await PropertyModel.scan().limit(limit).exec();
-  res.send(response);
+export const ReadProperties = async (req, res, user) => {
+  const response = await PropertyModel.scan().exec();
+  return res?.send(response) || response;
 };
 
 const CreateProperty = async (req, res, user) => {
   const response = await PropertyModel.create(req.body);
-  res.send(response);
+  return res.send(response);
 };
 
 const handlers = {

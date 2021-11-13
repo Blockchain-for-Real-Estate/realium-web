@@ -8,13 +8,13 @@ AmplifyInit();
 const ReadProperty = async (req, res) => {
   const { propertyId } = req.query;
   const property = await PropertyModel.get(propertyId);
-  res.status(200).send(property);
+  return res.send(property);
 };
 
 const UpdateProperty = async (req, res) => {
   const newProperty = new PropertyModel(req.body);
   await newProperty.save();
-  res.status(200).send(newProperty.toJSON());
+  res.send(newProperty.toJSON());
 };
 
 const handlers = {
