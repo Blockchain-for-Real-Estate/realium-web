@@ -1,4 +1,4 @@
-import WalletModel from "api/models/Wallet";
+import WalletModel from "server/models/Wallet";
 
 const GetUserWallet = async (sub, withPrivateKey = false) => {
   const wallet = await WalletModel.get(sub);

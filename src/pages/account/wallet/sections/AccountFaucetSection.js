@@ -1,7 +1,7 @@
 import { ExternalLinkIcon } from "@heroicons/react/outline";
 import Heading2 from "src/components/general/Heading2";
 import { useQueryClient } from "react-query";
-import { KEY as USER_BALANCE } from "src/context/queries/useUserAvaxBalance";
+import { QUERY_KEY as USER_BALANCE } from "src/context/queries/useUserAvaxBalance";
 
 const AccountFaucetSection = () => {
   const queryClient = useQueryClient();

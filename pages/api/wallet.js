@@ -1,7 +1,7 @@
 import AmplifyInit from "amplify.config";
-import GetUserWallet from "api/actions/GetUserWallet";
-import DefaultHandler from "api/DefaultHandler";
-import WalletModel from "api/models/Wallet";
+import GetUserWallet from "server/actions/GetUserWallet";
+import DefaultHandler from "server/DefaultHandler";
+import WalletModel from "server/models/Wallet";
 import { ethers } from "ethers";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
