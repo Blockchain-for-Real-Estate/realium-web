@@ -10,7 +10,7 @@ export function Breadcrumbs({ Property }) {
           <div>
             <Link
               href="/"
-              className="text-gray-400 hover:text-gray-500 absolute bottom-0"
+              className="text-gray-400 hover:text-gray-500"
               passHref
             >
               <button>
