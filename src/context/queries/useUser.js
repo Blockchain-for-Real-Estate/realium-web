@@ -7,9 +7,10 @@ export const GetUser = async () => {
     let user = await Auth.currentAuthenticatedUser();
     if (!user.attributes["custom:wallet"]) {
       const { data: wallet } = await axios.post("/api/wallet");
-      user = await Auth.updateUserAttributes(user, {
+      await Auth.updateUserAttributes(user, {
         "custom:wallet": wallet.address,
       });
+      user.attributes["custom:wallet"] = wallet.address;
     }
     return user;
   } catch (error) {

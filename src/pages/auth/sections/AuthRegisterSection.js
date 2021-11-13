@@ -77,7 +77,6 @@ const AuthRegisterSection = ({ validateUser, setAuthPage }) => {
           "custom:state": state["custom:state"],
         },
       });
-      // await axios.post(`/api/wallet`);
       return user;
     },
     {
@@ -163,7 +162,7 @@ const AuthRegisterSection = ({ validateUser, setAuthPage }) => {
           {isLoading ? (
             <HomeIcon className="w-5 h-5 animate-pulse" />
           ) : (
-            "Set Password"
+            "Sign Up"
           )}
         </button>
       </form>
