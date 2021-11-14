@@ -5,9 +5,9 @@ import ListingModel from "server/models/Listing";
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
 
-const ReadListingsByProperty = (req, res) => {
+const ReadListingsByProperty = async (req, res) => {
   const { propertyId } = req.query;
-  const listings = ListingModel.query(propertyId).exec();
+  const listings = await ListingModel.query({ propertyId }).exec();
   return res ? res.send(listings) : listings;
 };
 

@@ -1,7 +1,6 @@
 import PropertyBreadCrumbsSection from "./PropertyBreadCrumbsSection";
 
 const PropertyHeadingSection = ({ property }) => {
-  debugger;
   return (
     <div>
       <div className="mb-2">

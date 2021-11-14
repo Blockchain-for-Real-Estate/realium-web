@@ -39,7 +39,7 @@ const PropertyPage = ({}) => {
         </div>
         <div className="flex-1">
           <div className="relative  h-full">
-            <BuyListOfferSection className="sticky top-0" />
+            <BuyListOfferSection className="sticky top-0" property={property} />
           </div>
         </div>
       </div>

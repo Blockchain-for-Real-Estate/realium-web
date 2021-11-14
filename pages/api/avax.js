@@ -1,23 +1,22 @@
 import AmplifyInit from "amplify.config";
 import CreateAvaxSendTx from "server/actions/CreateAvaxSendTx";
-import CreateUserWallet from "server/actions/CreateUserWallet";
 import GetUserWallet from "server/actions/GetUserWallet";
 import DefaultHandler from "server/DefaultHandler";
-import { ethers } from "ethers";
 import useAvalanchePublic from "src/context/hooks/useAvalanchePublic";
 import useAvalanchePrivate from "server/hooks/useAvalanchePrivate";
+import { ethers } from "ethers";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
 
 const ReadGasEstimate = async (req, res) => {
-  const { toAddress, amount } = req.body;
+  const { toAddress, amount } = req.query;
   const { provider } = useAvalanchePublic();
 
   const tx = CreateAvaxSendTx(toAddress, amount);
   const gas = await provider.estimateGas(tx);
 
-  return res.send(gas);
+  return res.send(ethers.utils.formatEther(gas));
 };
 
 const SendAvax = async (req, res, user) => {

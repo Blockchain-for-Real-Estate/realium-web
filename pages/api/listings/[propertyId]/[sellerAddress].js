@@ -8,14 +8,18 @@ AmplifyInit();
 const ReadListing = async (req, res) => {
   const { propertyId, sellerAddress } = req.query;
   const listing = await ListingModel.get({ propertyId, sellerAddress });
+  if (!listing) res.status(400);
   return res ? res.send(listing) : listing;
 };
 
 const CreateListing = async (req, res, user) => {
   const { propertyId, sellerAddress } = req.query;
+  const userAddress = user.attributes["custom:wallet"];
+
+  if (sellerAddress !== userAddress)
+    throw Error("Cannot create listing for other wallets");
 
   const listing = { propertyId, sellerAddress, ...req.body };
-
   const newListing = new ListingModel(listing);
   await newListing.save();
   return res.send(newListing.toJSON());
