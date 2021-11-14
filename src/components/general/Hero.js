@@ -24,7 +24,7 @@ export default function Hero({ title, description, imgSrc, btnText, btnHref }) {
               <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
                 {description}
               </p>
-              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start space-x-4">
+              <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start lg:space-x-4 lg:space-y-0 space-y-4">
                 <Link href="/auth/signin" passHref>
                   <button className="btn-primary px-8 py-3 md:py-4 md:text-lg md:px-10 shadow-lg">
                     Get started
