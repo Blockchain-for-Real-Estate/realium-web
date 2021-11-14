@@ -6,13 +6,12 @@ export default function PropertyCard({ property }) {
   return (
     <Link href={`/marketplace/${property.propertyId}`} passHref>
       <div className="shadow h-full cursor-pointer rounded sm:rounded-lg">
-        <div className="relative h-60">
+        <div className="relative h-48">
           <Image
-            src={`/images/${property.propertyId}.jpg`}
+            src="/images/coming-soon.jpg"
             layout="fill"
             objectFit="cover"
             alt="Coming Soon"
-            className="rounded-t sm:rounded-t-lg"
           />
         </div>
         <div className="p-6 space-y-2">
@@ -20,7 +19,7 @@ export default function PropertyCard({ property }) {
             {property.propertyType || "Residential"}
           </div>
           <div className="text-gray-900 text-xl truncate">
-            {property.propertyName || "River Bend"}
+            {property.propertyName || "aslkdfjlaskjdf;aksdjf"}
           </div>
           <div className="text-gray-500 text-base truncate">
             {property.propertyDescription ||
