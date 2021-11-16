@@ -11,6 +11,7 @@ const CurrencyDisplay = ({
 }) => {
   const { currency } = useUI();
   const { data: AVAX } = useAVAX();
+  if (currency !== "AVAX" && !AVAX) return "...";
 
   if (currency === "USD") {
     balance = balance * AVAX.quote.USD.price;
