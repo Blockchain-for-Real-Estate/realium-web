@@ -1,3 +1,4 @@
+import { ethers } from "ethers";
 /**
  * This helper function will create a AvaxSendTx that can be used to get estimates or send avax from a signer
  * @param {String} toAddress the address where you want to send the avax

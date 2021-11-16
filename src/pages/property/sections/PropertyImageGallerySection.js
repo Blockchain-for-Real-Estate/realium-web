@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function ImageGallery({ images }) {
   return (
-    <Tab.Group as="div" className="flex flex-col-reverse">
+    <Tab.Group as="div" className="flex flex-col-reverse -mx-4 md:mx-0">
       {/* Image selector */}
       <div className="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
         <Tab.List className="grid grid-cols-4 gap-6">
