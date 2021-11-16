@@ -24,7 +24,6 @@ const GetAVAXPrice = async (req, res, user) => {
 };
 
 const SendAVAX = async (req, res, user) => {
-  debugger;
   const { toAddress, amount } = req.body;
 
   const wallet = await GetUserWallet(user, true);
