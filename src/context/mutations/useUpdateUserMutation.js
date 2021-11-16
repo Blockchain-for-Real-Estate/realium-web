@@ -17,7 +17,7 @@ const useUpdateUserMutation = () => {
       toast("Account Updated");
     },
     onError: (error) => {
-      alert(error);
+      toast("Account Update Failed", error.message, "error");
     },
   });
 };

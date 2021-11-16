@@ -1,24 +1,21 @@
 import { useQuery } from "react-query";
-import axios from "axios";
+import useAvalanchePublic from "../hooks/useAvalanchePublic";
+import { ethers } from "ethers";
+import CreateAvaxSendTx from "src/utilities/avax/CreateAvaxSendTx";
 
 export const GetGasEstimate = async ({ toAddress, amount }) => {
-  const { data: estimate } = await axios.get(`/api/avax`, {
-    params: {
-      toAddress,
-      amount,
-    },
-  });
-  return estimate;
+  const { provider } = useAvalanchePublic();
+  const tx = CreateAvaxSendTx(toAddress, amount);
+  const gas = await provider.estimateGas(tx);
+  return ethers.utils.formatEther(gas);
 };
 
 export const QUERY_KEY = "GAS_FEE";
 export default function useGasEstimate(toAddress, amount, enabled) {
-  return useQuery(
-    [QUERY_KEY, toAddress, amount],
-    () => GetGasEstimate({ toAddress, amount }),
-    {
-      staleTime: 0,
-      enabled: !!toAddress && !!amount && enabled,
-    }
-  );
+  return useQuery([QUERY_KEY], () => GetGasEstimate({ toAddress, amount }), {
+    staleTime: 0,
+    cacheTime: 0,
+    refetchInterval: 5 * 1000,
+    enabled,
+  });
 }

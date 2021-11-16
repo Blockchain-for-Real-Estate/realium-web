@@ -6,6 +6,7 @@ import { ethers } from "ethers";
  * @returns the tx object
  */
 const CreateAvaxSendTx = (toAddress, amount) => {
+  if (!amount) amount = "0";
   const tx = {
     to: toAddress,
     value: ethers.utils.parseEther(amount),

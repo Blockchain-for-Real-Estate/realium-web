@@ -7,7 +7,7 @@ import { ethers } from "ethers";
  */
 const useAvalanchePrivate = (privateKey) => {
   const provider = new ethers.providers.JsonRpcProvider(
-    process.env.AVALANCHE_API_URL
+    process.env.NEXT_PUBLIC_AVALANCHE_API_URL
   );
 
   const signer = privateKey
