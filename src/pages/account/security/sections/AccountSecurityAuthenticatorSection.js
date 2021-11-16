@@ -1,18 +1,19 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import QRCode from "qrcode.react";
 import Auth from "@aws-amplify/auth";
 import useUI from "src/context/hooks/useUI";
 import useUser from "src/context/queries/useUser";
 import ReactCodeInput from "react-code-input";
-import { Switch, Dialog, Transition } from "@headlessui/react";
+import { Switch } from "@headlessui/react";
+import Modal from "src/components/base/Modal";
 
 const AccountSecurityAuthenticatorSection = () => {
   const { toast } = useUI();
   const { data: user } = useUser();
   const MFA = user.preferredMFA || "NOMFA";
 
-  const [QR, setQR] = useState();
-  const [input, setInput] = useState();
+  const [QR, setQR] = useState(false);
+  const [input, setInput] = useState("");
 
   const EnableMFA = async () => {
     try {
@@ -23,7 +24,8 @@ const AccountSecurityAuthenticatorSection = () => {
     }
   };
 
-  const ConfirmMFA = async () => {
+  const ConfirmMFA = async (e) => {
+    e.preventDefault();
     try {
       await Auth.verifyTotpToken(user, input);
       await Auth.setPreferredMFA(user, "TOTP");
@@ -45,103 +47,64 @@ const AccountSecurityAuthenticatorSection = () => {
     }
   };
   return (
-    <div className="border border-gray-200 bg-white rounded-lg shadow flex justify-between items-center p-4 mt-4">
-      <div>
-        <h2 className="text-gray-700 text-xl font-semibold">
-          Authenticator App
-        </h2>
-        <p>A time base one-time 6 digit code</p>
+    <>
+      <div className="border border-gray-200 bg-white rounded-lg shadow flex justify-between items-center p-4 mt-4">
+        <div>
+          <h2 className="text-gray-700 text-xl font-semibold">
+            Authenticator App
+          </h2>
+          <p>A time base one-time 6 digit code</p>
+        </div>
+
+        <Switch
+          checked={MFA === "SOFTWARE_TOKEN_MFA"}
+          onChange={MFA === "SOFTWARE_TOKEN_MFA" ? DisableMFA : EnableMFA}
+          className={`${
+            MFA === "SOFTWARE_TOKEN_MFA" ? "bg-blue-600" : "bg-gray-200"
+          } relative inline-flex items-center h-6 rounded-full w-11`}
+        >
+          <span className="sr-only">Disable MFA</span>
+          <span
+            className={`${
+              MFA === "SOFTWARE_TOKEN_MFA" ? "translate-x-6" : "translate-x-1"
+            } inline-block w-4 h-4 transform bg-white rounded-full`}
+          />
+        </Switch>
       </div>
 
-      <Switch
-        checked={MFA === "SOFTWARE_TOKEN_MFA"}
-        onChange={MFA === "SOFTWARE_TOKEN_MFA" ? DisableMFA : EnableMFA}
-        className={`${
-          MFA === "SOFTWARE_TOKEN_MFA" ? "bg-blue-600" : "bg-gray-200"
-        } relative inline-flex items-center h-6 rounded-full w-11`}
-      >
-        <span className="sr-only">Disable MFA</span>
-        <span
-          className={`${
-            MFA === "SOFTWARE_TOKEN_MFA" ? "translate-x-6" : "translate-x-1"
-          } inline-block w-4 h-4 transform bg-white rounded-full`}
-        />
-      </Switch>
-
-      <Transition appear show={!!QR} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={() => setQR("")}
-        >
-          <div className="min-h-screen px-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Dialog.Overlay className="fixed inset-0 bg-gray-900 opacity-20" />
-            </Transition.Child>
-
-            {/* This element is to trick the browser into centering the modal contents. */}
-            <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
-                  Add Authenticator
-                </Dialog.Title>
-                <Dialog.Description className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    We reccommend using Google Authenticator
-                  </p>
-                </Dialog.Description>
-                <div className="py-4">
-                  {QR && <QRCode value={QR} />}
-                  <div className="mt-4">Enter 6 digit code</div>
-                  <ReactCodeInput
-                    fields={6}
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e)}
-                    inputStyle={{
-                      fontFamily: "Inter",
-                      width: `${100 / 7}%`,
-                      margin: "5px 5px 5px 0px",
-                      borderRadius: "5px",
-                      borderColor: "#D1D5DB",
-                    }}
-                  />
-                </div>
-
-                <button onClick={ConfirmMFA} className="btn-primary p-4 w-full">
-                  Confirm Code
-                </button>
-              </div>
-            </Transition.Child>
+      <Modal open={!!QR} close={() => setQR(null)}>
+        <form onSubmit={ConfirmMFA} className="max-w-md p-4 rounded-lg">
+          <h3 as="h3" className="text-lg font-medium leading-6 text-gray-900">
+            Add Authenticator
+          </h3>
+          <p className="text-sm text-gray-500">
+            We reccommend using Google Authenticator
+          </p>
+          <div className="py-4">
+            <QRCode value={QR || "testdataf"} />
+            <div className="mt-4">Enter 6 digit code</div>
+            <ReactCodeInput
+              fields={6}
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e)}
+              required
+              inputStyle={{
+                fontFamily: "Inter",
+                width: `${100 / 7}%`,
+                margin: "5px 5px 5px 0px",
+                borderRadius: "5px",
+                borderColor: "#D1D5DB",
+              }}
+            />
           </div>
-        </Dialog>
-      </Transition>
-    </div>
+
+          <button type="submit" className="btn-primary p-4 w-full">
+            Confirm Code
+          </button>
+        </form>
+      </Modal>
+    </>
   );
 };
 

@@ -6,8 +6,6 @@ import AddToastAction from "./actions/AddToastAction";
 const AppContext = createContext();
 
 const INITIAL_STATE = {
-  modalOpen: false,
-  modal: {},
   toasts: [],
 };
 
@@ -16,11 +14,6 @@ const AppReducer = (state, action) => {
     console.info(`APP CONTEXT: ${action.type}`);
 
   switch (action.type) {
-    // LAYOUT
-    case "SET_MODAL":
-      return { ...state, modalOpen: true, modal: action.payload };
-    case "CLOSE_MODAL":
-      return { ...state, modalOpen: false };
     case "ADD_TOAST":
       return { ...state, ...AddToastAction(state.toasts, action.payload) };
     case "REMOVE_TOAST":
