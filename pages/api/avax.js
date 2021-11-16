@@ -1,26 +1,38 @@
 import AmplifyInit from "amplify.config";
 import CreateAvaxSendTx from "server/actions/CreateAvaxSendTx";
-import CreateUserWallet from "server/actions/CreateUserWallet";
 import GetUserWallet from "server/actions/GetUserWallet";
 import DefaultHandler from "server/DefaultHandler";
-import { ethers } from "ethers";
-import useAvalanchePublic from "src/context/hooks/useAvalanchePublic";
 import useAvalanchePrivate from "server/hooks/useAvalanchePrivate";
+import useCoinMarketCap from "server/hooks/useCoinMarketCap";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
 
-const ReadGasEstimate = async (req, res) => {
-  const { toAddress, amount } = req.body;
-  const { provider } = useAvalanchePublic();
+// const ReadGasEstimate = async (req, res) => {
+//   const { toAddress, amount } = req.body;
+//   const { provider } = useAvalanchePublic();
 
-  const tx = CreateAvaxSendTx(toAddress, amount);
-  const gas = await provider.estimateGas(tx);
+//   const tx = CreateAvaxSendTx(toAddress, amount);
+//   const gas = await provider.estimateGas(tx);
 
-  return res.send(gas);
+//   return res.send(gas);
+// };
+
+const GetAVAXPrice = async () => {
+  const COIN_MARKET_CAP = useCoinMarketCap();
+  const { data: prices } = await COIN_MARKET_CAP.get(
+    "/cryptocurrency/quotes/latest",
+    {
+      params: {
+        id: "5805", // AVAX
+        convert: "USD",
+      },
+    }
+  );
+  return res.send(prices);
 };
 
-const SendAvax = async (req, res, user) => {
+const SendAVAX = async (req, res, user) => {
   const { toAddress, amount } = req.body;
 
   const wallet = await GetUserWallet(user, true);
@@ -36,12 +48,12 @@ const handlers = {
   GET: {
     auth: true,
     origin: "",
-    function: ReadGasEstimate,
+    function: GetAVAXPrice,
   },
   POST: {
     auth: true,
     origin: "",
-    function: SendAvax,
+    function: SendAVAX,
   },
 };
 
