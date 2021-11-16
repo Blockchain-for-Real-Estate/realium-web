@@ -18,9 +18,9 @@ AmplifyInit();
 //   return res.send(gas);
 // };
 
-const GetAVAXPrice = async () => {
+const GetAVAXPrice = async (req, res, user) => {
   const COIN_MARKET_CAP = useCoinMarketCap();
-  const { data: prices } = await COIN_MARKET_CAP.get(
+  const { data: quotes } = await COIN_MARKET_CAP.get(
     "/cryptocurrency/quotes/latest",
     {
       params: {
@@ -29,7 +29,8 @@ const GetAVAXPrice = async () => {
       },
     }
   );
-  return res.send(prices);
+  let AVAX = quotes?.data[5805];
+  return res.send(AVAX);
 };
 
 const SendAVAX = async (req, res, user) => {

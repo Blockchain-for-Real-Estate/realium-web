@@ -7,6 +7,7 @@ const AppContext = createContext();
 
 const INITIAL_STATE = {
   toasts: [],
+  currency: "AVAX",
 };
 
 const AppReducer = (state, action) => {
@@ -18,6 +19,8 @@ const AppReducer = (state, action) => {
       return { ...state, ...AddToastAction(state.toasts, action.payload) };
     case "REMOVE_TOAST":
       return { ...state, ...RemoveToastAction(state.toasts, action.payload) };
+    case "SET_CURRENCY":
+      return { ...state, currency: action.payload };
 
     default: {
       console.error(`APP CONTEXT: Unknown Action Type: ${action.type}`);
