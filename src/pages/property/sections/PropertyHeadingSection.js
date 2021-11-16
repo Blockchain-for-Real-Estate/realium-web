@@ -3,7 +3,7 @@ import PropertyBreadCrumbsSection from "./PropertyBreadCrumbsSection";
 const PropertyHeadingSection = ({ property }) => {
   return (
     <div>
-      <div className="mb-2">
+      <div className="flex mb-2">
         <h1 className="text-4xl font-extrabold text-gray-900">
           {property?.propertyName}
         </h1>

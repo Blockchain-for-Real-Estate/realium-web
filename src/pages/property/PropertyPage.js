@@ -20,12 +20,12 @@ const PropertyPage = ({}) => {
   } = useProperty(propertyId);
 
   return (
-    <>
-      <div className="flex justify-between items-end my-10 max-w-6xl mx-auto px-4">
+    <div className="md:divide-y">
+      <div className="md:flex md:justify-between items-end my-10 max-w-6xl mx-auto px-4">
         <PropertyHeadingSection property={property} />
         <PropertyBreadCrumbsSection property={property} />
       </div>
-      <div className="md:flex max-w-6xl mx-auto gap-x-4 px-4 my-10">
+      <div className="md:flex max-w-6xl mx-auto gap-x-12 px-4 md:py-10 my-10">
         <div className="flex-1">
           <PropertyImageGallerySection
             images={[
@@ -37,14 +37,14 @@ const PropertyPage = ({}) => {
           />
           <PropertyDescriptionSection property={property} />
         </div>
-        <div className="flex-1">
-          <div className="relative  h-full">
-            <BuyListOfferSection className="sticky top-0" property={property} />
+        <div className="flex-1 max-w-sm">
+          <div className="relative h-full">
+            <BuyListOfferSection className="sticky top-0" />
           </div>
         </div>
       </div>
       <PropertyDetailsSection property={property} />
-    </>
+    </div>
   );
 };
 
