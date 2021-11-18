@@ -15,8 +15,10 @@ const useSendAVAXMutation = () => {
 
   return useMutation(SendAVAX, {
     onSuccess: async () => {
-      await queryClient.invalidateQueries(USER_BALANCE);
-      toast("AVAX Sent");
+      setTimeout(() => {
+        queryClient.invalidateQueries(USER_BALANCE);
+      }, 5000);
+      toast("AVAX Sent", "This transaction can take up to 30 seconds");
     },
     onError: (error) => {
       toast("AVAX Could Not Be Sent", error.message, "error");
