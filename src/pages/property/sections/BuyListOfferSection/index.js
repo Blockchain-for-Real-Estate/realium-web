@@ -1,7 +1,9 @@
 import { Tab } from "@headlessui/react";
+import useUser from "src/context/queries/useUser";
 import classNames from "src/utilities/web/ClassNames";
 import Buy from "./Buy";
 import Offer from "./Offer";
+import Link from "next/link";
 
 const TABS = [
   {
@@ -15,6 +17,8 @@ const TABS = [
 ];
 
 const BuyListOfferSection = ({ property }) => {
+  const { data: user } = useUser();
+
   return (
     <Tab.Group as="div" className="shadow rounded-lg sticky top-5">
       <Tab.List className="flex">
@@ -33,11 +37,23 @@ const BuyListOfferSection = ({ property }) => {
         ))}
       </Tab.List>
       <Tab.Panels>
-        {TABS.map((tab, key) => (
-          <Tab.Panel key={key}>
-            <tab.Component property={property} />
-          </Tab.Panel>
-        ))}
+        {TABS.map((tab, key) =>
+          user ? (
+            <Tab.Panel key={key}>
+              <tab.Component property={property} />
+            </Tab.Panel>
+          ) : (
+            <Tab.Panel
+              key={key}
+              className="flex flex-col justify-between h-96 p-4"
+            >
+              <div>You must Sign In to interact with this property</div>
+              <Link href={"/auth/signin"} passHref>
+                <button className="btn-primary p-4 w-full">Sign In</button>
+              </Link>
+            </Tab.Panel>
+          )
+        )}
       </Tab.Panels>
     </Tab.Group>
   );

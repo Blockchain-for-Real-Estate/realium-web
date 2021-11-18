@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import useProperty from "src/context/queries/useProperty";
 import PropertyBreadCrumbsSection from "./sections/PropertyBreadCrumbsSection";
 import PropertyDetailsSection from "./sections/PropertyDetailsSection";
@@ -7,17 +6,8 @@ import PropertyImageGallerySection from "./sections/PropertyImageGallerySection"
 import PropertyHeadingSection from "./sections/PropertyHeadingSection";
 import PropertyDescriptionSection from "./sections/PropertyDescriptionSection";
 
-const PropertyPage = ({}) => {
-  const {
-    query: { propertyId },
-  } = useRouter();
-
-  const {
-    data: property,
-    isLoading: isLoadingProperty,
-    isError: isErrorProperty,
-    isIdle: isIdleProperty,
-  } = useProperty(propertyId);
+const PropertyPage = ({ propertyId }) => {
+  const { data: property } = useProperty(propertyId);
 
   return (
     <div className="md:divide-y">

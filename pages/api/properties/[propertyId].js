@@ -5,10 +5,10 @@ import PropertyModel from "server/models/Property";
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
 
-const ReadProperty = async (req, res) => {
+export const ReadProperty = async (req, res) => {
   const { propertyId } = req.query;
   const property = await PropertyModel.get(propertyId);
-  return res.send(property);
+  return res ? res.send(property) : property;
 };
 
 const UpdateProperty = async (req, res) => {

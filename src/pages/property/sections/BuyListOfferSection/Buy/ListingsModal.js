@@ -9,7 +9,7 @@ const ListingsModal = ({ property }) => {
   const [open, setOpen] = useState();
   const { data: listings } = useListings(property?.propertyId);
 
-  if (!listings) return null;
+  // if (!listings) return null;
   return (
     <>
       <button
@@ -36,7 +36,7 @@ const ListingsModal = ({ property }) => {
             </tr>
           </thead>
           <tbody className="bg-white border-1 border-gray-700 divide-y">
-            {listings.map((listing) => (
+            {listings?.map((listing) => (
               <tr
                 key={listing.createdAt}
                 className="m-4 border-b border-gray-200 sm:shadow"
