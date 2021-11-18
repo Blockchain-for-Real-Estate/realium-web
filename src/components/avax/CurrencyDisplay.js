@@ -6,6 +6,7 @@ import AvaxSymbol from "./AvaxSymbol";
 
 const CurrencyDisplay = ({
   balance,
+  avaxAlways = false,
   classNames,
   symbolClassNames = "w-5 h-5 mx-1",
 }) => {
@@ -13,15 +14,15 @@ const CurrencyDisplay = ({
   const { data: AVAX } = useAVAX();
   if (currency !== "AVAX" && !AVAX) return "...";
 
-  if (currency === "USD") {
+  if (currency === "USD" && !avaxAlways) {
     balance = balance * AVAX.quote.USD.price;
     balance = Round2DecimalPlaces(balance);
   }
 
   const GetSymbol = () => {
-    if (currency === "USD") {
+    if (currency === "USD" && !avaxAlways) {
       return <CurrencyDollarIcon className={"inline " + symbolClassNames} />;
-    } else if (currency === "AVAX") {
+    } else {
       return <AvaxSymbol className={symbolClassNames} />;
     }
   };
@@ -30,7 +31,7 @@ const CurrencyDisplay = ({
     <span className={"flex items-center justify-center " + classNames}>
       {GetSymbol()}
       <span>
-        {balance} {currency}
+        {balance} {avaxAlways ? "AVAX" : currency}
       </span>
     </span>
   );

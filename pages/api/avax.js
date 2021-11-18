@@ -1,5 +1,5 @@
 import AmplifyInit from "amplify.config";
-import CreateAvaxSendTx from "server/actions/CreateAvaxSendTx";
+import CreateAvaxSendTx from "src/utilities/avax/CreateAvaxSendTx";
 import GetUserWallet from "server/actions/GetUserWallet";
 import DefaultHandler from "server/DefaultHandler";
 import useAvalanchePrivate from "server/hooks/useAvalanchePrivate";
@@ -7,16 +7,6 @@ import useCoinMarketCap from "server/hooks/useCoinMarketCap";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
-
-// const ReadGasEstimate = async (req, res) => {
-//   const { toAddress, amount } = req.body;
-//   const { provider } = useAvalanchePublic();
-
-//   const tx = CreateAvaxSendTx(toAddress, amount);
-//   const gas = await provider.estimateGas(tx);
-
-//   return res.send(gas);
-// };
 
 const GetAVAXPrice = async (req, res, user) => {
   const COIN_MARKET_CAP = useCoinMarketCap();
