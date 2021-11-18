@@ -1,4 +1,5 @@
 import { Tab } from "@headlessui/react";
+import useUser from "src/context/queries/useUser";
 import classNames from "src/utilities/web/ClassNames";
 import Buy from "./Buy";
 import Offer from "./Offer";
@@ -15,6 +16,8 @@ const TABS = [
 ];
 
 const BuyListOfferSection = ({ property }) => {
+  const { data: user } = useUser();
+
   return (
     <Tab.Group as="div" className="shadow rounded-lg sticky top-5">
       <Tab.List className="flex">
@@ -33,11 +36,15 @@ const BuyListOfferSection = ({ property }) => {
         ))}
       </Tab.List>
       <Tab.Panels>
-        {TABS.map((tab, key) => (
-          <Tab.Panel key={key}>
-            <tab.Component property={property} />
-          </Tab.Panel>
-        ))}
+        {user ? (
+          TABS.map((tab, key) => (
+            <Tab.Panel key={key}>
+              <tab.Component property={property} />
+            </Tab.Panel>
+          ))
+        ) : (
+          <Tab.Panel>Please Sign In</Tab.Panel>
+        )}
       </Tab.Panels>
     </Tab.Group>
   );

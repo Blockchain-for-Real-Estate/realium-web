@@ -2,6 +2,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 export const GetListings = async ({ propertyId }) => {
+  debugger;
   const { data: listings } = await axios.get(`/api/listings/${propertyId}`);
   return listings;
 };

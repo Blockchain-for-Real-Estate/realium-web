@@ -9,6 +9,8 @@ const CurrencyDisplay = ({
   avaxAlways = false,
   classNames,
   symbolClassNames = "w-5 h-5 mx-1",
+  showSymbol = true,
+  showName = true,
 }) => {
   const { currency } = useUI();
   const { data: AVAX } = useAVAX();
@@ -29,9 +31,9 @@ const CurrencyDisplay = ({
 
   return (
     <span className={"flex items-center justify-center " + classNames}>
-      {GetSymbol()}
+      {showSymbol && GetSymbol()}
       <span>
-        {balance} {avaxAlways ? "AVAX" : currency}
+        {balance} {showName && (avaxAlways ? "AVAX" : currency)}
       </span>
     </span>
   );
