@@ -2,6 +2,7 @@ import PropertyPage from "src/pages/property/PropertyPage";
 import { QueryClient, dehydrate } from "react-query";
 import { QUERY_KEY as PROPERTY_KEY } from "src/context/queries/useProperty";
 import { ReadProperty } from "pages/api/properties/[propertyId]";
+import { ReadProperties } from "pages/api/properties";
 
 export async function getStaticProps({ params }) {
   const queryClient = new QueryClient();
@@ -20,8 +21,14 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
+  const properties = await ReadProperties();
+
+  const paths = properties.map((property) => ({
+    params: { propertyId: property.propertyId },
+  }));
+
   return {
-    paths: [{ params: { propertyId: "54bb2cfd-3b1c-41a2-85cc-b3c2cdad0578" } }],
+    paths,
     fallback: true,
   };
 }
