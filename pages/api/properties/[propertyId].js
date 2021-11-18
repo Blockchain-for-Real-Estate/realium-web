@@ -12,6 +12,7 @@ const ReadProperty = async (req, res) => {
 };
 
 const UpdateProperty = async (req, res) => {
+  debugger;
   const newProperty = new PropertyModel(req.body);
   await newProperty.save();
   res.send(newProperty.toJSON());
@@ -24,8 +25,8 @@ const handlers = {
     function: ReadProperty,
   },
   PUT: {
-    auth: "Admin",
-    origin: "http://localhost:3001",
+    auth: false,
+    origin: "*",
     function: UpdateProperty,
   },
 };
