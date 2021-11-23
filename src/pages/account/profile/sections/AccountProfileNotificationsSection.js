@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Heading2 from "components/general/Heading2";
-import useUpdateUserMutation from "context/mutations/useUpdateUserMutation";
-import useUser from "context/queries/useUser";
+import Heading2 from "src/components/general/Heading2";
+import useUpdateUserMutation from "src/context/mutations/useUpdateUserMutation";
+import useUser from "src/context/queries/useUser";
 
 const FIELDS = [
   {

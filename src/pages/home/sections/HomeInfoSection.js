@@ -5,7 +5,7 @@ import {
   MailIcon,
   ScaleIcon,
 } from "@heroicons/react/outline";
-import Info from "components/general/Info";
+import Info from "src/components/general/Info";
 
 const HomeInfoSection = () => {
   return (

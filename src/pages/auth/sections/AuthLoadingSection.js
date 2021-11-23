@@ -4,8 +4,8 @@ import AuthBox from "../components/AuthBox";
 const AuthLoadingSection = ({ setAuthPage }) => {
   return (
     <AuthBox
-      title="Please wait"
-      description="We are signing you in"
+      title="Signing you in"
+      description="This may take up to 30 seconds on your first sign in"
       footer={{
         text: "Stuck on this page? ",
         page: "signin",

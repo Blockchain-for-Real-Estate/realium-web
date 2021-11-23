@@ -1,4 +1,4 @@
-import { useAppContext } from "context/AppContext";
+import { useAppContext } from "src/context/AppContext";
 
 const useUI = () => {
   const { dispatch, state } = useAppContext();
@@ -15,32 +15,23 @@ const useUI = () => {
     });
   };
 
-  const modal = (
-    title,
-    content,
-    bgColor = "bg-indigo-100",
-    textColor = "text-indigo-600",
-    onConfirm,
-    confirmBtn = "Confirm",
-    onCancel,
-    cancelBtn = "Cancel"
-  ) => {
-    dispatch({
-      type: "SET_MODAL",
-      payload: {
-        title,
-        content,
-        bgColor,
-        textColor,
-        onConfirm,
-        confirmBtn,
-        onCancel,
-        cancelBtn,
-      },
-    });
+  const currency = state.currency;
+
+  const toggleCurrency = () => {
+    if (state.currency === "AVAX") {
+      dispatch({
+        type: "SET_CURRENCY",
+        payload: "USD",
+      });
+    } else {
+      dispatch({
+        type: "SET_CURRENCY",
+        payload: "AVAX",
+      });
+    }
   };
 
-  return { toast, modal };
+  return { toast, currency, toggleCurrency };
 };
 
 export default useUI;

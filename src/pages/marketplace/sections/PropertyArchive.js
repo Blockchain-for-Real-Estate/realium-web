@@ -1,6 +1,6 @@
-import useProperties from "context/queries/useProperties";
-import PropertyCard from "components/properties/PropertyCard";
-import Heading1 from "components/general/Heading1";
+import useProperties from "src/context/queries/useProperties";
+import PropertyCard from "src/components/properties/PropertyCard";
+import Heading1 from "src/components/general/Heading1";
 
 export default function PropertyArchive() {
   const { data: properties, isLoading, isError } = useProperties();
@@ -10,7 +10,7 @@ export default function PropertyArchive() {
 
   return (
     <>
-    <Heading1
+      <Heading1
         title="Explore the marketplace"
         description="View the properties that are currently available on the Realium marketplace and choose the best investment for you."
       />

@@ -1,22 +1,21 @@
-import useAVAX from "context/hooks/useAVAX";
 import useUser from "./useUser";
 import { useQuery } from "react-query";
+import useRealiumContract from "../hooks/useRealiumContract";
+import { ethers } from "ethers";
 
-export const GetUserAssets = async () => {
-  const { XChain } = useAVAX();
-
-  let { balances } = await XChain.getAllBalances(
-    process.env.NEXT_PUBLIC_WALLET
+export const GetUserAssets = async ({ user }) => {
+  const RealiumContract = useRealiumContract();
+  const response = await RealiumContract.balanceOf(
+    user.attributes["custom:wallet"]
   );
-
-  return balances;
+  return ethers.utils.formatEther(response);
 };
 
 export const QUERY_KEY = "USER_ASSETS";
 
 export default function useUserAssets() {
   const { data: user } = useUser();
-  return useQuery([QUERY_KEY], () => GetUserAssets(), {
+  return useQuery([QUERY_KEY], () => GetUserAssets({ user }), {
     enabled: !!user,
   });
 }

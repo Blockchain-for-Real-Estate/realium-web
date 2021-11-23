@@ -1,6 +1,7 @@
 import Auth from "@aws-amplify/auth";
-import useUI from "context/hooks/useUI";
-import { useMutation } from "react-query";
+import useUI from "src/context/hooks/useUI";
+import { useMutation, useQueryClient } from "react-query";
+import { QUERY_KEY as USER_KEY } from "../queries/useUser";
 
 const UpdateUser = async ({ user, attributes }) => {
   await Auth.updateUserAttributes(user, attributes);
@@ -8,12 +9,15 @@ const UpdateUser = async ({ user, attributes }) => {
 
 const useUpdateUserMutation = () => {
   const { toast } = useUI();
+  const queryClient = useQueryClient();
+
   return useMutation(UpdateUser, {
-    onSuccess: () => {
+    onSuccess: async () => {
+      await queryClient.invalidateQueries(USER_KEY);
       toast("Account Updated");
     },
     onError: (error) => {
-      alert(error);
+      toast("Account Update Failed", error.message, "error");
     },
   });
 };

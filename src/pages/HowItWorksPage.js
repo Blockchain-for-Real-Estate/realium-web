@@ -1,4 +1,4 @@
-import { HOW_IT_WORKS_FAQS } from "data/static/faqs";
+import { HOW_IT_WORKS_FAQS } from "src/data/faqs";
 import {
   CashIcon,
   DocumentSearchIcon,
@@ -6,9 +6,9 @@ import {
 } from "@heroicons/react/outline";
 import Image from "next/image";
 
-import Hero from "components/general/Hero";
-import Faq from "components/general/Faq";
-import Info from "components/general/Info";
+import Hero from "src/components/general/Hero";
+import Faq from "src/components/general/Faq";
+import Info from "src/components/general/Info";
 
 export default function HowItWorksPage() {
   return (

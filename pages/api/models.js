@@ -1,5 +1,5 @@
-import DefaultHandler from "api/DefaultHandler";
-import PropertyModel from "api/models/Property";
+import DefaultHandler from "server/DefaultHandler";
+import PropertyModel from "server/models/PropertyModel";
 
 const ReadModel = async (req, res) => {
   switch (req.query.model) {

@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/outline";
-import classNames from "utilities/web/ClassNames";
+import classNames from "src/utilities/web/ClassNames";
 
 export default function Faq({ questions }) {
   return (

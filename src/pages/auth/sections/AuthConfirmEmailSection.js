@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { Auth } from "aws-amplify";
-import useUI from "context/hooks/useUI";
+import useUI from "src/context/hooks/useUI";
 import AuthBox from "../components/AuthBox";
 import ReactCodeInput from "react-code-input";
 
@@ -44,7 +44,7 @@ const AuthConfirmEmailSection = ({
   return (
     <AuthBox
       title="Confirm Email"
-      description="Enter your email address below to reset your password"
+      description="Enter the confirmation code sent to your email to continue"
       footer={{
         text: "Want to go back ",
         page: "signin",

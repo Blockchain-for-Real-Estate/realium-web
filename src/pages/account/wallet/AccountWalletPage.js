@@ -1,13 +1,13 @@
-import ComingSoon from "components/ComingSoon";
-import AccountFaucetSection from "./sections/AccountFaucetSection";
-import AccountWalletIdSection from "./sections/AccountWalletIdSection";
+import AccountFaucetSection from "./sections/AccountWalletFaucetSection";
+import AccountWalletIdSection from "./sections/AccountWalletAddressSection";
+import AccountWalletManageSection from "./sections/AccountWalletManageSection";
 
 const AccountWalletPage = () => {
   return (
     <div className="space-y-5">
-      {/* <AccountWalletIdSection />
-      <AccountFaucetSection /> */}
-      <ComingSoon />
+      <AccountWalletIdSection />
+      <AccountWalletManageSection />
+      <AccountFaucetSection />
     </div>
   );
 };

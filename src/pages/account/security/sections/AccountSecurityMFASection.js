@@ -1,4 +1,4 @@
-import Heading2 from "components/general/Heading2";
+import Heading2 from "src/components/general/Heading2";
 import AccountSecurityTOTPSection from "./AccountSecurityAuthenticatorSection";
 
 const AccountSecurityMFASection = () => {

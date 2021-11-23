@@ -1,4 +1,4 @@
-import HowItWorksPage from "pages/HowItWorksPage";
+import HowItWorksPage from "src/pages/HowItWorksPage";
 
 const Page = () => <HowItWorksPage />;
 
