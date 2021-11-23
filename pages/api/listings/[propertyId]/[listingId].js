@@ -1,25 +1,15 @@
 import AmplifyInit from "amplify.config";
 import DefaultHandler from "server/DefaultHandler";
-import ListingModel from "server/models/Listing";
+import ListingModel from "server/models/ListingModel";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
 
 const ReadListing = async (req, res) => {
-  const { propertyId, sellerAddress } = req.query;
-  const listing = await ListingModel.get({ propertyId, sellerAddress });
+  const { propertyId, listingId } = req.query;
+  const listing = await ListingModel.get({ propertyId, listingId });
   if (!listing) res.status(400);
   return res ? res.send(listing) : listing;
-};
-
-const CreateListing = async (req, res, user) => {
-  const { propertyId } = req.query;
-  const sellerAddress = user.attributes["custom:wallet"];
-
-  const listing = { propertyId, sellerAddress, ...req.body };
-  const newListing = new ListingModel(listing);
-  await newListing.save();
-  return res.send(newListing.toJSON());
 };
 
 const DeleteListing = async (req, res, user) => {
@@ -36,11 +26,7 @@ const handlers = {
     origin: "",
     function: ReadListing,
   },
-  POST: {
-    auth: true,
-    origin: "",
-    function: CreateListing,
-  },
+
   DELETE: {
     auth: true,
     origin: "",

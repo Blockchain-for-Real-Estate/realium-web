@@ -1,4 +1,5 @@
 import dynamoose from "dynamoose";
+import { v4 as uuid } from "uuid";
 
 dynamoose.aws.sdk.config.update({
   accessKeyId: process.env.ACCESS_KEY,
@@ -13,10 +14,14 @@ const ListingSchema = new dynamoose.Schema(
       required: true,
       hashKey: true,
     },
+    listingId: {
+      type: String,
+      rangeKey: true,
+      default: () => `${Date.now()}$${uuid()}`,
+    },
     sellerAddress: {
       type: String,
       required: true,
-      rangeKey: true,
       index: {
         name: "addressIndex",
         global: true,
@@ -26,7 +31,7 @@ const ListingSchema = new dynamoose.Schema(
       type: Number,
       required: true,
     },
-    count: {
+    quantity: {
       type: Number,
       required: true,
     },
@@ -39,7 +44,7 @@ const ListingSchema = new dynamoose.Schema(
 
 const ListingModel = dynamoose.model("realium-listings", ListingSchema, {
   create: true,
-  update: true,
+  update: false,
 });
 
 export default ListingModel;

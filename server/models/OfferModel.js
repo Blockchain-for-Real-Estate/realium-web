@@ -1,4 +1,5 @@
 import dynamoose from "dynamoose";
+import { v4 as uuid } from "uuid";
 
 dynamoose.aws.sdk.config.update({
   accessKeyId: process.env.ACCESS_KEY,
@@ -13,20 +14,26 @@ const OfferSchema = new dynamoose.Schema(
       required: true,
       hashKey: true,
     },
-    buyerAddress: {
+    offerId: {
       type: String,
       required: true,
       rangeKey: true,
+      default: () => `${Date.now()}$${uuid()}`,
+    },
+    buyerAddress: {
+      type: String,
+      required: true,
       index: {
         name: "addressIndex",
         global: true,
+        rangeKey: "propertyId",
       },
     },
     price: {
       type: Number,
       required: true,
     },
-    count: {
+    quantity: {
       type: Number,
       required: true,
     },
@@ -39,7 +46,7 @@ const OfferSchema = new dynamoose.Schema(
 
 const OfferModel = dynamoose.model("realium-offers", OfferSchema, {
   create: true,
-  update: true,
+  update: false,
 });
 
 export default OfferModel;

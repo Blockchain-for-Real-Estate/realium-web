@@ -1,5 +1,6 @@
 import { useState } from "react";
-import Modal from "src/components/base/modal";
+import Modal from "src/components/base/Modal";
+import PropertyOffersTable from "../PropertyOffersTable";
 
 const PropertySellModal = ({ property }) => {
   const [open, setOpen] = useState(false);
@@ -7,10 +8,10 @@ const PropertySellModal = ({ property }) => {
   return (
     <>
       <button className="btn-primary w-full p-4 " onClick={() => setOpen(true)}>
-        Sell a Share
+        Sell Now
       </button>
       <Modal open={open} close={() => setOpen(false)}>
-        Sell to lowest offer
+        <PropertyOffersTable propertyId={property?.propertyId} action />
       </Modal>
     </>
   );

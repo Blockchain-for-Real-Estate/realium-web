@@ -1,4 +1,4 @@
-import WalletModel from "server/models/Wallet";
+import WalletModel from "server/models/WalletModel";
 
 /**
  * This will get the user wallet for the current user

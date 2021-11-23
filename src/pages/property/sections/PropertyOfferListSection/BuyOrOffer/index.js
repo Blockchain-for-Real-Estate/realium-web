@@ -1,11 +1,13 @@
 import CurrencyDisplay from "src/components/avax/CurrencyDisplay";
-import useListings from "src/context/queries/useListings";
+import usePropertyListings from "src/context/queries/usePropertyListings";
 import useUserAvaxBalance from "src/context/queries/useUserAvaxBalance";
-import ListingsModal from "./ListingsModal";
+import PropertyBuyModal from "./PropertyBuyModal";
+import PropertyOfferModal from "./PropertyOfferModal";
 
-const Buy = ({ property }) => {
+const PropertyBuyOrOffer = ({ property }) => {
   const { data: balance } = useUserAvaxBalance();
-  const { data: listings } = useListings(property?.propertyId);
+  const { data: listings } = usePropertyListings(property?.propertyId);
+
   return (
     <>
       <div className="border-t-2 border-gray-100 rounded-b-lg pt-8 pb-1 px-6 bg-white sm:px-10 sm:py-10">
@@ -24,7 +26,11 @@ const Buy = ({ property }) => {
             /share
           </div>
         </div>
-        <ListingsModal property={property} />
+        <div>
+          <PropertyBuyModal property={property} />
+          <p className="text-center py-2">or</p>
+          <PropertyOfferModal property={property} />
+        </div>
         <div className="mb-4 sm:mb-0 mt-12 mx-4 flex">
           <p className="flex-1 text-left text-gray-400 text-xs">
             Current Balance
@@ -38,4 +44,4 @@ const Buy = ({ property }) => {
   );
 };
 
-export default Buy;
+export default PropertyBuyOrOffer;
