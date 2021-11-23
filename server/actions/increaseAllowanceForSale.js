@@ -6,10 +6,10 @@ import useRealiumContractWithSigner from "src/server/hooks/useRealiumContractWit
  * @param {*} privateKey this is the private key for the wallet the user wishes to use
  * @returns An object with a provider and a signer to be used server side to interact with the blockchain
  */
-const useIncreaseAllowance = (smartContractAddress, listing, buyerAddress) => {
+const increaseAllowanceForSale = (smartContractAddress, listing, buyerAddress) => {
     const smartContract = await useRealiumContractWithSigner(listing.sellerAddress, smartContractAddress);
     const response = await smartContract.useIncreaseAllowance(buyerAddress, listing.count);
     return response;
 };
 
-export default useIncreaseAllowance;
+export default increaseAllowanceForSale;
