@@ -7,6 +7,7 @@ import PropertyOfferModal from "./PropertyOfferModal";
 const PropertyBuyOrOffer = ({ property }) => {
   const { data: balance } = useUserAvaxBalance();
   const { data: listings } = usePropertyListings(property?.propertyId);
+  const IS_LISTINGS = listings?.length > 0;
 
   return (
     <>
@@ -21,10 +22,17 @@ const PropertyBuyOrOffer = ({ property }) => {
         </div>
         <div className="mt-16 mb-4 mx-4 flex">
           <div className="flex-1 text-left">Lowest Listing</div>
-          <div className="flex items-center text-indigo-500 text-right">
-            <CurrencyDisplay balance={listings?.[0]?.price} showName={false} />
-            /share
-          </div>
+          {IS_LISTINGS ? (
+            <div className="flex items-center text-indigo-500 text-right">
+              <CurrencyDisplay
+                balance={listings?.[0]?.price}
+                showName={false}
+              />
+              /share
+            </div>
+          ) : (
+            <div>--</div>
+          )}
         </div>
         <div>
           <PropertyListingsModal property={property} />
