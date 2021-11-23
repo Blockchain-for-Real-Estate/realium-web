@@ -2,8 +2,8 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 export const GetListings = async ({ propertyId }) => {
-  debugger;
-  const { data: listings } = await axios.get(`/api/listings/${propertyId}`);
+  let { data: listings } = await axios.get(`/api/listings/${propertyId}`);
+  listings = listings?.sort((a, b) => a.price - b.price);
   return listings;
 };
 

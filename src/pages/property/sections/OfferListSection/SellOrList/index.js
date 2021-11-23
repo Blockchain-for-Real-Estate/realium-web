@@ -12,15 +12,11 @@ const List = () => {
         </p>
       </div>
       <div className="mt-16 mb-4 mx-4 flex">
-        <div className="flex-1 text-left">Average Price</div>
+        <div className="flex-1 text-left">Highest Offer</div>
         <div className="flex items-center text-indigo-500 text-right">
           5.00 <AvaxSymbol />
           /share
         </div>
-      </div>
-      <div className="mt-4 mb-12 mx-4 flex">
-        <div className="flex-1 text-left">Average Hold</div>
-        <div className="flex-1 text-right text-indigo-500">12 days</div>
       </div>
       <button
         className="w-full btn-primary px-3 py-4"
