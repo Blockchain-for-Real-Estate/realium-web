@@ -5,6 +5,7 @@ import OfferListSection from "./sections/PropertyOfferListSection";
 import PropertyImageGallerySection from "./sections/PropertyImageGallerySection";
 import PropertyHeadingSection from "./sections/PropertyHeadingSection";
 import PropertyDescriptionSection from "./sections/PropertyDescriptionSection";
+import PropertyUserListingsSection from "./sections/PropertyUserListingsSection";
 
 const PropertyPage = ({ propertyId }) => {
   const { data: property } = useProperty(propertyId);

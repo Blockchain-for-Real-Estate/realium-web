@@ -23,7 +23,8 @@ const DeleteOffer = async (req, res, user) => {
     throw Error("Not Authorized");
   }
 
-  await OfferModel.delete({ propertyId, offerId });
+  // TODO: RETURN THE AVAX FROM THIS OFFER BACK TO THE USER ADDRESS
+  offer.delete();
   return res.send(offer.toJSON());
 };
 

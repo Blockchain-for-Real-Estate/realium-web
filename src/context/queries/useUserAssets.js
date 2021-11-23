@@ -15,7 +15,11 @@ export const QUERY_KEY = "USER_ASSETS";
 
 export default function useUserAssets() {
   const { data: user } = useUser();
-  return useQuery([QUERY_KEY], () => GetUserAssets({ user }), {
-    enabled: !!user,
-  });
+  return useQuery(
+    [QUERY_KEY, user?.attributes.sub],
+    () => GetUserAssets({ user }),
+    {
+      enabled: !!user,
+    }
+  );
 }
