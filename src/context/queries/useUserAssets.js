@@ -3,8 +3,8 @@ import { useQuery } from "react-query";
 import useRealiumContract from "../hooks/useRealiumContract";
 import { ethers } from "ethers";
 
-export const GetUserAssets = async ({ user }) => {
-  const RealiumContract = useRealiumContract();
+export const GetUserAssets = async ( smartContractAddress, { user }) => {
+  const RealiumContract = useRealiumContract(smartContractAddress);
   const response = await RealiumContract.balanceOf(
     user.attributes["custom:wallet"]
   );
