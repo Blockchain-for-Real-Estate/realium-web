@@ -1,7 +1,7 @@
 import CurrencyDisplay from "src/components/avax/CurrencyDisplay";
 import usePropertyListings from "src/context/queries/usePropertyListings";
 import useUserAvaxBalance from "src/context/queries/useUserAvaxBalance";
-import PropertyBuyModal from "./PropertyBuyModal";
+import PropertyListingsModal from "./PropertyListingsModal";
 import PropertyOfferModal from "./PropertyOfferModal";
 
 const PropertyBuyOrOffer = ({ property }) => {
@@ -27,7 +27,7 @@ const PropertyBuyOrOffer = ({ property }) => {
           </div>
         </div>
         <div>
-          <PropertyBuyModal property={property} />
+          <PropertyListingsModal property={property} />
           <p className="text-center py-2">or</p>
           <PropertyOfferModal property={property} />
         </div>

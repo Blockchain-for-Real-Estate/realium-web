@@ -1,12 +1,13 @@
 import CurrencyDisplay from "src/components/avax/CurrencyDisplay";
 import usePropertyOffers from "src/context/queries/usePropertyOffers";
+import PropertySellModal from "./PropertySellModal";
 
-const PropertyOffersTable = ({ propertyId, action = false }) => {
-  const { data: offers } = usePropertyOffers(propertyId);
+const PropertyOffersTable = ({ property, action = false }) => {
+  const { data: offers, isLoading } = usePropertyOffers(property?.propertyId);
 
   return (
     <div className="p-1">
-      <table className="min-w-full divide-y divide-gray-200">
+      <table className="max-w-4xl w-screen divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
             <th className={CLASSES.th}>Buyer Address</th>
@@ -28,13 +29,17 @@ const PropertyOffersTable = ({ propertyId, action = false }) => {
               </td>
               {action && (
                 <td className={CLASSES.td}>
-                  <button className="btn-primary p-2">Sell Now</button>
+                  <PropertySellModal property={property} offer={offer} />
                 </td>
               )}
             </tr>
           ))}
         </tbody>
       </table>
+      {isLoading && <div className="text-center py-5">Getting Offers...</div>}
+      {offers?.length < 1 && (
+        <div className="text-center py-5">No Offers Available</div>
+      )}
     </div>
   );
 };

@@ -43,7 +43,7 @@ const ListingSchema = new dynamoose.Schema(
 );
 
 const ListingModel = dynamoose.model("realium-listings", ListingSchema, {
-  create: true,
+  create: false,
   update: false,
 });
 

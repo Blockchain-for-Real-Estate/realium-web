@@ -11,7 +11,6 @@ export const QUERY_KEY = "PROPERTY_LISTINGS";
 
 export default function usePropertyListings(propertyId) {
   return useQuery([QUERY_KEY, propertyId], () => GetListings({ propertyId }), {
-    staleTime: 0,
     enabled: !!propertyId,
   });
 }

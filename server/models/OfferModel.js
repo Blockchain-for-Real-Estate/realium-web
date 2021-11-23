@@ -45,7 +45,7 @@ const OfferSchema = new dynamoose.Schema(
 );
 
 const OfferModel = dynamoose.model("realium-offers", OfferSchema, {
-  create: true,
+  create: false,
   update: false,
 });
 

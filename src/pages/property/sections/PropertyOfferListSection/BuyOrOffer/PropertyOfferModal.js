@@ -47,7 +47,7 @@ const PropertyOfferModal = ({ property }) => {
             {isLoading ? "..." : "Make Offer"}
           </button>
         </form>
-        <PropertyOffersTable propertyId={property?.propertyId} />
+        <PropertyOffersTable property={property} />
       </Modal>
     </>
   );

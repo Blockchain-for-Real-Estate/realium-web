@@ -47,7 +47,7 @@ const PropertyListModal = ({ property }) => {
             {isLoading ? "..." : "List Share"}
           </button>
         </form>
-        <PropertyListingsTable propertyId={property?.propertyId} />
+        <PropertyListingsTable property={property} />
       </Modal>
     </>
   );

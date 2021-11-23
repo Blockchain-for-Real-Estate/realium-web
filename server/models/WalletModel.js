@@ -34,7 +34,7 @@ const WalletSchema = new dynamoose.Schema(
 
 const WalletModel = dynamoose.model("realium-user-wallets", WalletSchema, {
   create: false,
-  update: true,
+  update: false,
 });
 
 export default WalletModel;
