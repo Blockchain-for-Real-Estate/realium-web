@@ -8,7 +8,7 @@ import useRealiumContractWithSigner from "src/server/hooks/useRealiumContractWit
  */
 const increaseAllowanceForSale = (smartContractAddress, listing, buyerAddress) => {
     const smartContract = await useRealiumContractWithSigner(listing.sellerAddress, smartContractAddress);
-    const response = await smartContract.useIncreaseAllowance(buyerAddress, listing.count);
+    const response = await smartContract.increaseAllowance(buyerAddress, listing.count);
     return response;
 };
 
