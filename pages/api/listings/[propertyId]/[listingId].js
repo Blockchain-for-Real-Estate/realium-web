@@ -13,11 +13,19 @@ const ReadListing = async (req, res) => {
 };
 
 const DeleteListing = async (req, res, user) => {
-  const { propertyId } = req.query;
-  const sellerAddress = user.attributes["custom:wallet"];
+  const { propertyId, listingId } = req.query;
+  const userAddress = user.attributes["custom:wallet"];
 
-  await ListingModel.delete({ propertyId, sellerAddress });
-  return res.send();
+  const listing = await ListingModel.get({ propertyId, listingId });
+
+  if (listing.sellerAddress !== userAddress) {
+    res.status(401);
+    throw Error("Not Authorized");
+  }
+
+  // TODO: RETURN THE TOEKN FROM THIS LISTING BACK TO THE USER ADDRESS
+  listing.delete();
+  return res.send(listing.toJSON());
 };
 
 const handlers = {
@@ -26,7 +34,6 @@ const handlers = {
     origin: "",
     function: ReadListing,
   },
-
   DELETE: {
     auth: true,
     origin: "",
