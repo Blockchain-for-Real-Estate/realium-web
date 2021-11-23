@@ -1,4 +1,3 @@
-import useAVAX from "src/context/hooks/useAVAX";
 import { useQuery } from "react-query";
 import useUser from "./useUser";
 

@@ -6,23 +6,28 @@ dynamoose.aws.sdk.config.update({
   region: process.env.NEXT_PUBLIC_AWS_REGION,
 });
 
-const WalletSchema = new dynamoose.Schema(
+const OfferSchema = new dynamoose.Schema(
   {
-    sub: {
+    propertyId: {
       type: String,
       required: true,
       hashKey: true,
     },
-    address: {
+    buyerAddress: {
       type: String,
       required: true,
+      rangeKey: true,
       index: {
         name: "addressIndex",
         global: true,
       },
     },
-    privateKey: {
-      type: String,
+    price: {
+      type: Number,
+      required: true,
+    },
+    count: {
+      type: Number,
       required: true,
     },
   },
@@ -32,9 +37,9 @@ const WalletSchema = new dynamoose.Schema(
   }
 );
 
-const WalletModel = dynamoose.model("realium-user-wallets", WalletSchema, {
-  create: false,
+const OfferModel = dynamoose.model("realium-offers", OfferSchema, {
+  create: true,
   update: true,
 });
 
-export default WalletModel;
+export default OfferModel;

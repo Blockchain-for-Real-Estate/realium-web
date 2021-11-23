@@ -5,14 +5,14 @@ import ListingModel from "server/models/Listing";
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
 
-const ReadListing = async (req, res) => {
+const ReadOffer = async (req, res) => {
   const { propertyId, sellerAddress } = req.query;
   const listing = await ListingModel.get({ propertyId, sellerAddress });
   if (!listing) res.status(400);
   return res ? res.send(listing) : listing;
 };
 
-const CreateListing = async (req, res, user) => {
+const CreateOffer = async (req, res, user) => {
   const { propertyId } = req.query;
   const sellerAddress = user.attributes["custom:wallet"];
 
@@ -22,7 +22,7 @@ const CreateListing = async (req, res, user) => {
   return res.send(newListing.toJSON());
 };
 
-const DeleteListing = async (req, res, user) => {
+const DeleteOffer = async (req, res, user) => {
   const { propertyId } = req.query;
   const sellerAddress = user.attributes["custom:wallet"];
 
@@ -34,17 +34,17 @@ const handlers = {
   GET: {
     auth: false,
     origin: "",
-    function: ReadListing,
+    function: ReadOffer,
   },
   POST: {
     auth: true,
     origin: "",
-    function: CreateListing,
+    function: CreateOffer,
   },
   DELETE: {
     auth: true,
     origin: "",
-    function: DeleteListing,
+    function: DeleteOffer,
   },
 };
 

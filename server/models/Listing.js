@@ -17,6 +17,10 @@ const ListingSchema = new dynamoose.Schema(
       type: String,
       required: true,
       rangeKey: true,
+      index: {
+        name: "addressIndex",
+        global: true,
+      },
     },
     price: {
       type: Number,
@@ -35,6 +39,7 @@ const ListingSchema = new dynamoose.Schema(
 
 const ListingModel = dynamoose.model("realium-listings", ListingSchema, {
   create: true,
+  update: true,
 });
 
 export default ListingModel;
