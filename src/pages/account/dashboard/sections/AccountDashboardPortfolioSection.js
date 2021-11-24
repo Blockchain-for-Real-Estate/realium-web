@@ -15,7 +15,7 @@ const AccountDashboardPortfolioSection = () => {
         subtitle="View your purchased Realium assets. Manage your purchases and sell the properties you no longer want to hold. "
       />
         <dl className="mt-10 space-y-10">
-          {isLoading && <div className="text-center p-2">Retrieving Portfolio...</div>}
+          {isLoading && <div className="text-center p-2 mb-16 xl:mb-0">Retrieving Portfolio...</div>}
           {!isLoading && data && Object.values(data).reduce((a, b) => Number(a) + Number(b), 0) == 0 &&
             <div className="mb-16 xl:mb-0 w-full flex flex-col items-center justify-center">
             <h1 className="text-xl text-indigo-700 font-black uppercase">
