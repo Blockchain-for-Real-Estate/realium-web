@@ -1,6 +1,6 @@
 import AmplifyInit from "amplify.config";
 import DefaultHandler from "server/DefaultHandler";
-import PropertyModel from "server/models/Property";
+import PropertyModel from "server/models/PropertyModel";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();

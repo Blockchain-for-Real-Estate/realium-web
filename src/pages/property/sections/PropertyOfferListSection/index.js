@@ -1,18 +1,18 @@
 import { Tab } from "@headlessui/react";
 import useUser from "src/context/queries/useUser";
 import classNames from "src/utilities/web/ClassNames";
-import Buy from "./Buy";
-import Offer from "./Offer";
+import BuyOrOffer from "./BuyOrOffer";
+import SellOrList from "./SellOrList";
 import Link from "next/link";
 
 const TABS = [
   {
-    name: "Buy",
-    Component: Buy,
+    name: "Buy or Offer",
+    Component: BuyOrOffer,
   },
   {
-    name: "Offer",
-    Component: Offer,
+    name: "Sell or List",
+    Component: SellOrList,
   },
 ];
 

@@ -1,4 +1,3 @@
-import useAVAX from "src/context/hooks/useAVAX";
 import { useQuery } from "react-query";
 import useUser from "./useUser";
 
@@ -11,7 +10,11 @@ export const QUERY_KEY = "USER_TRANSACTIONS";
 
 export default function useUserTransactions() {
   const { data: user } = useUser();
-  return useQuery([QUERY_KEY], () => GetUserTransactions(), {
-    enabled: !!user,
-  });
+  return useQuery(
+    [QUERY_KEY, user?.attributes.sub],
+    () => GetUserTransactions(),
+    {
+      enabled: !!user,
+    }
+  );
 }

@@ -16,6 +16,10 @@ const WalletSchema = new dynamoose.Schema(
     address: {
       type: String,
       required: true,
+      index: {
+        name: "addressIndex",
+        global: true,
+      },
     },
     privateKey: {
       type: String,
@@ -30,6 +34,7 @@ const WalletSchema = new dynamoose.Schema(
 
 const WalletModel = dynamoose.model("realium-user-wallets", WalletSchema, {
   create: false,
+  update: false,
 });
 
 export default WalletModel;

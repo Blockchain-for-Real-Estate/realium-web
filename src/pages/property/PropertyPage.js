@@ -1,10 +1,11 @@
 import useProperty from "src/context/queries/useProperty";
 import PropertyBreadCrumbsSection from "./sections/PropertyBreadCrumbsSection";
 import PropertyDetailsSection from "./sections/PropertyDetailsSection";
-import BuyListOfferSection from "./sections/BuyListOfferSection";
+import OfferListSection from "./sections/PropertyOfferListSection";
 import PropertyImageGallerySection from "./sections/PropertyImageGallerySection";
 import PropertyHeadingSection from "./sections/PropertyHeadingSection";
 import PropertyDescriptionSection from "./sections/PropertyDescriptionSection";
+import PropertyUserListingsSection from "./sections/PropertyUserListingsSection";
 
 const PropertyPage = ({ propertyId }) => {
   const { data: property } = useProperty(propertyId);
@@ -29,7 +30,7 @@ const PropertyPage = ({ propertyId }) => {
         </div>
         <div className="flex-1 max-w-sm">
           <div className="relative h-full">
-            <BuyListOfferSection className="sticky top-0" />
+            <OfferListSection className="sticky top-0" property={property} />
           </div>
         </div>
       </div>

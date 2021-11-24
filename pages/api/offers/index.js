@@ -1,26 +1,26 @@
 import AmplifyInit from "amplify.config";
 import DefaultHandler from "server/DefaultHandler";
-import ListingModel from "server/models/ListingModel";
+import OfferModel from "server/models/OfferModel";
 import PropertyModel from "server/models/PropertyModel";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
 AmplifyInit();
 
-export const ReadUserListings = async (req, res, user) => {
+export const ReadUserOffers = async (req, res, user) => {
   const userAddress = user.attributes["custom:wallet"];
 
-  const listings = await ListingModel.query({ sellerAddress: userAddress })
+  const offers = await OfferModel.query({ buyerAddress: userAddress })
     .using("addressIndex")
     .exec();
 
-  return res.send(listings);
+  return res.send(offers);
 };
 
 const handlers = {
   GET: {
     auth: true,
     origin: null,
-    function: ReadUserListings,
+    function: ReadUserOffers,
   },
 };
 

@@ -1,6 +1,6 @@
 import GetUserWallet from "./GetUserWallet";
 import { ethers } from "ethers";
-import WalletModel from "server/models/Wallet";
+import WalletModel from "server/models/WalletModel";
 
 /**
  * This action will check if the current user has a wallet, then either return it or create a new one for them
