@@ -4,8 +4,8 @@ import Modal from "src/components/base/Modal";
 import useBuyListingMutation from "src/context/mutations/useBuyListingMutation";
 import useUserAvaxBalance from "src/context/queries/useUserAvaxBalance";
 import { IncreaseAllowanceForSale, useRealiumContractWithSigner} from "../../../../../server/hooks/";
-import useRealiumContract from "src/context/hooks/useRealiumContract";
 import { ethers } from "ethers";
+import GetUserWallet from "../../../../../server/actions/GetUserWallet";
 
 
 const PropertyBuyModal = ({ property, listing }) => {
@@ -16,6 +16,7 @@ const PropertyBuyModal = ({ property, listing }) => {
     listing?.listingId
   );
   const realiumContract = useRealiumContractWithSigner(NEED_TO_BE_REPLACED, property.smartContract);
+  const userWallet = GetUserWallet();
 
 
   const total = listing?.quantity * listing?.price;
@@ -28,9 +29,9 @@ const PropertyBuyModal = ({ property, listing }) => {
     });
   };
 
-  const buy = () => {
+  const buy = async () => {
     //TODO: get the buyers address and insert below
-    await IncreaseAllowanceForSale(property.smartContract, listing, NEED_TO_BE_REPLACED);
+    await IncreaseAllowanceForSale(property.smartContract, listing, userWallet);
     const sale = await realiumContract.sale(listing.sellerAddress, listing.count, listing.price, {value: ethers.utils.parseEther(total)});
     const response = await sale.await(); //https://ethereum.stackexchange.com/questions/102544/how-to-set-msg-value-from-function
     return response;
