@@ -3,9 +3,9 @@ import AccountDashboardTransactionsSection from "./sections/AccountDashboardTran
 
 const AccountDashboardPage = () => {
   return (
-    <div className="space-y-5">
+    <div className="xl:flex xl:flex-cols xl:space-x-12">
       <AccountDashboardPortfolioSection />
-      {/* <AccountDashboardTransactionsSection /> */}
+      <AccountDashboardTransactionsSection />
     </div>
   );
 };
