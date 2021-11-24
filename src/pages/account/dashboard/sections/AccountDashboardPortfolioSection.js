@@ -1,81 +1,65 @@
 import Link from "next/link";
 import Image from "next/image";
+import useProperties from "src/context/queries/useProperties";
 import Heading2 from "src/components/general/Heading2";
 import useUserAssets from "src/context/queries/useUserAssets";
 
 const AccountDashboardPortfolioSection = () => {
-  const { data: properties } = useUserAssets();
-
-  // if (isLoading) return <div>Loading Wave</div>;
-  // if (isError) return <div>Error Screen</div>;
+  const { data } = useUserAssets();
+  const { data: properties, isLoading, isError } = useProperties();
+  console.log(data)
+  if (isLoading) return <div>Loading Wave</div>;
+  if (isError) return <div>Error Screen</div>;
 
   return (
     <div>
       <Heading2
         title="Your Portfolio"
-        subtitle="View your purchased Realium assets. Manage your purchses and sell the properties you no longer want to hold. "
+        subtitle="View your purchased Realium assets. Manage your purchses and sell the properties you no longer want href hold. "
       />
-        <div className="py-12 bg-gray-50 overflow-hidden sm:pb-12 lg:py-18">
-        <div className="max-w-xl mx-auto px-8 sm:px-6 lg:px-8 lg:max-w-7xl">
-            <div className="relative mt-2 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-16 lg:items-top">
+        <div className="max-w-xl mx-auto px-8 lg:px-6 lg:px-8 lg:max-w-7xl">
+            <div className="relative lg:grid lg:grid-cols-2 lg:gap-16 lg:items-top">
             <div className="relative">
                 <dl className="mt-10 space-y-10">
                     <div className="grid grid-cols-1 gap-6">
                     {properties?.map((property) => (
-                        // eslint-disable-next-line
-                        //alreadyListed = lodash.groupBy(tokens[key], "listed"),
-                    <div key={property.propertyId} className="relative rounded-lg border border-gray-300 bg-white shadow-md flex items-center space-x-3 hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                        <div className="grid grid-cols-1 sm:flex sm:flex-cols items-center">
-                        <Link to={`/marketplace/${property.propertyId}`} className="flex-shrink-0" style={{textDecoration: "none"}}>
-                            <Image className="h-48 w-full object-fill rounded-t-md sm:w-48 sm:h-full sm:object-fill sm:rounded-l-sm sm:rounded-tr-none" src="images/coming-soon.jpg" alt=""/>
-                        </Link>
-                        <div className="flex-1 min-w-0 space-x-2 pt-2 pb-2 pl-2">
-                            <div className="grid grid-cols-1 sm:grid-cols-3 sm:align-middle sm:items-center">
-                                <Link to={`/marketplace/${property.propertyId}`} className="text-black font-semibold grid grid-cols-2 mr-8 sm:mr-1 text-center sm:text-left sm:grid-cols-1 sm:m-2" style={{textDecoration: "none"}}>
-                                    Address
-                                    <p className="text-xs text-gray-500 pt-1 text-center sm:text-left mb-0">
-                                        {property.streetAddress}
-                                        <br/>
+                    <Link key={property.propertyId} href={`/marketplace/${property.propertyId}`} passHref>
+                      <div className="relative rounded-lg border border-gray-300 bg-white shadow-md items-center space-x-3 cursor-pointer hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                      <div className="relative flex-shrink-0 grid grid-cols-1 lg:flex lg:flex-cols items-center" style={{textDecoration: "none"}}>
+                        <div className="relative flex-1 h-48 lg:h-28">
+                          <Image className="rounded-t-md lg:rounded-l-lg lg:rounded-tr-none" src={`/images/${property.propertyId}.jpg`} layout="fill" objectFit="cover" alt="Coming Soon"/>
+                        </div>
+                        <div className="flex-1 lg:px-2 lg:py-0 px-4 py-4">
+                            <div className="lg:align-middle lg:items-center lg:space-y-3 space-y-4">
+                                <div className="text-black font-bold mr-8 lg:mr-1 lg:text-left lg:m-1 truncate" style={{textDecoration: "none"}}>
+                                    {property.propertyName}
+                                    <div className="text-xs text-gray-500 pt-1 lg:text-left mb-0 truncate">
                                         {property.city}, {property.state}
-                                    </p>
-                                </Link>
-                                <Link to={`/marketplace/${property.propertyId}`} className="text-black font-semibold grid grid-cols-2 mr-8 sm:mr-1 text-center sm:text-left sm:grid-cols-1 sm:m-2" style={{textDecoration: "none"}}>
-                                    Shares:
-                                    <p className="text-xs text-gray-500 pt-1 text-center sm:text-left mb-0">
-                                        {alreadyListed['true'] ?
-                                        <><NumberFormat
-                                            value={alreadyListed['true'].length}
-                                            displayType={'text'}
-                                            thousandSeparator={true}
-                                            suffix={` ${alreadyListed['true'].length > 1 ? "shares" : "share"} listed`}
-                                            />
-                                        <br/></>
-                                            :
-                                            null
-                                        }
-                                    </p>
-                                </Link>
-                                <div className="space-y-2 text-center sm:m-1 sm:items-center">
-                                    <button className="bg-gray-50 text-indigo-600 active:bg-indigo-500 text-xs w-4/5 py-2 px-2 rounded hover:bg-gray-100 outline-none focus:outline-none ease-linear transition-all duration-150" type="button"
+                                    </div>
+                                </div>
+                                <div className="text-black text-sm font-semibold lg:mr-1 lg:text-left lg:m-1 flex items-center justify-between" style={{textDecoration: "none"}}>
+                                    Tokens: {`${data[property.smartContractAddress]}`}
+                                    <button className="bg-indigo-500 text-white active:bg-indigo-500 text-xs py-2 px-2 rounded hover:bg-indigo-600 outline-none focus:outline-none ease-linear transition-all duration-150" type="button"
                                     >
-                                    Shares Listed
+                                    List Tokens
                                     </button>
                                 </div>
                             </div>
                         </div>
                         </div>
-                    </div>
+                      </div>
+                    </Link>
                     ))}
                     </div>
                 </dl>
             </div>
-            <div className="mt-16 sm:mt-8 -mx-4 relative lg:mt-0" aria-hidden="true">
+            <div className="mt-16 lg:mt-8 -mx-4 relative lg:mt-0" aria-hidden="true">
             <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-1 lg:gap-8 lg:items-top">
                 <div className="mx-3 lg:col-start-2">
                 <div className="flex flex-col">
-                <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                    <div className="sm:shadow-md overflow-hidden sm:rounded-lg">
+                <div className="-my-2 overflow-x-auto lg:-mx-6 lg:-mx-8">
+                    <div className="py-2 align-middle inline-block min-w-full lg:px-6 lg:px-8">
+                    <div className="lg:shadow-md overflow-hidden lg:rounded-lg">
                         {/* <table className="border-2 border-gray-100 m-0 p-0 min-w-full">
                         <thead className="bg-gray-100 border-1 border-gray-700 divide-y p-3 uppercase text-md">
                             <tr>
@@ -143,16 +127,16 @@ const AccountDashboardPortfolioSection = () => {
                         </table>
                         {pages.length>0 ?
                         <nav
-                        className="bg-gray-100 px-4 py-3 flex items-center justify-between sm:px-6"
+                        className="bg-gray-100 px-4 py-3 flex items-center justify-between lg:px-6"
                         aria-label="Pagination"
                         >
-                        <div className="hidden sm:block">
+                        <div className="hidden lg:block">
                             <p className="text-sm text-gray-700">
-                            Showing <span className="font-medium">{startRange}</span> to <span className="font-medium">{endRange}</span> of{' '}
+                            Showing <span className="font-medium">{startRange}</span> href <span className="font-medium">{endRange}</span> of{' '}
                             <span className="font-medium">{events.length}</span> results
                             </p>
                         </div>
-                        <div className="flex-1 flex justify-between sm:justify-end">
+                        <div className="flex-1 flex justify-between lg:justify-end">
                             {currentPage>1 ? 
                             <button
                             onClick={() => {
@@ -187,11 +171,10 @@ const AccountDashboardPortfolioSection = () => {
             </div>
         </div>
         </div>
-        </div>
         {/* <div>
-            <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto py-12 px-4 lg:py-16 lg:px-6 lg:px-8">
                 <div className="max-w-3xl mx-auto divide-y-2 divide-gray-200">
-                    <h2 className="text-center text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                    <h2 className="text-center text-3xl font-extrabold text-gray-900 lg:text-4xl">
                         Frequently asked questions
                     </h2>
                     <dl className="mt-6 space-y-6 divide-y divide-gray-200">
