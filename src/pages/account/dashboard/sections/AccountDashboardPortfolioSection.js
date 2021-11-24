@@ -23,7 +23,7 @@ const AccountDashboardPortfolioSection = () => {
             </h1>
             <Link href={`/marketplace/`} passHref>Get started by shopping the marketplace.</Link>
           </div>}
-          {properties?.map((property) => (
+          {data && properties?.map((property) => (
             Number(data[property.smartContractAddress]) > 0 ?  
             <Link key={property.propertyId} href={`/marketplace/${property.propertyId}`} passHref>
               <div className="relative rounded-lg border border-gray-300 bg-white shadow-md items-center space-x-3 cursor-pointer hover:border-gray-400 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
