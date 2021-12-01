@@ -1,6 +1,6 @@
 const PropertyDescriptionSection = ({ property }) => {
   return (
-    <div className="mx-6 sm:mx-0">
+    <div className="mx-2 sm:mx-0">
       <div className="font-bold pt-8" style={{ fontSize: "1.1rem" }}>
         Description
       </div>

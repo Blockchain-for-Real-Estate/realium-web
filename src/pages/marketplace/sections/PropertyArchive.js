@@ -16,7 +16,7 @@ export default function PropertyArchive() {
       />
 
       <div className="max-w-7xl mx-auto my-10">
-        <div className="max-w-7xl mx-auto sm:grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
+        <div className="max-w-7xl mx-4 sm:grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
           {properties?.slice(0, 6).map((property) => (
             <div className="my-6 sm:my-0" key={property.propertyId}>
               <PropertyCard property={property} />

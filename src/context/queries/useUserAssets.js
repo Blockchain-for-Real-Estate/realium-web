@@ -4,11 +4,15 @@ import useRealiumContract from "../hooks/useRealiumContract";
 import { ethers } from "ethers";
 
 export const GetUserAssets = async ({ user }) => {
-  const RealiumContract = useRealiumContract();
-  const response = await RealiumContract.balanceOf(
-    user.attributes["custom:wallet"]
-  );
-  return ethers.utils.formatEther(response);
+  const RealiumContracts = useRealiumContract();
+  let contracts = {}
+  RealiumContracts.forEach(async (contract) => {
+    const response = await contract.balanceOf(
+      user.attributes["custom:wallet"]
+    );
+    contracts[contract.address] = ethers.utils.formatEther(response)
+  })
+  return contracts
 };
 
 export const QUERY_KEY = "USER_ASSETS";
