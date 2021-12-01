@@ -1,16 +1,32 @@
+import React from 'react'
+import TimeAgo from 'react-timeago'
+import NumberFormat from "react-number-format";
+import useUserTransactions from "src/context/queries/useUserTransactions";
 import Heading2 from "src/components/general/Heading2";
 
 const AccountDashboardTransactionsSection = () => {
+  const { data: transactions, isLoading } = useUserTransactions();
+
+  let [currentPage, setCurrentPage] = React.useState(1)
+  let pages = []
+
+  if (transactions) {
+    var i,j,temparray,chunk = 10;
+    for (i=0,j=transactions.length; i<j; i+=chunk) {
+        temparray = transactions.slice(i,i+chunk);
+        pages.push(temparray)
+    }
+  }
+
   return (
-    <div>
+    <div className="my-0">
       <Heading2
         title="Recent Transactions"
-        subtitle="View your activity across the Realium platform."
+        subtitle="View your activity across the Realium platform. Monitor your on-chain transactions and see live summaries here."
       />
-
-      <div className="flex flex-col">
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div className="mt-10 flex flex-col">
+        <div className="-my-2 overflow-x-auto">
+          <div className="py-2 align-middle inline-block min-w-full">
             <div className="sm:shadow-md overflow-hidden sm:rounded-lg">
               <table className="border-2 border-gray-100 m-0 p-0 min-w-full">
                 <thead className="bg-gray-100 border-1 border-gray-700 divide-y p-3 uppercase text-md">
@@ -33,7 +49,8 @@ const AccountDashboardTransactionsSection = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* {pages[0] !== undefined && pages[0] !== null
+                  {isLoading && <div className="text-center p-2">Getting Transactions...</div>}
+                  {pages[0] !== undefined && pages[0] !== null
                     ? Object.keys(pages[currentPage - 1]).map((key) => (
                         <tr
                           key={key}
@@ -44,7 +61,7 @@ const AccountDashboardTransactionsSection = () => {
                             data-label="Time"
                           >
                             <TimeAgo
-                              date={events[key].eventDateTime}
+                              date={transactions[key].eventDateTime}
                               locale="en-US"
                             />
                           </td>
@@ -90,14 +107,14 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Asset"
                           >
-                            {pages[currentPage - 1][key].property.streetAddress}
+                            {pages[currentPage - 1][key].property}
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap text-xs font-medium justify-end"
                             data-label="Tx"
                           >
                             {pages[currentPage - 1][key].eventType ===
-                              "SALE" && (
+                              "LIST" && (
                               <div className="object-right">
                                 <a
                                   href={`https://testnet.avascan.info/blockchain/x/tx/${
@@ -128,7 +145,7 @@ const AccountDashboardTransactionsSection = () => {
                           </td>
                         </tr>
                       ))
-                    : null} */}
+                    : null}
                 </tbody>
               </table>
             </div>
