@@ -5,5 +5,5 @@ const Page = (props) => <Subscribe {...props} />;
 Page.title = "Become an Asset";
 Page.description = null;
 Page.layout = "default";
-Page.restricted = true;
+Page.restricted = false;
 export default Page;
