@@ -1,6 +1,7 @@
 import CurrencyDisplay from "src/components/avax/CurrencyDisplay";
 import usePropertyListings from "src/context/queries/usePropertyListings";
 import PropertyBuyModal from "./PropertyBuyModal";
+import useDeleteListingMutation from "src/context/mutations/useDeleteListingMutation";
 
 const PropertyListingsTable = ({ property, action = false }) => {
   const { data: listings, isLoading } = usePropertyListings(
@@ -33,12 +34,12 @@ const PropertyListingsTable = ({ property, action = false }) => {
                 <td className={CLASSES.td}>
                   <PropertyBuyModal listing={listing} property={property} />
                 </td>
+
               )}
             </tr>
           ))}
         </tbody>
       </table>
-      {isLoading && <div className="text-center py-5">Getting Listings...</div>}
       {listings?.length < 1 && (
         <div className="text-center py-5">No Listings Available</div>
       )}

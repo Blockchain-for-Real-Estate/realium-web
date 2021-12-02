@@ -4,8 +4,7 @@ import GetWallet from "server/actions/GetWallet";
 import DefaultHandler from "server/DefaultHandler";
 import ListingModel from "server/models/ListingModel";
 import PropertyModel from "server/models/PropertyModel";
-import RealiumContractAbi from "server/data/abis/RealiumContractAbi.json";
-import useAvalanchePrivate from "server/hooks/useAvalanchePrivate"
+import GetSignerConnectedSmartContract from "server/actions/GetSignerConnectedSmartContract";
 import { ethers, BigNumber } from "ethers";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
@@ -31,27 +30,25 @@ export const BuyListing = async (req, res, user) => {
   const sellerWallet = await GetWallet(sellerAddress, true);
 
   //Connect wallet to provider
-  const wallet = new ethers.Wallet(sellerWallet[0].privateKey)
-  let walletSigner = wallet.connect(provider);
-  const smartContract = new ethers.Contract(property.smartContractAddress, RealiumContractAbi, walletSigner);
+  let smartContract = await GetSignerConnectedSmartContract(sellerWallet[0].privateKey, provider, property);
 
-  // TODO: take out, This will be done on the smart contract in the future
+  // TODO: take out later, This will be done on the smart contract in the future
   const avaxBalance = await provider.getBalance(buyerWallet.address);
   if (ethers.utils.formatEther(avaxBalance) < total){
     throw Error;
   }
 
-  // TODO: take out, This will be done on the smart contract in the future
+  // TODO: take out later, This will be done on the smart contract in the future
   const tokenBalanceBigNum = await smartContract.balanceOf(sellerWallet[0].address);
   const tokenBalance = tokenBalanceBigNum.toNumber();
   if (tokenBalance < listing.quantity){
     throw Error;
   }
-  const increaseAllowanceResponse = await smartContract.increaseAllowance(sellerWallet[0].address, listing.quantity);
-  const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, listing.price, {value: ethers.utils.parseEther(total.toString())});
-  const response = await sale.wait(); //https://ethereum.stackexchange.com/questions/102544/how-to-set-msg-value-from-function
-  console.log("The sale actually completed")
-  console.log(response)
+
+  const increaseAllowanceResponse = await smartContract.increaseAllowance(buyerWallet.address, listing.quantity);
+  smartContract = await GetSignerConnectedSmartContract(sellerWallet[0].privateKey, provider, property);
+  const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, listing.price, {value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000 });
+  const response = await sale.wait();
 
   await ListingModel.delete({ propertyId, listingId });
   return res.send(listing);
