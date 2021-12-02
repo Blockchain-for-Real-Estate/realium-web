@@ -40,7 +40,6 @@ const PropertyListingsTable = ({ property, action = false }) => {
           ))}
         </tbody>
       </table>
-      {}
       {listings?.length < 1 && (
         <div className="text-center py-5">No Listings Available</div>
       )}
