@@ -10,7 +10,7 @@ export const GetUserAssets = async ({ user }) => {
     const response = await contract.balanceOf(
       user.attributes["custom:wallet"]
     );
-    contracts[contract.address] = ethers.utils.formatEther(response)
+    contracts[contract.address] = response
   })
   return contracts
 };

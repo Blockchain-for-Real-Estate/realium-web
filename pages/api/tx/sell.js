@@ -22,6 +22,7 @@ export const SellOffer = async (req, res, user) => {
   // TODO: CHECK TO MAKE SURE BUYER HAS SUFFICENT AVAX
 
   // TODO: TRANSACT AVAX from buyer wallet to sellerWallet
+  
   // TODO: TRANSACT TOKEN FROM sellerWallet to buyer address
 
   await OfferModel.delete({ propertyId, offerId });

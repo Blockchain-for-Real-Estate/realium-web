@@ -4,6 +4,7 @@ import Modal from "src/components/base/Modal";
 import useBuyListingMutation from "src/context/mutations/useBuyListingMutation";
 import useUserAvaxBalance from "src/context/queries/useUserAvaxBalance";
 
+
 const PropertyBuyModal = ({ property, listing }) => {
   const [open, setOpen] = useState(false);
   const { data: balance } = useUserAvaxBalance();
