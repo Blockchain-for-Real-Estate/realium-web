@@ -4,9 +4,7 @@ import GetWallet from "server/actions/GetWallet";
 import DefaultHandler from "server/DefaultHandler";
 import ListingModel from "server/models/ListingModel";
 import PropertyModel from "server/models/PropertyModel";
-import RealiumContractAbi from "server/data/abis/RealiumContractAbi.json";
 import GetSignerConnectedSmartContract from "server/actions/GetSignerConnectedSmartContract";
-import useAvalanchePrivate from "server/hooks/useAvalanchePrivate"
 import { ethers, BigNumber } from "ethers";
 
 // REQUIRED ON ANY ROUTES WITH AUTH
@@ -49,10 +47,8 @@ export const BuyListing = async (req, res, user) => {
 
   const increaseAllowanceResponse = await smartContract.increaseAllowance(buyerWallet.address, listing.quantity);
   smartContract = await GetSignerConnectedSmartContract(sellerWallet[0].privateKey, provider, property);
-  const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, listing.price, {value: ethers.utils.parseEther(total.toString()), gasLimit: 2500000 });
+  const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, listing.price, {value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000 });
   const response = await sale.wait();
-  console.log("The sale actually completed")
-  console.log(response)
 
   await ListingModel.delete({ propertyId, listingId });
   return res.send(listing);

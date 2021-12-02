@@ -48,7 +48,7 @@ export const SellOffer = async (req, res, user) => {
   // TRANSACT AVAX from buyer wallet to sellerWallet and TRANSACT TOKEN FROM sellerWallet to buyer address
   const increaseAllowanceResponse = await smartContract.increaseAllowance(buyerWallet[0].address, offer.quantity);
   smartContract = await GetSignerConnectedSmartContract(sellerWallet.privateKey, provider, property);
-  const sale = await smartContract.sale(sellerWallet.address, offer.quantity, offer.price, {value: ethers.utils.parseEther(total.toString()), gasLimit: 2500000 });
+  const sale = await smartContract.sale(sellerWallet.address, offer.quantity, offer.price, {value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000 });
   const response = await sale.wait();
 
   await OfferModel.delete({ propertyId, offerId });
