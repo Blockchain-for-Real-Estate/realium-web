@@ -14,7 +14,6 @@ export const BuyListing = async (req, res, user) => {
   const { propertyId, listingId } = req.body;
   const listing = await ListingModel.get({ propertyId, listingId });
   const property = await PropertyModel.get(listing.propertyId)
-  //TODO: extract this function because it will probably be reused quite a few times
   const provider = new ethers.providers.JsonRpcProvider(
     process.env.NEXT_PUBLIC_AVALANCHE_API_URL
   );
@@ -46,7 +45,7 @@ export const BuyListing = async (req, res, user) => {
   }
 
   const increaseAllowanceResponse = await smartContract.increaseAllowance(buyerWallet.address, listing.quantity);
-  smartContract = await GetSignerConnectedSmartContract(sellerWallet[0].privateKey, provider, property);
+  smartContract = await GetSignerConnectedSmartContract(buyerWallet.privateKey, provider, property);
   const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, listing.price, {value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000 });
   const response = await sale.wait();
 
