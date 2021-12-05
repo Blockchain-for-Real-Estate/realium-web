@@ -44,7 +44,6 @@ export const SellOffer = async (req, res, user) => {
     throw Error;
   }
 
-  console.log("increase")
   // TRANSACT AVAX from buyer wallet to sellerWallet and TRANSACT TOKEN FROM sellerWallet to buyer address
   const increaseAllowanceResponse = await smartContract.increaseAllowance(buyerWallet[0].address, offer.quantity);
   smartContract = await GetSignerConnectedSmartContract(buyerWallet[0].privateKey, provider, property);
