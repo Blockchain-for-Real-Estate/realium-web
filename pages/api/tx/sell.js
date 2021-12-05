@@ -19,7 +19,6 @@ export const SellOffer = async (req, res, user) => {
     process.env.NEXT_PUBLIC_AVALANCHE_API_URL
   );
   const total = offer?.quantity * offer?.price;
-  console.log(total)
 
   if (!offer) throw Error("This offer is no longer available");
 
