@@ -4,11 +4,11 @@ import useAvalanchePublic from "./useAvalanchePublic";
 
 //TODO: dynamically pull in smart contracts from api
 const CONTRACT_ADDRESSES = ["0x1630BDb93d1fA86122f909b413403FbDd43D7790",
-                            "0x29D0dc8CEA65DE50a87b9f0D98B841ebbE03fbD0",
-                            "0x5CAe5485868cEb081E9A252A4DEE15FD26A43AED",
-                            "0xaa7Bf0Ed9Ae51cdF88616612620e9502E5cd5f55",
-                            "0x750c17B6C4DB27E516A812149A75a3c9E60fA5D9",
-                            "0xC17c7CF1d567f8A4770D1D19A6Fa6A6757FCB619"];
+                            "0x16d9415883a907B7021D8C1D84D41ce1316f8Ef4",
+                            "0x1771366C9F7fc9E903c67ac4cE24674126c448B3",
+                            "0xfA9Ac35d59A58A6e178872269C83a02f108270a9",
+                            "0xfAA15f1ff49376ba6Ff118fE45A85039242418EA",
+                            "0x51e6bFC6169c3Bc0f970c2Cb8d1D8E6cF17aa6ee"];
 
 const useRealiumContract = () => {
   const { provider } = useAvalanchePublic();
