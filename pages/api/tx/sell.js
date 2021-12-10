@@ -26,29 +26,15 @@ export const SellOffer = async (req, res, user) => {
   const buyerAddress = offer.buyerAddress;
 
   const sellerWallet = await GetUserWallet(user, true);
-
   const buyerWallet = await GetWallet(buyerAddress, true);
 
   //Connect wallet to provider
   let smartContract = await GetSignerConnectedSmartContract(sellerWallet.privateKey, provider, property);
 
-  // CHECK TO MAKE SURE BUYER HAS SUFFICENT AVAX
-  const avaxBalance = await provider.getBalance(buyerWallet[0].address);
-  if (ethers.utils.formatEther(avaxBalance) < total){
-    throw Error;
-  }
-  // CHECK TO MAKE SURE SELLER HAS TOKEN;
-  const tokenBalanceBigNum = await smartContract.balanceOf(sellerWallet.address);
-  const tokenBalance = tokenBalanceBigNum.toNumber();
-  if (tokenBalance < offer.quantity){
-    throw Error;
-  }
-
-  console.log("increase")
   // TRANSACT AVAX from buyer wallet to sellerWallet and TRANSACT TOKEN FROM sellerWallet to buyer address
   const increaseAllowanceResponse = await smartContract.increaseAllowance(buyerWallet[0].address, offer.quantity);
-  smartContract = await GetSignerConnectedSmartContract(sellerWallet.privateKey, provider, property);
-  const sale = await smartContract.sale(sellerWallet.address, offer.quantity, offer.price, {value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000 });
+  smartContract = await GetSignerConnectedSmartContract(buyerWallet[0].privateKey, provider, property);
+  const sale = await smartContract.sale(sellerWallet.address, offer.quantity, ethers.utils.parseEther(offer.price.toString()), {value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000});
   const response = await sale.wait();
 
   await OfferModel.delete({ propertyId, offerId });

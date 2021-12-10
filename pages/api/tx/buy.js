@@ -14,7 +14,6 @@ export const BuyListing = async (req, res, user) => {
   const { propertyId, listingId } = req.body;
   const listing = await ListingModel.get({ propertyId, listingId });
   const property = await PropertyModel.get(listing.propertyId)
-  //TODO: extract this function because it will probably be reused quite a few times
   const provider = new ethers.providers.JsonRpcProvider(
     process.env.NEXT_PUBLIC_AVALANCHE_API_URL
   );
@@ -32,22 +31,9 @@ export const BuyListing = async (req, res, user) => {
   //Connect wallet to provider
   let smartContract = await GetSignerConnectedSmartContract(sellerWallet[0].privateKey, provider, property);
 
-  // TODO: take out later, This will be done on the smart contract in the future
-  const avaxBalance = await provider.getBalance(buyerWallet.address);
-  if (ethers.utils.formatEther(avaxBalance) < total){
-    throw Error;
-  }
-
-  // TODO: take out later, This will be done on the smart contract in the future
-  const tokenBalanceBigNum = await smartContract.balanceOf(sellerWallet[0].address);
-  const tokenBalance = tokenBalanceBigNum.toNumber();
-  if (tokenBalance < listing.quantity){
-    throw Error;
-  }
-
   const increaseAllowanceResponse = await smartContract.increaseAllowance(buyerWallet.address, listing.quantity);
-  smartContract = await GetSignerConnectedSmartContract(sellerWallet[0].privateKey, provider, property);
-  const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, listing.price, {value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000 });
+  smartContract = await GetSignerConnectedSmartContract(buyerWallet.privateKey, provider, property);
+  const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, ethers.utils.parseEther(listing.price.toString()), { value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000 });
   const response = await sale.wait();
 
   await ListingModel.delete({ propertyId, listingId });

@@ -2,12 +2,13 @@ import { ethers } from "ethers";
 import RealiumContractAbi from "src/data/abis/RealiumContractAbi.json";
 import useAvalanchePublic from "./useAvalanchePublic";
 
-const CONTRACT_ADDRESSES = ["0xaF16CA313dB18F919Da617F8175EB86be6888644",
-                            "0x38B42ebB2FCbe6C7f76C41Cf64B8dE035553CFC0",
-                            "0xDa766d8f5b8A03F5993c76eaB855Fd6Ee71e7837",
-                            "0x5eB296D15ED6444A1d2AE68D68e432B8949aeA5C",
-                            "0x0e8246D3787287825C3f3565Ec049c44A5E8Bf54",
-                            "0x9f581D5D991efc4eAD9CF023e46c1b80C210f8Ad"];
+//TODO: dynamically pull in smart contracts from api
+const CONTRACT_ADDRESSES = ["0x1630BDb93d1fA86122f909b413403FbDd43D7790",
+                            "0x16d9415883a907B7021D8C1D84D41ce1316f8Ef4",
+                            "0x1771366C9F7fc9E903c67ac4cE24674126c448B3",
+                            "0xfA9Ac35d59A58A6e178872269C83a02f108270a9",
+                            "0xfAA15f1ff49376ba6Ff118fE45A85039242418EA",
+                            "0x51e6bFC6169c3Bc0f970c2Cb8d1D8E6cF17aa6ee"];
 
 const useRealiumContract = () => {
   const { provider } = useAvalanchePublic();
