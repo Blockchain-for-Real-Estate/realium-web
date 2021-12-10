@@ -3,6 +3,7 @@ import Modal from "src/components/base/Modal";
 import useCreateListingMutation from "src/context/mutations/useCreateListingMutation";
 import Round2DecimalPlaces from "src/utilities/math/Round2DecimalPlaces";
 import PropertyListingsTable from "../PropertyListingsTable";
+import Heading1 from "src/components/general/Heading1";
 
 const PropertyListModal = ({ property }) => {
   const [open, setOpen] = useState(false);
@@ -34,18 +35,31 @@ const PropertyListModal = ({ property }) => {
         List a Share
       </button>
       <Modal open={open} close={() => setOpen(false)}>
-        <div>Make Offer</div>
-        <form onSubmit={handleSubmit} className="p-5">
-          <label>Price Per Share</label>
+      <Heading1
+        title="List Your Tokens"
+        description={`Ready for cash? Evaulate active listings for ${property.propertyName} and competitively list your tokens for fellow investors to buy.`}
+      />
+        <form onSubmit={handleSubmit} className="pt-8 pb-12 text-center">
+        <div className="flex-center lg:mt-0 lg:flex-shrink-0 sm:px-8">
+        <div className="inline-flex rounded-md">
           <input
-            required
-            className="p-2 border"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-          />
-          <button className="btn-primary p-4">
-            {isLoading ? "..." : "List Share"}
-          </button>
+              required
+              className="p-3 border"
+              placeholder="0.00000"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+            />
+          </div>
+          <div className="ml-3 inline-flex rounded-md shadow-sm">
+            <button
+              onClick={handleSubmit}
+              type="submit"
+              className="inline-flex items-center justify-center text-center px-4 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600"
+            >
+              {isLoading ? "..." : "List Token"}
+            </button>
+          </div>
+        </div>
         </form>
         <PropertyListingsTable property={property} />
       </Modal>

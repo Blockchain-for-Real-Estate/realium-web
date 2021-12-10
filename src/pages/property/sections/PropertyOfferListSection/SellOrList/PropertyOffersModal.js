@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from "src/components/base/Modal";
 import PropertyOffersTable from "../PropertyOffersTable";
+import Heading1 from "src/components/general/Heading1";
 
 const PropertyOffersModal = ({ property }) => {
   const [open, setOpen] = useState(false);
@@ -11,6 +12,9 @@ const PropertyOffersModal = ({ property }) => {
         View Offers
       </button>
       <Modal open={open} close={() => setOpen(false)}>
+        <Heading1
+          title="Current Offers"
+        />
         <PropertyOffersTable property={property} action />
       </Modal>
     </>
