@@ -33,7 +33,7 @@ export const BuyListing = async (req, res, user) => {
 
   const increaseAllowanceResponse = await smartContract.increaseAllowance(buyerWallet.address, listing.quantity);
   smartContract = await GetSignerConnectedSmartContract(buyerWallet.privateKey, provider, property);
-  const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, ethers.utils.parseEther(listing.price.toString()), { value: ethers.utils.parseEther(total.toString()) });
+  const sale = await smartContract.sale(listing.sellerAddress, listing.quantity, ethers.utils.parseEther(listing.price.toString()), { value: ethers.utils.parseEther(total.toString()), gasLimit: 8000000 });
   const response = await sale.wait();
 
   await ListingModel.delete({ propertyId, listingId });
