@@ -3,8 +3,10 @@ import TimeAgo from 'react-timeago'
 import NumberFormat from "react-number-format";
 import useUserTransactions from "src/context/queries/useUserTransactions";
 import Heading2 from "src/components/general/Heading2";
+import useUser from 'src/context/queries/useUser';
 
 const AccountDashboardTransactionsSection = () => {
+  const { data } = useUser();
   const { data: transactions, isLoading } = useUserTransactions();
 
   let [currentPage, setCurrentPage] = React.useState(1)
@@ -17,6 +19,13 @@ const AccountDashboardTransactionsSection = () => {
         pages.push(temparray)
     }
   }
+
+  const CONTRACT_ADDRESSES = ["0x1630BDb93d1fA86122f909b413403FbDd43D7790",
+                            "0x16d9415883a907B7021D8C1D84D41ce1316f8Ef4",
+                            "0x1771366C9F7fc9E903c67ac4cE24674126c448B3",
+                            "0xfA9Ac35d59A58A6e178872269C83a02f108270a9",
+                            "0xfAA15f1ff49376ba6Ff118fE45A85039242418EA",
+                            "0x51e6bFC6169c3Bc0f970c2Cb8d1D8E6cF17aa6ee"];
 
   return (
     <div className="my-0">
@@ -38,7 +47,7 @@ const AccountDashboardTransactionsSection = () => {
                       Event
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Quantity
+                      Price
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Asset
@@ -61,7 +70,7 @@ const AccountDashboardTransactionsSection = () => {
                             data-label="Time"
                           >
                             <TimeAgo
-                              date={transactions[key].eventDateTime}
+                              date={transactions[key].block_signed_at}
                               locale="en-US"
                             />
                           </td>
@@ -69,20 +78,14 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Event"
                           >
-                            {pages[currentPage - 1][key].eventType}
+                            {pages[currentPage - 1][key].from_address == userAddress ? "BUY" : "SALE"}
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap flex items-center text-xs text-gray-500"
-                            data-label="Quantity"
+                            data-label="Price"
                           >
                             <NumberFormat
-                              value={pages[currentPage - 1][key].quantity}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                            <div className="px-1">@</div>
-                            <NumberFormat
-                              value={pages[currentPage - 1][key].listedPrice}
+                              value={pages[currentPage - 1][key].value/1000000000000000000}
                               displayType={"text"}
                               thousandSeparator={true}
                             />
@@ -107,18 +110,16 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Asset"
                           >
-                            {pages[currentPage - 1][key].property}
+                            {pages[currentPage - 1][key].log_events[0].sender_name}
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap text-xs font-medium justify-end"
                             data-label="Tx"
                           >
-                            {pages[currentPage - 1][key].eventType ===
-                              "LIST" && (
                               <div className="object-right">
                                 <a
-                                  href={`https://testnet.avascan.info/blockchain/x/tx/${
-                                    pages[currentPage - 1][key].txNFTId
+                                  href={`https://testnet.snowtrace.io/tx/${
+                                    pages[currentPage - 1][key].tx_hash
                                   }`}
                                   className="text-indigo-600 hover:text-indigo-900"
                                   target="_blank"
@@ -141,7 +142,6 @@ const AccountDashboardTransactionsSection = () => {
                                   </svg>
                                 </a>
                               </div>
-                            )}
                           </td>
                         </tr>
                       ))
