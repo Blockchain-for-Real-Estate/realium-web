@@ -7,6 +7,7 @@ import useUser from 'src/context/queries/useUser';
 
 const AccountDashboardTransactionsSection = () => {
   const { data } = useUser();
+  const userAddress = data.attributes["custom:wallet"];
   const { data: transactions, isLoading } = useUserTransactions();
 
   let [currentPage, setCurrentPage] = React.useState(1)

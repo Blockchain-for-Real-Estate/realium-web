@@ -22,7 +22,6 @@ const SAMPLE_TRANSACTIONS = [
 ]
 
 export const GetUserTransactions = async (userAddress) => {
-
   const transactions = await axios.get(
     `https://api.covalenthq.com/v1/43113/address/${userAddress}/transactions_v2/?quote-currency=USD&format=JSON&block-signed-at-asc=false&no-logs=false&key=ckey_71eafbaa6966417db4594061227`  
   );
