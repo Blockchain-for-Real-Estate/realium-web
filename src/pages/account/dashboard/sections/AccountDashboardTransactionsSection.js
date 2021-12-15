@@ -111,7 +111,7 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Asset"
                           >
-                            {pages[currentPage - 1][key].log_events[0].sender_name}
+                            {pages[currentPage - 1][key].log_events[0].sender_name.split("-")[0]}
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap text-xs font-medium justify-end"

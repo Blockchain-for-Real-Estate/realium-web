@@ -21,11 +21,9 @@ const SAMPLE_TRANSACTIONS = [
   }
 ]
 
-export const GetUserTransactions = async (userAddress) => {
-  const transactions = await axios.get(
-    `https://api.covalenthq.com/v1/43113/address/${userAddress}/transactions_v2/?quote-currency=USD&format=JSON&block-signed-at-asc=false&no-logs=false&key=ckey_71eafbaa6966417db4594061227`  
-  );
-  return transactions.data.data.items;
+export const GetUserTransactions = async () => {
+  const { data: txns } = await axios.get(`/api/transactions`);
+  return txns;
 };
 
 export const QUERY_KEY = "USER_TRANSACTIONS";
@@ -40,3 +38,20 @@ export default function useUserTransactions() {
     }
   );
 }
+
+// import { useQuery } from "react-query";
+// import axios from "axios";
+
+// export const GetTransactions = async () => {
+//   const { data: AVAX } = await axios.get(`/api/transactions`);
+//   return AVAX;
+// };
+
+// export const QUERY_KEY = "AVAX_PRICE";
+// export default function useAVAX() {
+//   return useQuery([QUERY_KEY], GetAVAX, {
+//     // refetchInterval: 15 * 1000,
+//   });
+// }
+
+
