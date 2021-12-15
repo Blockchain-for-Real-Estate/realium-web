@@ -9,6 +9,7 @@ import PropertyUserListingsSection from "./sections/PropertyUserListingsSection"
 
 const PropertyPage = ({ propertyId }) => {
   const { data: property } = useProperty(propertyId);
+  
   let images = []
   property.images.map((img) => {
     images.push(img)
