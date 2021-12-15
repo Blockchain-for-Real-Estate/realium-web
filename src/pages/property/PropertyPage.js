@@ -9,11 +9,11 @@ import PropertyUserListingsSection from "./sections/PropertyUserListingsSection"
 
 const PropertyPage = ({ propertyId }) => {
   const { data: property } = useProperty(propertyId);
-  
-  let images = []
+
+  let images = [];
   property.images.map((img) => {
-    images.push(img)
-  })
+    images.push(img);
+  });
 
   return (
     <div className="md:divide-y">
@@ -23,9 +23,7 @@ const PropertyPage = ({ propertyId }) => {
       </div>
       <div className="md:flex max-w-6xl mx-auto gap-x-12 px-4 md:py-10 my-10">
         <div className="flex-1">
-          <PropertyImageGallerySection
-            images={images}
-          />
+          <PropertyImageGallerySection images={images} />
           <PropertyDescriptionSection property={property} />
         </div>
         <div className="flex-1 max-w-sm">
