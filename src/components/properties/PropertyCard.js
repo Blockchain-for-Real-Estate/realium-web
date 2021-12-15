@@ -8,7 +8,7 @@ export default function PropertyCard({ property }) {
       <div className="shadow h-full cursor-pointer rounded sm:rounded-lg">
         <div className="relative h-48">
           <Image
-            src={`/images/${property.propertyId}.jpg`}
+            src={property.images[0]}
             layout="fill"
             objectFit="cover"
             alt="Coming Soon"
