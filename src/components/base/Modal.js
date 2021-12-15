@@ -25,7 +25,17 @@ const Modal = ({
       >
         <div className={classNames("flex p-5  min-h-screen", position)}>
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
-          <div className="relative bg-white rounded mx-auto">{children}</div>
+          <div className="relative bg-white rounded mx-auto">
+            <button
+              className="p-2 bg-transparent float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+              onClick={close}
+            >
+              <span className="bg-transparent text-gray-400 text-2xl px-2 block outline-none focus:outline-none">
+                ×
+              </span>
+            </button>
+            {children}
+          </div>
         </div>
       </Dialog>
     </Transition>

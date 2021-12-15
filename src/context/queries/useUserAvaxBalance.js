@@ -16,7 +16,7 @@ export default function useUserAvaxBalance() {
   const { data: user } = useUser();
 
   return useQuery(
-    [QUERY_KEY],
+    [QUERY_KEY, user?.attributes.sub],
     () => GetUserAvaxBalance({ address: user.attributes["custom:wallet"] }),
     {
       staleTime: 10 * 1000,

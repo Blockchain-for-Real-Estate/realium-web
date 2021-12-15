@@ -1,6 +1,7 @@
 import React from "react";
 import NavLink from "src/components/base/NavLink";
 import {
+  CalculatorIcon,
   CreditCardIcon,
   KeyIcon,
   LogoutIcon,
@@ -19,6 +20,12 @@ export const links = [
         href: "/account/dashboard",
         external: false,
         Icon: TemplateIcon,
+      },
+      {
+        name: "Transactions",
+        href: "/account/transactions",
+        external: false,
+        Icon: CalculatorIcon,
       },
       {
         name: "Profile",

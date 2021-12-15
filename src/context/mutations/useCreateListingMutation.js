@@ -1,7 +1,8 @@
-import Auth from "@aws-amplify/auth";
 import useUI from "src/context/hooks/useUI";
 import { useMutation, useQueryClient } from "react-query";
-import { QUERY_KEY as LISTINGS } from "../queries/usePropertyListings";
+import { QUERY_KEY as PROPERTY_LISTINGS } from "../queries/usePropertyListings";
+import { QUERY_KEY as USER_PROPERTY_LISTINGS } from "../queries/useUserPropertyListings";
+import { QUERY_KEY as USER_LISTINGS } from "../queries/useUserListings";
 import axios from "axios";
 
 const CreateListing = async ({ propertyId, price, quantity }) => {
@@ -20,7 +21,9 @@ const useCreateListingMutation = (propertyId) => {
     ({ price, quantity }) => CreateListing({ propertyId, price, quantity }),
     {
       onSuccess: async () => {
-        await queryClient.invalidateQueries(LISTINGS);
+        await queryClient.invalidateQueries(PROPERTY_LISTINGS);
+        await queryClient.invalidateQueries(USER_LISTINGS);
+        await queryClient.invalidateQueries(USER_PROPERTY_LISTINGS);
         toast(
           "Listing Submitted",
           "This listing is now live. Your token will be deducted from your account"

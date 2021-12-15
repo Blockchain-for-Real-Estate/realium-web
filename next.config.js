@@ -1,6 +1,6 @@
 module.exports = {
   images: {
-    domains: ["images.unsplash.com"],
+    domains: ["images.unsplash.com", "realium-public.s3.us-east-2.amazonaws.com"],
   },
   async redirects() {
     return [

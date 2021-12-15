@@ -1,16 +1,40 @@
+import React from 'react'
+import TimeAgo from 'react-timeago'
+import NumberFormat from "react-number-format";
+import useUserTransactions from "src/context/queries/useUserTransactions";
 import Heading2 from "src/components/general/Heading2";
+import useUser from 'src/context/queries/useUser';
+import useProperties from 'src/context/queries/useProperties';
 
 const AccountDashboardTransactionsSection = () => {
+  const { data } = useUser();
+  const userAddress = data.attributes["custom:wallet"];
+  const { data: transactions, isLoading } = useUserTransactions();
+
+  let [currentPage, setCurrentPage] = React.useState(1)
+  let pages = []
+
+  if (transactions) {
+    transactions = transactions.filter(x => x.log_events.length==3)
+    console.log(transactions)
+    var i,j,temparray,chunk = 10;
+    for (i=0,j=transactions.length; i<j; i+=chunk) {
+        temparray = transactions.slice(i,i+chunk);
+        pages.push(temparray)
+    }
+  }
+
+  console.log(pages)
+
   return (
-    <div>
+    <div className="my-0">
       <Heading2
         title="Recent Transactions"
-        subtitle="View your activity across the Realium platform."
+        subtitle="View your activity across the Realium platform. Monitor your on-chain transactions and see live summaries here."
       />
-
-      <div className="flex flex-col">
-        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+      <div className="mt-10 flex flex-col">
+        <div className="-my-2 overflow-x-auto">
+          <div className="py-2 align-middle inline-block min-w-full">
             <div className="sm:shadow-md overflow-hidden sm:rounded-lg">
               <table className="border-2 border-gray-100 m-0 p-0 min-w-full">
                 <thead className="bg-gray-100 border-1 border-gray-700 divide-y p-3 uppercase text-md">
@@ -22,7 +46,7 @@ const AccountDashboardTransactionsSection = () => {
                       Event
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Quantity
+                      Price
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Asset
@@ -33,7 +57,8 @@ const AccountDashboardTransactionsSection = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {/* {pages[0] !== undefined && pages[0] !== null
+                  {isLoading && <div className="text-center p-2">Getting Transactions...</div>}
+                  {pages[0] !== undefined && pages[0] !== null
                     ? Object.keys(pages[currentPage - 1]).map((key) => (
                         <tr
                           key={key}
@@ -44,7 +69,7 @@ const AccountDashboardTransactionsSection = () => {
                             data-label="Time"
                           >
                             <TimeAgo
-                              date={events[key].eventDateTime}
+                              date={transactions[key].block_signed_at}
                               locale="en-US"
                             />
                           </td>
@@ -52,20 +77,14 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Event"
                           >
-                            {pages[currentPage - 1][key].eventType}
+                            SALE
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap flex items-center text-xs text-gray-500"
-                            data-label="Quantity"
+                            data-label="Price"
                           >
                             <NumberFormat
-                              value={pages[currentPage - 1][key].quantity}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                            <div className="px-1">@</div>
-                            <NumberFormat
-                              value={pages[currentPage - 1][key].listedPrice}
+                              value={pages[currentPage - 1][key].value/1000000000000000000}
                               displayType={"text"}
                               thousandSeparator={true}
                             />
@@ -90,18 +109,16 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Asset"
                           >
-                            {pages[currentPage - 1][key].property.streetAddress}
+                            {pages[currentPage - 1][key].log_events[0].sender_name.split("-")[0]}
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap text-xs font-medium justify-end"
                             data-label="Tx"
                           >
-                            {pages[currentPage - 1][key].eventType ===
-                              "SALE" && (
                               <div className="object-right">
                                 <a
-                                  href={`https://testnet.avascan.info/blockchain/x/tx/${
-                                    pages[currentPage - 1][key].txNFTId
+                                  href={`https://testnet.snowtrace.io/tx/${
+                                    pages[currentPage - 1][key].tx_hash
                                   }`}
                                   className="text-indigo-600 hover:text-indigo-900"
                                   target="_blank"
@@ -124,11 +141,10 @@ const AccountDashboardTransactionsSection = () => {
                                   </svg>
                                 </a>
                               </div>
-                            )}
                           </td>
                         </tr>
                       ))
-                    : null} */}
+                    : null}
                 </tbody>
               </table>
             </div>

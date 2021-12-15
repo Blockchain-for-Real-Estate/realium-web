@@ -5,6 +5,7 @@ import OfferListSection from "./sections/PropertyOfferListSection";
 import PropertyImageGallerySection from "./sections/PropertyImageGallerySection";
 import PropertyHeadingSection from "./sections/PropertyHeadingSection";
 import PropertyDescriptionSection from "./sections/PropertyDescriptionSection";
+import PropertyUserListingsSection from "./sections/PropertyUserListingsSection";
 
 const PropertyPage = ({ propertyId }) => {
   const { data: property } = useProperty(propertyId);
@@ -17,14 +18,7 @@ const PropertyPage = ({ propertyId }) => {
       </div>
       <div className="md:flex max-w-6xl mx-auto gap-x-12 px-4 md:py-10 my-10">
         <div className="flex-1">
-          <PropertyImageGallerySection
-            images={[
-              "/images/hero-blue.jpg",
-              "/images/hero-green.jpg",
-              "/images/hero-red.jpg",
-              "/images/hero-orange.jpg",
-            ]}
-          />
+          <PropertyImageGallerySection images={property?.images} />
           <PropertyDescriptionSection property={property} />
         </div>
         <div className="flex-1 max-w-sm">

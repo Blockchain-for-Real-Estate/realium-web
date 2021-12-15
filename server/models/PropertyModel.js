@@ -117,7 +117,7 @@ const PropertySchema = new dynamoose.Schema(
       required: true,
     },
     images: {
-      type: Set,
+      type: Array,
       inputType: "images",
       label: "Images",
       required: false,

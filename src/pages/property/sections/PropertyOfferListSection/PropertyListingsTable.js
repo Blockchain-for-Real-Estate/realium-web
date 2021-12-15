@@ -1,11 +1,15 @@
 import CurrencyDisplay from "src/components/avax/CurrencyDisplay";
 import usePropertyListings from "src/context/queries/usePropertyListings";
 import PropertyBuyModal from "./PropertyBuyModal";
+import useDeleteListingMutation from "src/context/mutations/useDeleteListingMutation";
+import useUser from 'src/context/queries/useUser';
 
 const PropertyListingsTable = ({ property, action = false }) => {
   const { data: listings, isLoading } = usePropertyListings(
     property?.propertyId
   );
+
+  const { data: user} = useUser();
 
   return (
     <div className="p-1">
@@ -20,25 +24,41 @@ const PropertyListingsTable = ({ property, action = false }) => {
         </thead>
         <tbody>
           {listings?.map((listing, idx) => (
-            <tr
-              className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}
-              key={listing.listingId}
-            >
-              <td className={CLASSES.td}>{listing.sellerAddress}</td>
-              <td className={CLASSES.td}>{listing.quantity}</td>
-              <td className={CLASSES.td}>
-                <CurrencyDisplay balance={listing.price} hideSymbol />
-              </td>
-              {action && (
-                <td className={CLASSES.td}>
-                  <PropertyBuyModal listing={listing} property={property} />
+            listing.sellerAddress!=user.attributes["custom:wallet"] ? 
+                <tr
+                  className={idx % 2 === 0 ? "bg-white text-blue" : "bg-gray-50 text-blue"}
+                  key={listing.listingId}
+                >
+                  <td className={CLASSES.td}>{listing.sellerAddress}</td>
+                  <td className={CLASSES.td}>{listing.quantity}</td>
+                  <td className={CLASSES.td}>
+                    <CurrencyDisplay balance={listing.price} hideSymbol />
+                  </td>
+                  {action && (
+                    <td className={CLASSES.td}>
+                      <PropertyBuyModal listing={listing} property={property} />
+                    </td>
+
+                  )}
+              </tr>
+            :  
+              <tr
+                className={idx % 2 === 0 ? "bg-white" : "bg-gray-50 "}
+                key={listing.listingId}
+              >
+                <td className={CLASSES.tdd}>{listing.sellerAddress}</td>
+                <td className={CLASSES.tdd}>{listing.quantity}</td>
+                <td className={CLASSES.tdd}>
+                  <CurrencyDisplay balance={listing.price} hideSymbol />
                 </td>
-              )}
-            </tr>
+                <td className={CLASSES.tdd}>
+                  
+                </td>
+              </tr>
           ))}
         </tbody>
       </table>
-      {isLoading && <div className="text-center py-5">Getting Listings...</div>}
+      {}
       {listings?.length < 1 && (
         <div className="text-center py-5">No Listings Available</div>
       )}
@@ -49,6 +69,7 @@ const PropertyListingsTable = ({ property, action = false }) => {
 const CLASSES = {
   th: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center",
   td: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center",
+  tdd: "px-6 py-4 whitespace-nowrap text-sm bg-gray-300 font-medium text-gray-900 text-center",
 };
 
 export default PropertyListingsTable;

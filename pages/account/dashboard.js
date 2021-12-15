@@ -2,7 +2,7 @@ import AccountDashboardPage from "src/pages/account/dashboard/AccountDashboardPa
 
 const Page = (props) => <AccountDashboardPage {...props} />;
 
-Page.title = null;
+Page.title = "Account Dashboard";
 Page.description = null;
 Page.layout = "account";
 Page.restricted = true;
