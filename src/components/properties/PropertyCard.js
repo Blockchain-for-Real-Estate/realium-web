@@ -7,13 +7,15 @@ export default function PropertyCard({ property }) {
     <Link href={`/marketplace/${property.propertyId}`} passHref>
       <div className="shadow h-full cursor-pointer rounded sm:rounded-lg">
         <div className="relative h-48">
-          <Image
-            src={`/images/${property.propertyId}.jpg`}
-            layout="fill"
-            objectFit="cover"
-            alt="Coming Soon"
-            className="rounded-t sm:rounded-t-lg"
-          />
+          {property.images[0] && (
+            <Image
+              src={property.images[0]}
+              layout="fill"
+              objectFit="cover"
+              alt="Coming Soon"
+              className="rounded-t sm:rounded-t-lg"
+            />
+          )}
         </div>
         <div className="p-6 space-y-2">
           <div className="text-indigo-600 text-sm truncate">
