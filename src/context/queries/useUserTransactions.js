@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import useUser from "./useUser";
+import axios from "axios";
 
 const SAMPLE_TRANSACTIONS = [
   {
@@ -21,8 +22,8 @@ const SAMPLE_TRANSACTIONS = [
 ]
 
 export const GetUserTransactions = async () => {
-  const transactions = SAMPLE_TRANSACTIONS;
-  return transactions;
+  const { data: txns } = await axios.get(`/api/transactions`);
+  return txns;
 };
 
 export const QUERY_KEY = "USER_TRANSACTIONS";
@@ -31,9 +32,26 @@ export default function useUserTransactions() {
   const { data: user } = useUser();
   return useQuery(
     [QUERY_KEY, user?.attributes.sub],
-    () => GetUserTransactions(),
+    () => GetUserTransactions(user.attributes["custom:wallet"]),
     {
       enabled: !!user,
     }
   );
 }
+
+// import { useQuery } from "react-query";
+// import axios from "axios";
+
+// export const GetTransactions = async () => {
+//   const { data: AVAX } = await axios.get(`/api/transactions`);
+//   return AVAX;
+// };
+
+// export const QUERY_KEY = "AVAX_PRICE";
+// export default function useAVAX() {
+//   return useQuery([QUERY_KEY], GetAVAX, {
+//     // refetchInterval: 15 * 1000,
+//   });
+// }
+
+

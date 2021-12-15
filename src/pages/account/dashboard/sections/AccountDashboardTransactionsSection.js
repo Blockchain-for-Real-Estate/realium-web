@@ -3,20 +3,28 @@ import TimeAgo from 'react-timeago'
 import NumberFormat from "react-number-format";
 import useUserTransactions from "src/context/queries/useUserTransactions";
 import Heading2 from "src/components/general/Heading2";
+import useUser from 'src/context/queries/useUser';
+import useProperties from 'src/context/queries/useProperties';
 
 const AccountDashboardTransactionsSection = () => {
+  const { data } = useUser();
+  const userAddress = data.attributes["custom:wallet"];
   const { data: transactions, isLoading } = useUserTransactions();
 
   let [currentPage, setCurrentPage] = React.useState(1)
   let pages = []
 
   if (transactions) {
+    transactions = transactions.filter(x => x.log_events.length==3)
+    console.log(transactions)
     var i,j,temparray,chunk = 10;
     for (i=0,j=transactions.length; i<j; i+=chunk) {
         temparray = transactions.slice(i,i+chunk);
         pages.push(temparray)
     }
   }
+
+  console.log(pages)
 
   return (
     <div className="my-0">
@@ -38,7 +46,7 @@ const AccountDashboardTransactionsSection = () => {
                       Event
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Quantity
+                      Price
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Asset
@@ -61,7 +69,7 @@ const AccountDashboardTransactionsSection = () => {
                             data-label="Time"
                           >
                             <TimeAgo
-                              date={transactions[key].eventDateTime}
+                              date={transactions[key].block_signed_at}
                               locale="en-US"
                             />
                           </td>
@@ -69,20 +77,14 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Event"
                           >
-                            {pages[currentPage - 1][key].eventType}
+                            SALE
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap flex items-center text-xs text-gray-500"
-                            data-label="Quantity"
+                            data-label="Price"
                           >
                             <NumberFormat
-                              value={pages[currentPage - 1][key].quantity}
-                              displayType={"text"}
-                              thousandSeparator={true}
-                            />
-                            <div className="px-1">@</div>
-                            <NumberFormat
-                              value={pages[currentPage - 1][key].listedPrice}
+                              value={pages[currentPage - 1][key].value/1000000000000000000}
                               displayType={"text"}
                               thousandSeparator={true}
                             />
@@ -107,18 +109,16 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Asset"
                           >
-                            {pages[currentPage - 1][key].property}
+                            {pages[currentPage - 1][key].log_events[0].sender_name.split("-")[0]}
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap text-xs font-medium justify-end"
                             data-label="Tx"
                           >
-                            {pages[currentPage - 1][key].eventType ===
-                              "LIST" && (
                               <div className="object-right">
                                 <a
-                                  href={`https://testnet.avascan.info/blockchain/x/tx/${
-                                    pages[currentPage - 1][key].txNFTId
+                                  href={`https://testnet.snowtrace.io/tx/${
+                                    pages[currentPage - 1][key].tx_hash
                                   }`}
                                   className="text-indigo-600 hover:text-indigo-900"
                                   target="_blank"
@@ -141,7 +141,6 @@ const AccountDashboardTransactionsSection = () => {
                                   </svg>
                                 </a>
                               </div>
-                            )}
                           </td>
                         </tr>
                       ))
