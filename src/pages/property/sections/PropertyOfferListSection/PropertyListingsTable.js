@@ -9,7 +9,7 @@ const PropertyListingsTable = ({ property, action = false }) => {
     property?.propertyId
   );
 
-  const { data } = useUser();
+  const { data: user} = useUser();
 
   return (
     <div className="p-1">
@@ -24,12 +24,11 @@ const PropertyListingsTable = ({ property, action = false }) => {
         </thead>
         <tbody>
           {listings?.map((listing, idx) => (
-            <div>
-              {listing.sellerAddress!=data.attributes["custom:wallet"] ? 
-              <tr
-                className={idx % 2 === 0 ? "bg-white" : "bg-gray-50"}
-                key={listing.listingId}
-              >
+            listing.sellerAddress!=user.attributes["custom:wallet"] ? 
+                <tr
+                  className={idx % 2 === 0 ? "bg-white text-blue" : "bg-gray-50 text-blue"}
+                  key={listing.listingId}
+                >
                   <td className={CLASSES.td}>{listing.sellerAddress}</td>
                   <td className={CLASSES.td}>{listing.quantity}</td>
                   <td className={CLASSES.td}>
@@ -41,14 +40,25 @@ const PropertyListingsTable = ({ property, action = false }) => {
                     </td>
 
                   )}
-                
               </tr>
-            : null
-            }
-            </div>
+            :  
+              <tr
+                className={idx % 2 === 0 ? "bg-white" : "bg-gray-50 "}
+                key={listing.listingId}
+              >
+                <td className={CLASSES.tdd}>{listing.sellerAddress}</td>
+                <td className={CLASSES.tdd}>{listing.quantity}</td>
+                <td className={CLASSES.tdd}>
+                  <CurrencyDisplay balance={listing.price} hideSymbol />
+                </td>
+                <td className={CLASSES.tdd}>
+                  
+                </td>
+              </tr>
           ))}
         </tbody>
       </table>
+      {}
       {listings?.length < 1 && (
         <div className="text-center py-5">No Listings Available</div>
       )}
@@ -59,6 +69,7 @@ const PropertyListingsTable = ({ property, action = false }) => {
 const CLASSES = {
   th: "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider text-center",
   td: "px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 text-center",
+  tdd: "px-6 py-4 whitespace-nowrap text-sm bg-gray-300 font-medium text-gray-900 text-center",
 };
 
 export default PropertyListingsTable;

@@ -3,7 +3,7 @@ import CurrencyDisplay from "src/components/avax/CurrencyDisplay";
 import Modal from "src/components/base/Modal";
 import useBuyListingMutation from "src/context/mutations/useBuyListingMutation";
 import useUserAvaxBalance from "src/context/queries/useUserAvaxBalance";
-
+import useUser from 'src/context/queries/useUser';
 
 const PropertyBuyModal = ({ property, listing }) => {
   const [open, setOpen] = useState(false);
@@ -12,6 +12,7 @@ const PropertyBuyModal = ({ property, listing }) => {
     property?.propertyId,
     listing?.listingId
   );
+  const { data: user } = useUser();
 
   const total = listing?.quantity * listing?.price;
 
