@@ -4,6 +4,7 @@ import NumberFormat from "react-number-format";
 import useUserTransactions from "src/context/queries/useUserTransactions";
 import Heading2 from "src/components/general/Heading2";
 import useUser from 'src/context/queries/useUser';
+import useProperties from 'src/context/queries/useProperties';
 
 const AccountDashboardTransactionsSection = () => {
   const { data } = useUser();
@@ -14,6 +15,8 @@ const AccountDashboardTransactionsSection = () => {
   let pages = []
 
   if (transactions) {
+    transactions = transactions.filter(x => x.log_events.length==3)
+    console.log(transactions)
     var i,j,temparray,chunk = 10;
     for (i=0,j=transactions.length; i<j; i+=chunk) {
         temparray = transactions.slice(i,i+chunk);
@@ -21,12 +24,7 @@ const AccountDashboardTransactionsSection = () => {
     }
   }
 
-  const CONTRACT_ADDRESSES = ["0x1630BDb93d1fA86122f909b413403FbDd43D7790",
-                            "0x16d9415883a907B7021D8C1D84D41ce1316f8Ef4",
-                            "0x1771366C9F7fc9E903c67ac4cE24674126c448B3",
-                            "0xfA9Ac35d59A58A6e178872269C83a02f108270a9",
-                            "0xfAA15f1ff49376ba6Ff118fE45A85039242418EA",
-                            "0x51e6bFC6169c3Bc0f970c2Cb8d1D8E6cF17aa6ee"];
+  console.log(pages)
 
   return (
     <div className="my-0">
@@ -79,7 +77,7 @@ const AccountDashboardTransactionsSection = () => {
                             className="px-6 py-4 whitespace-nowrap text-xs text-gray-500"
                             data-label="Event"
                           >
-                            {pages[currentPage - 1][key].from_address == userAddress ? "BUY" : "SALE"}
+                            SALE
                           </td>
                           <td
                             className="px-6 py-4 whitespace-nowrap flex items-center text-xs text-gray-500"
