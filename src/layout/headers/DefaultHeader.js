@@ -5,9 +5,11 @@ import { MenuIcon, UserCircleIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import AccountBalance from "src/components/avax/AccountBalance";
 import useUser from "src/context/queries/useUser";
+import useUI from "src/context/hooks/useUI";
 
 export default function HeaderDefault() {
   const { data: user } = useUser();
+  const { toggleMobileNav } = useUI();
 
   return (
     <header className="bg-gray-50 z-30 shadow">
@@ -35,8 +37,8 @@ export default function HeaderDefault() {
           </div>
 
           {/* MOBILE */}
-          <div className="lg:hidden ml-10 space-x-4">
-            <MenuIcon className="h-10" />
+          <div className="lg:hidden ml-10 space-x-4 cursor-pointer">
+            <MenuIcon className="h-10" onClick={toggleMobileNav} />
           </div>
 
           {/* DESKTOP */}
