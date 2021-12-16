@@ -8,7 +8,7 @@ const AppContext = createContext();
 const INITIAL_STATE = {
   toasts: [],
   currency: "AVAX",
-  mobileNavOpen: true,
+  mobileNavOpen: false,
 };
 
 const AppReducer = (state, action) => {
