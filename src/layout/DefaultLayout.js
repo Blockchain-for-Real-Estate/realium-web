@@ -2,6 +2,7 @@ import DefaultHeader from "./headers/DefaultHeader";
 import DefaultFooter from "./footers/DefaultFooter";
 import TopBanner from "./headers/TopBanner";
 import { InformationCircleIcon } from "@heroicons/react/solid";
+import DefaultMobileNav from "./mobile/DefaultMobileNav";
 
 const DefaultLayout = ({ children }) => {
   return (
@@ -15,6 +16,7 @@ const DefaultLayout = ({ children }) => {
       </div>
       <div className="flex-1">{children}</div>
       <DefaultFooter />
+      <DefaultMobileNav />
     </div>
   );
 };

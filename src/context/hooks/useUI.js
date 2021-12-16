@@ -31,7 +31,14 @@ const useUI = () => {
     }
   };
 
-  return { toast, currency, toggleCurrency };
+  const mobileNavOpen = state.mobileNavOpen;
+  const toggleMobileNav = () => {
+    dispatch({
+      type: "TOGGLE_MOBILENAV",
+    });
+  };
+
+  return { toast, currency, toggleCurrency, mobileNavOpen, toggleMobileNav };
 };
 
 export default useUI;

@@ -8,6 +8,7 @@ const AppContext = createContext();
 const INITIAL_STATE = {
   toasts: [],
   currency: "AVAX",
+  mobileNavOpen: true,
 };
 
 const AppReducer = (state, action) => {
@@ -21,6 +22,8 @@ const AppReducer = (state, action) => {
       return { ...state, ...RemoveToastAction(state.toasts, action.payload) };
     case "SET_CURRENCY":
       return { ...state, currency: action.payload };
+    case "TOGGLE_MOBILENAV":
+      return { ...state, mobileNavOpen: !state.mobileNavOpen };
 
     default: {
       console.error(`APP CONTEXT: Unknown Action Type: ${action.type}`);
