@@ -44,10 +44,20 @@ const PropertySellModal = ({ property, offer }) => {
                 <div>Sell</div>
                 <div>{offer?.quantity} Share</div>
               </div>
-              <div className="flex justify-between p-3">
+              <div className="border-b flex justify-between p-3">
                 <div>Receive</div>
                 <div>
                   <CurrencyDisplay balance={total} avaxAlways />
+                </div>
+              </div>
+              <div className="border-b flex justify-between p-3">
+                <div>Est. Txn Fee</div>
+                <CurrencyDisplay balance={0.003} avaxAlways />
+              </div>
+              <div className="flex justify-between p-3">
+                <div>Total Recieved</div>
+                <div>
+                  <CurrencyDisplay balance={total-0.003} avaxAlways />
                 </div>
               </div>
             </div>
@@ -61,7 +71,7 @@ const PropertySellModal = ({ property, offer }) => {
           </div>
           <div className="flex justify-between">
             <p>Wallet Balance</p>
-            <CurrencyDisplay balance={balance} />
+            <CurrencyDisplay balance={parseFloat(balance).toFixed(3)} />
           </div>
         </div>
       </Modal>
