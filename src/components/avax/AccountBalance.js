@@ -7,13 +7,15 @@ const AccountBalance = () => {
   const { data: balance } = useUserAvaxBalance();
   const { toggleCurrency } = useUI();
 
+  console.log(balance)
+
   return (
     <div
       onClick={toggleCurrency}
       className="border-2 border-indigo-500 cursor-pointer py-2 bg-indigo-200 rounded shadow px-2"
     >
       <CurrencyDisplay
-        balance={balance}
+        balance={parseFloat(balance).toFixed(3)}
         classNames="font-semibold text-gray-700"
       />
     </div>
