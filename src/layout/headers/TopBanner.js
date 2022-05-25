@@ -5,8 +5,7 @@ export default function Example() {
   return (
     <div className="bg-indigo-600 flex items-center justify-center relative">
       <span className="text-sm lg:text-base text-center text-white p-2">
-        Welcome to Realium! We are currently in testing mode so funds and
-        properties are not real for now.
+        We are currently in beta so properties are not real.
       </span>
       <XIcon
         className="absolute right-5 h-6 w-6 text-white"

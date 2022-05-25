@@ -3,7 +3,7 @@ import {
   GlobeAltIcon,
   LightningBoltIcon,
   MailIcon,
-  ScaleIcon,
+  CashIcon,
 } from "@heroicons/react/outline";
 import Info from "src/components/general/Info";
 
@@ -11,74 +11,39 @@ const HomeInfoSection = () => {
   return (
     <div className="py-16 bg-gray-50 overflow-hidden lg:py-24">
       <div className="relative max-w-xl mx-auto px-4 sm:px-6 lg:px-8 lg:max-w-7xl">
-        <svg
-          className="hidden lg:block absolute left-full transform -translate-x-1/2 -translate-y-1/4"
-          width="404"
-          height="784"
-          fill="none"
-          viewBox="0 0 404 784"
-          aria-hidden="true"
-        >
-          <defs>
-            <pattern
-              id="b1e6e422-73f8-40a6-b5d9-c8586e37e0e7"
-              x="0"
-              y="0"
-              width="20"
-              height="20"
-              patternUnits="userSpaceOnUse"
-            >
-              <rect
-                x="0"
-                y="0"
-                width="4"
-                height="4"
-                className="text-gray-200"
-                fill="currentColor"
-              />
-            </pattern>
-          </defs>
-          <rect
-            width="404"
-            height="784"
-            fill="url(#b1e6e422-73f8-40a6-b5d9-c8586e37e0e7)"
-          />
-        </svg>
-
         <div className="relative mb-10">
           <h2 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
             A better way to invest
           </h2>
           <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
-            Realium takes away the headaches of traditional real estate
-            investing, while still allowing users to take advantage of the real
-            estate asset className.
+            Realium allows for fractional real estate investing, giving power to
+            users to actively participate in real estate investing with as
+            little as $100.
           </p>
         </div>
 
         <div className="space-y-10">
           <Info
-            header="Create a diversified real estate portfolio"
-            description="Realium allows you to create a truly diversified your investment portfolio"
+            header="Create your own portfolio"
+            description="Diversifiy your risk and geographic ownership by fractionally owning in properties all across the United States."
             imgSrc="/images/home-feature.svg"
             data={[
               {
                 title: "Invest in real estate nationwide",
-                description:
-                  "Properties range in size, price, and location. Choose from the list of properties available on the Realium platform.",
+                description: "Properties range in size, price, and location.",
                 icon: GlobeAltIcon,
               },
               {
-                title: "Choose your property type",
+                title: "Sell your tokens at any time",
                 description:
-                  "Choose from residential and commercial properties to add to your portfolio. Properties are added on a rolling basis.",
-                icon: ScaleIcon,
+                  "No lock up or holding periods, tokens can be bought, sold, and traded freely.",
+                icon: LightningBoltIcon,
               },
               {
-                title: "Sell your shares at any time",
+                title: "Receive rental income",
                 description:
-                  "With no lock up or holding periods, Realium users are able to list their shares for sale at any time.",
-                icon: LightningBoltIcon,
+                  "Rental income is paid daily based on the number of tokens owned. ",
+                icon: CashIcon,
               },
             ]}
           />
@@ -93,12 +58,6 @@ const HomeInfoSection = () => {
                 description:
                   "Secure and immutable records are powered by Avalanche's next generation blockchain technology",
                 icon: AnnotationIcon,
-              },
-              {
-                title: "Non-Fungible Tokens pegged to real assets",
-                description:
-                  "Properties on Realium are pegged to real assets creating an underlying value for each share of a property.",
-                icon: MailIcon,
               },
             ]}
           />
