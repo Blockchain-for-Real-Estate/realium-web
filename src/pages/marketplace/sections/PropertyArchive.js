@@ -12,7 +12,7 @@ export default function PropertyArchive() {
     <>
       <Heading1
         title="Explore the marketplace"
-        description="View the properties that are currently available on the Realium marketplace and choose the best investment for you."
+        description="View the properties for sale on the Realium marketplace and find your ideal investment."
       />
 
       <div className="max-w-7xl mx-auto my-10">

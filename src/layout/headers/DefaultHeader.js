@@ -30,6 +30,11 @@ export default function HeaderDefault() {
               </a>
             </Link>
             <div className="hidden ml-10 space-x-8 lg:block">
+              <Link href="/" passHref>
+                <button className="text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                  Home
+                </button>
+              </Link>
               {header.map((link, key) => (
                 <HeaderLink key={key} link={link} />
               ))}
@@ -54,12 +59,12 @@ export default function HeaderDefault() {
               </div>
             ) : (
               <>
-                <Link href="/auth/register" passHref>
-                  <button className="btn-secondary px-3 py-2">Sign Up</button>
+                <Link href="/subscribe" passHref>
+                  <button className="btn-primary px-3 py-2">Sign Up</button>
                 </Link>
-                <Link href="/auth/signin" passHref>
+                {/* <Link href="/auth/signin" passHref>
                   <button className="btn-primary  px-3 py-2">Sign in</button>
-                </Link>
+                </Link> */}
               </>
             )}
           </div>

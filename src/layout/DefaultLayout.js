@@ -9,7 +9,7 @@ const DefaultLayout = ({ children }) => {
     <div className="h-full flex flex-col">
       <div>
         <TopBanner
-          message="Welcome to Realium! We are currently in testing mode so funds and properties are not real for now."
+          message="We are currently in beta so properties are not real."
           Icon={InformationCircleIcon}
         />
         <DefaultHeader />
