@@ -94,12 +94,21 @@ export default function HowItWorksPage() {
               property. Token price fluctuates based on user demand.
             </p>
           </div>
-          <div className="relative h-96 w-full my-6 mx-auto">
-            <Image
-              src="/images/secondary-sale.svg"
-              alt="asset table"
-              layout="fill"
-            />
+          <div className="justify-center lg:flex lg:flex-row sm:flex-col">
+            <div className="relative h-96 w-72 my-6 mx-auto lg:mx-0">
+              <Image
+                src="/images/transaction-1.svg"
+                alt="transaction details"
+                layout="fill"
+              />
+            </div>
+            <div className="relative h-96 w-72 my-6 mx-auto lg:mx-0">
+              <Image
+                src="/images/transaction-2.svg"
+                alt="order book"
+                layout="fill"
+              />
+            </div>
           </div>
         </div>
       </div>
