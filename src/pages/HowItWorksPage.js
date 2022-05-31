@@ -126,19 +126,23 @@ export default function HowItWorksPage() {
               secondary trades between users.
             </p>
           </div>
-          <div className="relative h-9 w-1/2 my-6 mx-auto">
-            <Image
-              src="/images/primary-secondary-header.svg"
-              alt="asset table"
-              layout="fill"
-            />
-          </div>
-          <div className="relative h-9 w-1/2 my-6 mx-auto">
-            <Image
-              src="/images/fee-numbers.svg"
-              alt="asset table"
-              layout="fill"
-            />
+          <div className="flex flex-col justify-center mb-5">
+            <div className="relative h-9 my-6 mx-auto">
+              <Image
+                src="/images/primary-secondary-header.svg"
+                alt="asset table"
+                width="512"
+                height="32"
+              />
+            </div>
+            <div className="relative h-9 my-6 mx-auto">
+              <Image
+                src="/images/fee-numbers.svg"
+                alt="asset table"
+                width="512"
+                height="80"
+              />
+            </div>
           </div>
         </div>
       </div>
