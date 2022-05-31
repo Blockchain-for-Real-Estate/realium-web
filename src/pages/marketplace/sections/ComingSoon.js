@@ -14,8 +14,16 @@ export default function ComingSoon() {
         title="Explore the marketplace"
         description="View the properties for sale on the Realium marketplace and find your ideal investment."
       />
-
-      <div className="max-w-7xl mx-auto my-10">
+      <div className="relative h-80 mb-10">
+        <Image
+          src="/images/marketplace-coming-soon.svg"
+          layout="fill"
+          // objectFit="cover"
+          alt="Coming Soon"
+          // className="rounded-t sm:rounded-t-lg"
+        />
+      </div>
+      {/* <div className="max-w-7xl mx-auto my-10">
         <div className="max-w-7xl mx-4 sm:grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
           {properties?.slice(0, 3).map((property) => (
             <div className="my-6 sm:my-0" key={property.propertyId}>
@@ -47,7 +55,7 @@ export default function ComingSoon() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

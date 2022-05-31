@@ -162,16 +162,10 @@ export default function DefaultFooter() {
                     id="currency"
                     name="currency"
                     className="appearance-none block w-full bg-none bg-white border border-gray-300 rounded-md py-2 pl-3 pr-10 text-base text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    defaultValue="AUD"
+                    defaultValue="USD"
                   >
-                    <option>ARS</option>
-                    <option>AUD</option>
-                    <option>CAD</option>
-                    <option>CHF</option>
-                    <option>EUR</option>
-                    <option>GBP</option>
-                    <option>JPY</option>
                     <option>USD</option>
+                    <option>AVAX</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 px-2 flex items-center">
                     <ChevronDownIcon
@@ -184,7 +178,7 @@ export default function DefaultFooter() {
             </form>
             <div className="mt-2">
               <Image
-                src="/images/powered-by-avalanche.jpg"
+                src="/images/powered-by-avalanche.svg"
                 alt="Realium"
                 height={44}
                 width={128}

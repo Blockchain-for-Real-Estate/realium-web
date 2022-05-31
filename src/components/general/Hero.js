@@ -5,7 +5,13 @@ export default function Hero({ title, description, imgSrc, btnText, btnHref }) {
   return (
     <div className="relative bg-white overflow-hidden">
       <div className="relative h-96 lg:h-full lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-        <Image src={imgSrc} alt="" layout="fill" objectFit="cover" priority />
+        <Image
+          src={imgSrc}
+          alt="hero image"
+          layout="fill"
+          objectFit="cover"
+          priority
+        />
       </div>
       <div className="max-w-7xl mx-auto">
         <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
@@ -18,7 +24,7 @@ export default function Hero({ title, description, imgSrc, btnText, btnHref }) {
                 {description}
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start space-x-4">
-                <Link href="/auth/signin" passHref>
+                <Link href="/subscribe" passHref>
                   <button className="btn-primary px-8 py-3 md:py-4 md:text-lg md:px-10 shadow-lg">
                     Get started
                   </button>

@@ -7,15 +7,17 @@ export default function Info({
   data,
   imgSrc,
   reverse = false,
+  itemsCenter = false,
 }) {
   return (
     <div
       className={classNames(
         reverse ? "lg:flex-row-reverse" : "",
-        "relative flex flex-col lg:flex-row items-center h-full justify-between"
+        "relative flex flex-col lg:flex-row h-full justify-between",
+        itemsCenter ? "items-center" : ""
       )}
     >
-      <div className="relative flex-1 p-4">
+      <div className="relative flex-1 p-4 pt-0">
         <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">
           {header}
         </h3>

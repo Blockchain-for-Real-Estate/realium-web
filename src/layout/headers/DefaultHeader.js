@@ -59,12 +59,12 @@ export default function HeaderDefault() {
               </div>
             ) : (
               <>
-                <Link href="/auth/register" passHref>
-                  <button className="btn-secondary px-3 py-2">Sign Up</button>
+                <Link href="/subscribe" passHref>
+                  <button className="btn-primary px-3 py-2">Sign Up</button>
                 </Link>
-                <Link href="/auth/signin" passHref>
+                {/* <Link href="/auth/signin" passHref>
                   <button className="btn-primary  px-3 py-2">Sign in</button>
-                </Link>
+                </Link> */}
               </>
             )}
           </div>

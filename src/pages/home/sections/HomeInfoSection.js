@@ -48,10 +48,11 @@ const HomeInfoSection = () => {
             ]}
           />
           <Info
-            reverse={true}
+            itemsCenter
+            reverse
             header="A verifiable and proven history"
             description="Realium traces all transactions for each property on the blockchain. This allows for Realium to introduce speed, security, and decentralization to the real estate market."
-            imgSrc="/images/home-feature-2.svg"
+            imgSrc="/images/verifiable-and-proven-history.svg"
             data={[
               {
                 title: "Blockchain-proven ownership",

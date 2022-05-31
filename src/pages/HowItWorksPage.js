@@ -1,49 +1,47 @@
-import { HOW_IT_WORKS_FAQS } from "src/data/faqs";
+// import { HOW_IT_WORKS_FAQS } from "src/data/faqs";
 import {
   CashIcon,
   DocumentSearchIcon,
-  MenuIcon,
+  CurrencyDollarIcon,
 } from "@heroicons/react/outline";
 import Image from "next/image";
 
 import Hero from "src/components/general/Hero";
-import Faq from "src/components/general/Faq";
+// import Faq from "src/components/general/Faq";
 import Info from "src/components/general/Info";
 
 export default function HowItWorksPage() {
   return (
     <>
       <Hero
-        imgSrc={"/images/hero-blue.jpg"}
-        description="Blockchain is changing how the world does business and how real estate is being transacted. Realium leverages these benefits to make investing in real estate even more beneficial for you."
-        btnText="Learn More"
-        btnHref="https://docs.realium.io"
+        imgSrc="/images/how-it-works-hero.jpg"
+        description="Learn more about how properties are acquried, tokenized, sold, and traded on the Realium platform."
         title={
           <>
-            <span className="block xl:inline">What Is Novel About The </span>
+            <span className="block xl:inline">How does the </span>
             <span className="block text-indigo-600 xl:inline">Realium</span>
-            <span className="block xl:inline"> Platform?</span>
+            <span className="block xl:inline"> platform work?</span>
           </>
         }
       />
 
-      {/* CONVERTING */}
+      {/* ONBOARDING */}
       <div className="bg-gray-100 lg:px-8 px-4 py-10 sm:px-6">
         <div className="sm:flex sm:flex-col sm:align-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 text-center">
-            Converting the asset
+          <h2 className="text-4xl font-extrabold text-gray-900 text-center">
+            Onboarding the property
           </h2>
-          <p className="mt-3 text-xl text-gray-500 text-center">
-            Realium uses blockchain technology to represent the real tangible
-            asset as a security.
-            <br className="hidden md:block" />
-            This allows for the property to be traded the same way stocks and
-            bonds are traded on exchanges.
-          </p>
-
-          <div className="relative h-56 w-full my-6 mx-auto">
+          <div className="flex justify-center mt-7">
+            <p className="text-xl text-gray-500 text-center w-7/12">
+              Realium onboards income-producing properties through acquisitions
+              or partnerships. We then form an LLC for each property to split it
+              into thousands of tokens. Purchasing a token makes you an active
+              part owner of an LLC that manages the property.
+            </p>
+          </div>
+          <div className="relative h-96 w-full my-6 mx-auto">
             <Image
-              src="/images/asset-table.svg"
+              src="/images/legal-structure.svg"
               alt="asset table"
               layout="fill"
             />
@@ -51,88 +49,30 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
-      {/* INFO */}
-      <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
-        <div className="lg:flex">
-          <div className="flex-1 p-16">
-            <div className="h-full w-full relative">
-              <Image
-                src="/images/residential-capital-stack.svg"
-                alt="Residential"
-                layout="fill"
-              />
-            </div>
-          </div>
-          <div className="flex-1">
-            <h2 className="text-3xl font-extrabold text-gray-900">
-              Expanding the capital stack
-            </h2>
-            <p className="mt-3 text-xl text-gray-500">
-              Property owners are provided with a way to unlock more capital
-              from their asset through tokenization. Since only a portion of the
-              asset is tokenized, Realium users are part-owners that do not
-              carry any voting rights.
-            </p>
-            <div className="mt-3 sm:mt-16 lg:max-w-4xl lg:mx-auto xl:max-w-none xl:mx-0 grid grid-cols-3">
-              <div className="flex-1 mt-0">
-                <div className="text-3xl leading-9 font-extrabold text-indigo-500">
-                  20%
-                </div>
-                <div className="text-base leading-6 font-medium text-gray-500 mb-12">
-                  Increase in
-                  <br />
-                  asset liquidty
-                </div>
-              </div>
-              <div className="flex-1 mt-0">
-                <div className="text-3xl leading-9 font-extrabold text-indigo-500">
-                  12
-                </div>
-                <div className="text-base leading-6 font-medium text-gray-500 mb-12">
-                  Properties
-                  <br />
-                  tokenized
-                </div>
-              </div>
-              <div className="flex-1 mt-0">
-                <div className="text-3xl leading-9 font-extrabold text-indigo-500">
-                  1
-                </div>
-                <div className="text-base leading-6 font-medium text-gray-500 mb-12">
-                  Cap table
-                  <br />
-                  line item
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* INFO SECTION */}
-      <div className="bg-gray-100 lg:px-8 px-4 py-10 sm:px-6">
-        <div className="max-w-7xl mx-auto">
+      {/* PURCHASING TOKENS */}
+      <div className="lg:px-8 px-4 py-10 sm:px-6">
+        <div className="lg:w-7/12 max-w-7xl mx-auto">
           <Info
-            header="Transacting a Property"
-            description="Realium allows you to create a truly diversified your investment portfolio"
-            imgSrc="/images/transacting-a-property.svg"
+            header="Purchasing tokens"
+            description=""
+            imgSrc="/images/primary-sale.svg"
             data={[
               {
-                title: "1. View property details",
+                title: "1. View investment details",
                 description:
-                  "Each property listed on the platform will include details related to the individual property and to the investment.",
-                icon: MenuIcon,
-              },
-              {
-                title: "2. Select the desired shares",
-                description:
-                  "Users will have the option to buy shares of a property, list shares that they currently have tied to their account, or submit an offer to purchase shares at a specific price.",
+                  "View detailed information about the property’s finances and projected return.",
                 icon: DocumentSearchIcon,
               },
               {
-                title: "3. Confirm the transaction",
+                title: "2. Purchase tokens",
                 description:
-                  "Once a transaction is confirmed, it is added to the blockchain. The new property will now appear in the user’s dashboard where they can list it for sale again.",
+                  "Purchase tokens from Realium at a fixed price using your bank account, credit card, or crypto wallet.",
+                icon: CurrencyDollarIcon,
+              },
+              {
+                title: "3. Receive rental income",
+                description:
+                  "Collect rental income based on your percentage of property tokens owned. Your tokens appreciate over time and can be sold back to Realium at any time.",
                 icon: CashIcon,
               },
             ]}
@@ -140,10 +80,57 @@ export default function HowItWorksPage() {
         </div>
       </div>
 
-      {/* FAQ */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
-          <Faq questions={HOW_IT_WORKS_FAQS} />
+      {/* TRADING TOKENS */}
+      <div className="bg-gray-100 lg:px-8 px-4 py-10 sm:px-6">
+        <div className="sm:flex sm:flex-col sm:align-center">
+          <h2 className="text-4xl font-extrabold text-gray-900 text-center">
+            Trading tokens
+          </h2>
+          <div className="flex justify-center mt-7">
+            <p className="text-xl text-gray-500 text-center w-7/12">
+              Once all the tokens in a property have been sold, Realium creates
+              a secondary market for users to sell their tokens to other users.
+              Tokens listed for sale will be added to the order book of each
+              property. Token price fluctuates based on user demand.
+            </p>
+          </div>
+          <div className="relative h-96 w-full my-6 mx-auto">
+            <Image
+              src="/images/secondary-sale.svg"
+              alt="asset table"
+              layout="fill"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Realium fees */}
+      <div className="bg-indigo-500 lg:px-8 px-4 py-10 sm:px-6">
+        <div className="sm:flex sm:flex-col sm:align-center">
+          <h2 className="text-4xl font-extrabold text-white text-center">
+            Realium fees
+          </h2>
+          <div className="flex justify-center mt-7">
+            <p className="text-white text-center w-7/12 text-lg leading-7 font-normal">
+              Realium sells properties to users at a 6% premium of the
+              acquisition cost. Realium collects a 1% transaction fee on all
+              secondary trades between users.
+            </p>
+          </div>
+          <div className="relative h-9 w-1/2 my-6 mx-auto">
+            <Image
+              src="/images/primary-secondary-header.svg"
+              alt="asset table"
+              layout="fill"
+            />
+          </div>
+          <div className="relative h-9 w-1/2 my-6 mx-auto">
+            <Image
+              src="/images/fee-numbers.svg"
+              alt="asset table"
+              layout="fill"
+            />
+          </div>
         </div>
       </div>
     </>

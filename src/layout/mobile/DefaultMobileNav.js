@@ -97,18 +97,18 @@ const MobileSideNav = () => {
                         </div>
                       ) : (
                         <>
-                          <Link href="/auth/signin" passHref>
+                          {/* <Link href="/auth/signin" passHref>
                             <button
                               onClick={toggleMobileNav}
                               className="btn-primary  px-3 py-2 w-full my-2"
                             >
                               Sign in
                             </button>
-                          </Link>
-                          <Link href="/auth/register" passHref>
+                          </Link> */}
+                          <Link href="/subscribe" passHref>
                             <button
                               onClick={toggleMobileNav}
-                              className="btn-secondary bg-gray-200 px-3 py-2 w-full my-2"
+                              className="btn-primary px-3 py-2 w-full my-2"
                             >
                               Sign Up
                             </button>
