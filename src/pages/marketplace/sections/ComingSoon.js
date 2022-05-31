@@ -14,14 +14,31 @@ export default function ComingSoon() {
         title="Explore the marketplace"
         description="View the properties for sale on the Realium marketplace and find your ideal investment."
       />
-      <div className="relative h-80 mb-10">
-        <Image
-          src="/images/marketplace-coming-soon.svg"
-          layout="fill"
-          // objectFit="cover"
-          alt="Coming Soon"
-          // className="rounded-t sm:rounded-t-lg"
-        />
+      <div className="flex justify-center relative h-96 lg:h-80 mb-10">
+        <div className="lg:flex justify-center relative h-80 mb-10">
+          <Image
+            src="/images/property-coming-soon-1.svg"
+            width="300"
+            height="392"
+            alt="Coming Soon"
+          />
+        </div>
+        <div className="lg:flex justify-center hidden relative h-80 mb-10">
+          <Image
+            src="/images/property-coming-soon-2.svg"
+            width="300"
+            height="392"
+            alt="Coming Soon"
+          />
+        </div>
+        <div className="lg:flex justify-center hidden relative h-80 mb-10">
+          <Image
+            src="/images/property-coming-soon-3.svg"
+            width="300"
+            height="392"
+            alt="Coming Soon"
+          />
+        </div>
       </div>
       {/* <div className="max-w-7xl mx-auto my-10">
         <div className="max-w-7xl mx-4 sm:grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:max-w-none">
