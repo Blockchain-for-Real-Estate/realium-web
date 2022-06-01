@@ -45,7 +45,7 @@ export const MailForm = (props) => {
   return (
     <form
       method="post"
-      className="mt-8 sm:flex"
+      className="sm:flex"
       id="sheetdb-form"
       action="https://sheetdb.io/api/v1/em65ljj2zvxh4"
     >
