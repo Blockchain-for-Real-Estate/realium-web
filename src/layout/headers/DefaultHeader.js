@@ -19,7 +19,7 @@ export default function HeaderDefault() {
             <Link href="/">
               <a>
                 <span className="sr-only">Realium</span>
-                <div className="relative h-10 w-48">
+                <div className="relative h-10 w-28">
                   <Image
                     src={"/images/realium.svg"}
                     layout="fill"
@@ -43,7 +43,7 @@ export default function HeaderDefault() {
 
           {/* MOBILE */}
           <div className="lg:hidden ml-10 space-x-4 cursor-pointer">
-            <MenuIcon className="h-10" onClick={toggleMobileNav} />
+            <MenuIcon className="h-6" onClick={toggleMobileNav} />
           </div>
 
           {/* DESKTOP */}
