@@ -6,6 +6,13 @@ export default function Info({
   description,
   data,
   imgSrc,
+  dtClassNames = "",
+  dtWidth = 500,
+  dtHeight = 500,
+  imgSrcMobile = "",
+  mbClassNames = "",
+  mbWidth = 500,
+  mbHeight = 500,
   reverse = false,
   itemsCenter = false,
 }) {
@@ -32,11 +39,21 @@ export default function Info({
       <div
         className={classNames(
           reverse ? "text-left" : "text-right",
-          "flex-1 relative mt-10 lg:mt-0"
+          `${imgSrcMobile && "lg:block hidden"} flex-1 relative mt-10 lg:mt-0`
         )}
       >
-        <Image src={imgSrc} alt="" height={500} width={500} />
+        <Image src={imgSrc} alt="" height={dtHeight} width={dtWidth} />
       </div>
+      {imgSrcMobile && (
+        <div
+          className={classNames(
+            reverse ? "text-left" : "text-right",
+            `${mbClassNames} sm:flex flex-1 relative mt-10 lg:mt-0 lg:hidden`
+          )}
+        >
+          <Image src={imgSrcMobile} alt="" height={mbHeight} width={mbWidth} />
+        </div>
+      )}
     </div>
   );
 }

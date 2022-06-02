@@ -27,6 +27,10 @@ const HomeInfoSection = () => {
             header="Create your own portfolio"
             description="Diversifiy your risk and geographic ownership by fractionally owning in properties all across the United States."
             imgSrc="/images/home-feature.svg"
+            imgSrcMobile="/images/diversified-portfolio-mobile.png"
+            mbWidth={318}
+            mbHeight={400}
+            mbClassNames="px-4"
             data={[
               {
                 title: "Invest in real estate nationwide",
@@ -53,6 +57,8 @@ const HomeInfoSection = () => {
             header="A verifiable and proven history"
             description="Realium traces all transactions for each property on the blockchain. This allows for Realium to introduce speed, security, and decentralization to the real estate market."
             imgSrc="/images/verifiable-and-proven-history.svg"
+            imgSrcMobile="/images/verifiable-and-proven-history-mobile.svg"
+            mbClassNames="px-4"
             data={[
               {
                 title: "Blockchain-proven ownership",

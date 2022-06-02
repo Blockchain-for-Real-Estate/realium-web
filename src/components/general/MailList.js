@@ -1,6 +1,13 @@
 import useUI from "src/context/hooks/useUI";
 
-export default function MailList({ title, description }) {
+const PRIMARY_BUTTON_CLASSES =
+  "text-white border border-transparent bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500";
+
+export default function MailList({
+  title,
+  description,
+  btnClasses = PRIMARY_BUTTON_CLASSES,
+}) {
   return (
     <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 lg:flex lg:items-center lg:justify-between bg-gray-50 rounded-lg shadow-sm">
       <span className="px-8">
@@ -12,7 +19,7 @@ export default function MailList({ title, description }) {
         <br />
       </span>
       <div>
-        <MailForm />
+        <MailForm btnClasses={btnClasses} />
         <div className="text-sm leading-5 font-normal text-gray-400 mt-3">
           We care about the protection of your data. Read our Privacy Policy.
         </div>
@@ -45,7 +52,7 @@ export const MailForm = (props) => {
   return (
     <form
       method="post"
-      className="mt-8 sm:flex"
+      className="sm:flex"
       id="sheetdb-form"
       action="https://sheetdb.io/api/v1/em65ljj2zvxh4"
     >
@@ -64,11 +71,11 @@ export const MailForm = (props) => {
             timeZone: "America/Denver",
           })}
         />
-        <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+        <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
           <button
             onClick={handleSubmit}
             type="submit"
-            className="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className={`w-full flex items-center justify-center px-5 py-3 text-base font-medium rounded-md ${props.btnClasses}`}
           >
             {props.subscribe ? "Subscribe" : "Notify me"}
           </button>

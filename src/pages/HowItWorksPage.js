@@ -39,9 +39,16 @@ export default function HowItWorksPage() {
               part owner of an LLC that manages the property.
             </p>
           </div>
-          <div className="relative h-96 w-full my-6 mx-auto">
+          <div className="relative h-96 w-full my-6 mx-auto hidden lg:block">
             <Image
               src="/images/legal-structure.svg"
+              alt="asset table"
+              layout="fill"
+            />
+          </div>
+          <div className="relative h-96 w-full my-6 mx-auto lg:hidden sm:flex">
+            <Image
+              src="/images/legal-structure-mobile.svg"
               alt="asset table"
               layout="fill"
             />
@@ -56,6 +63,7 @@ export default function HowItWorksPage() {
             header="Purchasing tokens"
             description=""
             imgSrc="/images/primary-sale.svg"
+            itemsCenter
             data={[
               {
                 title: "1. View investment details",

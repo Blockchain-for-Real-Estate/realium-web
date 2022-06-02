@@ -14,8 +14,8 @@ export default function ComingSoon() {
         title="Explore the marketplace"
         description="View the properties for sale on the Realium marketplace and find your ideal investment."
       />
-      <div className="flex justify-center relative h-96 lg:h-80 mb-10">
-        <div className="lg:flex justify-center relative h-80 mb-10">
+      <div className="flex justify-center relative h-96 mb-10">
+        <div className="lg:flex justify-center relative h-96 mb-10">
           <Image
             src="/images/property-coming-soon-1.svg"
             width="300"
@@ -23,7 +23,7 @@ export default function ComingSoon() {
             alt="Coming Soon"
           />
         </div>
-        <div className="lg:flex justify-center hidden relative h-80 mb-10">
+        <div className="lg:flex justify-center hidden relative h-96 mb-10 lg:mx-8">
           <Image
             src="/images/property-coming-soon-2.svg"
             width="300"
@@ -31,7 +31,7 @@ export default function ComingSoon() {
             alt="Coming Soon"
           />
         </div>
-        <div className="lg:flex justify-center hidden relative h-80 mb-10">
+        <div className="lg:flex justify-center hidden relative h-96 mb-10">
           <Image
             src="/images/property-coming-soon-3.svg"
             width="300"

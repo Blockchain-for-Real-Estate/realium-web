@@ -9,7 +9,7 @@ const HomeHeroSection = () => {
         <>
           <span>Invest in </span>
           <span className="text-indigo-600">fractional real estate</span>
-          <span>, get paid dividends.</span>
+          <span>, get paid rental income.</span>
         </>
       }
     />

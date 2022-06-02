@@ -25,13 +25,13 @@ export default function Hero({ title, description, imgSrc, btnText, btnHref }) {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start space-x-4">
                 <Link href="/subscribe" passHref>
-                  <button className="btn-primary px-8 py-3 md:py-4 md:text-lg md:px-10 shadow-lg">
+                  <button className="btn-primary px-8 py-3 md:py-4 md:text-lg md:px-10">
                     Get started
                   </button>
                 </Link>
                 {btnHref && btnText && (
                   <Link href={btnHref || ""} passHref>
-                    <button className="btn-secondary px-8 py-3 md:py-4 md:text-lg md:px-10 shadow-lg">
+                    <button className="btn-secondary px-8 py-3 md:py-4 md:text-lg md:px-10">
                       {btnText || "testing"}
                     </button>
                   </Link>
