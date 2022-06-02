@@ -1,5 +1,4 @@
 import { MailForm } from "src/components/general/MailList";
-import footer from "src/data/footerLinks";
 import Link from "next/link";
 import Image from "next/image";
 import { ChevronDownIcon } from "@heroicons/react/solid";
@@ -21,7 +20,7 @@ const navigation = {
   social: [
     {
       name: "Medium",
-      href: "#",
+      href: "https://medium.com/realium",
       icon: () => (
         <svg
           width="41"
@@ -47,7 +46,7 @@ const navigation = {
     },
     {
       name: "GitHub",
-      href: "#",
+      href: "https://github.com/Blockchain-for-Real-Estate/",
       icon: () => (
         <svg
           width="41"
@@ -101,7 +100,7 @@ const navigation = {
     },
     {
       name: "Twitter",
-      href: "#",
+      href: "https://twitter.com/RealiumTeam",
       icon: () => (
         <svg
           width="40"
@@ -240,7 +239,10 @@ export default function DefaultFooter() {
               Learn when we are launching and stay up to date with our roadmap.
             </p>
           </div>
-          <MailForm subscribe />
+          <MailForm
+            subscribe
+            btnClasses="border border-indigo-500 text-gray-700 bg-white hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          />
         </div>
         <div className="border-t border-gray-200 pt-8 lg:flex lg:items-center lg:justify-between xl:mt-0">
           <div className="text-sm leading-5 font-normal text-gray-400">
