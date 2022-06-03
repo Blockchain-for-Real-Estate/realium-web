@@ -31,22 +31,40 @@ function ContactForm(props) {
 				Send us a message to get the ball rolling.
 			</div>
 			<form
-				action="https://mailthis.to/realium"
+				action="https://formspree.io/f/xwkyygrw"
 				method="POST"
 				className="mt-9 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
 			>
-				<div className="sm:col-span-2">
+				<div>
 					<label
-						htmlFor="name"
+						htmlFor="first-name"
 						className="block text-sm font-medium text-gray-700"
 					>
-						Name
+						First name
 					</label>
 					<div className="mt-1">
 						<input
-							id="name"
-							name="name"
 							type="text"
+							name="first-name"
+							id="first-name"
+							autoComplete="given-name"
+							className="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+						/>
+					</div>
+				</div>
+				<div>
+					<label
+						htmlFor="last-name"
+						className="block text-sm font-medium text-gray-700"
+					>
+						Last name
+					</label>
+					<div className="mt-1">
+						<input
+							type="text"
+							name="last-name"
+							id="last-name"
+							autoComplete="family-name"
 							className="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
 						/>
 					</div>
@@ -85,6 +103,25 @@ function ContactForm(props) {
 							rows={4}
 							className="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border border-gray-300 rounded-md"
 							defaultValue={""}
+						/>
+					</div>
+				</div>
+				<div className="sm:col-span-2">
+					<div className="flex justify-between">
+						<label
+							htmlFor="how-did-you-hear"
+							className="block text-sm font-medium text-gray-700"
+						>
+							How did you hear about us?
+						</label>
+					</div>
+					<div className="mt-1">
+						<input
+							type="text"
+							id="how-did-you-hear"
+							name="how-did-you-hear"
+							aria-describedby="how did you hear"
+							className="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
 						/>
 					</div>
 				</div>
