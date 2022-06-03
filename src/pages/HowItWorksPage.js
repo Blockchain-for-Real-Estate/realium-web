@@ -65,8 +65,12 @@ export default function HowItWorksPage() {
 					<Info
 						header="Purchasing tokens"
 						description=""
-						imgSrc="/images/primary-sale.svg"
+						imgSrc="/images/primary-sale.jpeg"
 						itemsCenter
+						dtWidth={300}
+						dtHeight={500}
+						mbWidth={200}
+						mbHeight={300}
 						data={[
 							{
 								title: "1. View investment details",
